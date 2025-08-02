@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Explorer - HMAWBI Technological University</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% load static %}{% static 'chatbot/css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <i class="fas fa-graduation-cap"></i> HMAWBI University Guide
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{% url 'chat' %}">
+                    <i class="fas fa-comments"></i> Chat
+                </a>
+                <a class="nav-link active" href="{% url 'program_explorer' %}">
+                    <i class="fas fa-search"></i> Explore Programs
+                </a>
+                <a class="nav-link" href="{% url 'resources' %}">
+                    <i class="fas fa-book"></i> Resources
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center mb-5">
+                    <h1 class="display-4 text-primary">
+                        <i class="fas fa-university"></i> HMAWBI Technological University
+                    </h1>
+                    <p class="lead">Explore Engineering Programs & Technology Careers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Program Search -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="fas fa-search"></i> Find Your Program</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" class="program-search-form">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="program_level" class="form-label">Program Level</label>
+                                    <select class="form-select" id="program_level" name="program_level">
+                                        <option value="">All Levels</option>
+                                        <option value="undergraduate">Undergraduate</option>
+                                        <option value="graduate">Graduate</option>
+                                        <option value="doctorate">Doctorate</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="interest_area" class="form-label">Interest Area</label>
+                                    <select class="form-select" id="interest_area" name="interest_area">
+                                        <option value="">All Areas</option>
+                                        <option value="civil">Civil Engineering</option>
+                                        <option value="mechanical">Mechanical Engineering</option>
+                                        <option value="electrical">Electrical Engineering</option>
+                                        <option value="computer">Computer Engineering</option>
+                                        <option value="chemical">Chemical Engineering</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-lg w-100">
+                                <i class="fas fa-search"></i> Search Programs
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Engineering Programs -->
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-cogs"></i> Engineering Programs
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Civil Engineering -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow program-card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-building"></i> Civil Engineering
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Duration:</strong> 6 years Bachelor + 2 years ME</p>
+                        <p><strong>Focus:</strong> Infrastructure development, construction, structural design</p>
+                        <p>Prepare for Myanmar's growing infrastructure needs including roads, bridges, buildings, and urban planning projects.</p>
+                        
+                        <h6><i class="fas fa-briefcase"></i> Career Opportunities:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Infrastructure Engineer</li>
+                            <li><i class="fas fa-check text-success"></i> Construction Manager</li>
+                            <li><i class="fas fa-check text-success"></i> Structural Engineer</li>
+                            <li><i class="fas fa-check text-success"></i> Highway Engineer</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Requirements: Mathematics, Physics, Chemistry</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architecture -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow program-card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-drafting-compass"></i> Architecture
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Duration:</strong> 6 years Bachelor + 2 years ME</p>
+                        <p><strong>Focus:</strong> Architectural design, urban planning, construction</p>
+                        <p>Combines artistic design with engineering principles for building and urban development in Myanmar.</p>
+                        
+                        <h6><i class="fas fa-briefcase"></i> Career Opportunities:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-secondary"></i> Architect</li>
+                            <li><i class="fas fa-check text-secondary"></i> Urban Planner</li>
+                            <li><i class="fas fa-check text-secondary"></i> Interior Designer</li>
+                            <li><i class="fas fa-check text-secondary"></i> Construction Designer</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Requirements: Mathematics, Physics, Art and Design Skills</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mechanical Engineering -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow program-card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-cog"></i> Mechanical Engineering
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Duration:</strong> 6 years Bachelor + 2 years ME</p>
+                        <p><strong>Focus:</strong> Manufacturing, automotive systems, industrial machinery</p>
+                        <p>Covers manufacturing processes, automotive engineering, and industrial machinery relevant to Myanmar's growing industrial sector.</p>
+                        
+                        <h6><i class="fas fa-briefcase"></i> Career Opportunities:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-warning"></i> Manufacturing Engineer</li>
+                            <li><i class="fas fa-check text-warning"></i> Automotive Engineer</li>
+                            <li><i class="fas fa-check text-warning"></i> Power Plant Engineer</li>
+                            <li><i class="fas fa-check text-warning"></i> HVAC Engineer</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Requirements: Mathematics, Physics (Strong background)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Electrical Power Engineering -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow program-card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-bolt"></i> Electrical Power Engineering
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Duration:</strong> 6 years Bachelor + 2 years ME</p>
+                        <p><strong>Focus:</strong> Power systems, electrical grids, renewable energy</p>
+                        <p>Specializes in power generation, distribution, and renewable energy solutions for Myanmar's energy infrastructure.</p>
+                        
+                        <h6><i class="fas fa-briefcase"></i> Career Opportunities:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-primary"></i> Power Systems Engineer</li>
+                            <li><i class="fas fa-check text-primary"></i> Electrical Grid Engineer</li>
+                            <li><i class="fas fa-check text-primary"></i> Renewable Energy Specialist</li>
+                            <li><i class="fas fa-check text-primary"></i> Power Plant Operations Manager</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Requirements: Mathematics, Physics (Excellent grades)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Technology -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow program-card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-laptop-code"></i> Information Technology
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Duration:</strong> 6 years Bachelor + 2 years ME</p>
+                        <p><strong>Focus:</strong> Software development, IT systems, cybersecurity</p>
+                        <p>Focuses on software development, system administration, and IT infrastructure for Myanmar's digital transformation.</p>
+                        
+                        <h6><i class="fas fa-briefcase"></i> Career Opportunities:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-info"></i> Software Developer</li>
+                            <li><i class="fas fa-check text-info"></i> IT Systems Engineer</li>
+                            <li><i class="fas fa-check text-info"></i> Network Administrator</li>
+                            <li><i class="fas fa-check text-info"></i> Cybersecurity Specialist</li>
+                            <li><i class="fas fa-check text-info"></i> Database Administrator</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Requirements: Mathematics, Physics, Basic Programming (Preferred)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mechatronics Engineering -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow program-card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-robot"></i> Mechatronics Engineering
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Duration:</strong> 6 years Bachelor + 2 years ME</p>
+                        <p><strong>Focus:</strong> Automation, robotics, control systems</p>
+                        <p>Combines mechanical, electrical, and computer engineering for automation and robotics applications in Myanmar's industrial sector.</p>
+                        
+                        <h6><i class="fas fa-briefcase"></i> Career Opportunities:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-dark"></i> Automation Engineer</li>
+                            <li><i class="fas fa-check text-dark"></i> Robotics Engineer</li>
+                            <li><i class="fas fa-check text-dark"></i> Control Systems Engineer</li>
+                            <li><i class="fas fa-check text-dark"></i> Industrial IoT Specialist</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Requirements: Mathematics, Physics, Basic Electronics Knowledge</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campus Information -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-university"></i> Campus Information
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-map-marker-alt text-primary"></i> Location</h6>
+                                <p>HMAWBI Township, Yangon Region, Myanmar</p>
+                                
+                                <h6><i class="fas fa-building text-success"></i> Facilities</h6>
+                                <ul>
+                                    <li>Modern engineering laboratories</li>
+                                    <li>Engineering workshops and fabrication centers</li>
+                                    <li>Advanced computer labs</li>
+                                    <li>Central library with digital resources</li>
+                                    <li>Student hostels and accommodation</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-users text-info"></i> Student Organizations</h6>
+                                <ul>
+                                    <li>Engineering Student Society</li>
+                                    <li>Robotics and Automation Club</li>
+                                    <li>Environmental Engineering Club</li>
+                                    <li>Career Development and Innovation Club</li>
+                                </ul>
+                                
+                                <h6><i class="fas fa-calendar text-warning"></i> Admission</h6>
+                                <p><strong>Application Period:</strong> June - August annually</p>
+                                <p><strong>Entrance Exam:</strong> Myanmar Matriculation Examination required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="row mt-4 mb-5">
+            <div class="col-12 text-center">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h4><i class="fas fa-comments text-primary"></i> Need More Information?</h4>
+                        <p class="lead">Chat with our university guidance system for personalized advice!</p>
+                        <a href="{% url 'chat' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-comments"></i> Start Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add some interactivity to program cards
+        document.querySelectorAll('.program-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Handle program search form
+        document.querySelector('.program-search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const level = document.getElementById('program_level').value;
+            const area = document.getElementById('interest_area').value;
+            
+            // Simple filtering logic
+            document.querySelectorAll('.program-card').forEach(card => {
+                let showCard = true;
+                
+                if (area && !card.textContent.toLowerCase().includes(area)) {
+                    showCard = false;
+                }
+                
+                card.style.display = showCard ? 'block' : 'none';
+            });
+            
+            // Show message if filtering
+            if (level || area) {
+                console.log(`Filtering by level: ${level}, area: ${area}`);
+            }
+        });
+    </script>
+</body>
+</html>

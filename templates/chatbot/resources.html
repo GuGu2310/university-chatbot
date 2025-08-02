@@ -1,0 +1,315 @@
+{% extends 'chatbot/base.html' %}
+
+{% block title %}University Resources{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-graduation-cap"></i> University Resources
+                    </h4>
+                    <p class="mb-0">Academic guidance and university opportunities</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Priority Resources -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h5><i class="fas fa-star"></i> Priority Academic Resources</h5>
+                <p class="mb-2">Essential resources for your university journey:</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <strong>Academic Advisors</strong><br>
+                        <a href="#" class="btn btn-info btn-sm mt-1">
+                            <i class="fas fa-user-tie"></i> Find Advisor
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Admissions Office</strong><br>
+                        <a href="#" class="btn btn-primary btn-sm mt-1">
+                            <i class="fas fa-building"></i> Contact Admissions
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Student Services</strong><br>
+                        <a href="#" class="btn btn-success btn-sm mt-1">
+                            <i class="fas fa-hands-helping"></i> Get Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admission Resources from Database -->
+    {% if admission_resources %}
+    <div class="row">
+        {% for resource in admission_resources %}
+        <div class="col-md-6 mb-3">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-star"></i> {{ resource.title }}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ resource.description }}</p>
+                    {% if resource.deadline_date %}
+                    <p>
+                        <strong>Deadline:</strong> 
+                        <span class="badge badge-warning">{{ resource.deadline_date }}</span>
+                    </p>
+                    {% endif %}
+                    {% if resource.url %}
+                    <p>
+                        <strong>Website:</strong> 
+                        <a href="{{ resource.url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Visit Website
+                        </a>
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- General Resources -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4><i class="fas fa-graduation-cap"></i> Academic & Career Resources</h4>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- University Programs -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h6><i class="fas fa-university"></i> University Programs</h6>
+                </div>
+                <div class="card-body">
+                    <div class="resource-item mb-3">
+                        <strong>College Board</strong>
+                        <p class="small">College search, SAT prep, and application guidance</p>
+                        <a href="https://www.collegeboard.org" target="_blank" class="btn btn-sm btn-outline-primary">
+                            Visit College Board
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item mb-3">
+                        <strong>Common Application</strong>
+                        <p class="small">Apply to multiple colleges with one application</p>
+                        <a href="https://www.commonapp.org" target="_blank" class="btn btn-sm btn-outline-primary">
+                            Visit Common App
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>U.S. News Education</strong>
+                        <p class="small">University rankings and program information</p>
+                        <a href="https://www.usnews.com/education" target="_blank" class="btn btn-sm btn-outline-primary">
+                            Visit U.S. News
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Career Planning -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h6><i class="fas fa-briefcase"></i> Career Planning & Development</h6>
+                </div>
+                <div class="card-body">
+                    <div class="resource-item mb-3">
+                        <strong>O*NET Interest Profiler</strong>
+                        <p class="small">Discover careers that match your interests</p>
+                        <a href="https://www.mynextmove.org/explore/ip" target="_blank" class="btn btn-sm btn-outline-info">
+                            Take Assessment
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item mb-3">
+                        <strong>Bureau of Labor Statistics</strong>
+                        <p class="small">Career outlook and salary information</p>
+                        <a href="https://www.bls.gov/ooh/" target="_blank" class="btn btn-sm btn-outline-info">
+                            Explore Careers
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>LinkedIn Learning</strong>
+                        <p class="small">Professional development and skill building</p>
+                        <a href="https://www.linkedin.com/learning" target="_blank" class="btn btn-sm btn-outline-info">
+                            Start Learning
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Financial Aid & Scholarships -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h6><i class="fas fa-dollar-sign"></i> Financial Aid & Scholarships</h6>
+                </div>
+                <div class="card-body">
+                    <div class="resource-item mb-3">
+                        <strong>FAFSA (Federal Student Aid)</strong>
+                        <p class="small">Apply for federal financial aid and grants</p>
+                        <a href="https://studentaid.gov" target="_blank" class="btn btn-sm btn-outline-success">
+                            Apply for FAFSA
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item mb-3">
+                        <strong>Scholarships.com</strong>
+                        <p class="small">Search and apply for scholarships</p>
+                        <a href="https://www.scholarships.com" target="_blank" class="btn btn-sm btn-outline-success">
+                            Find Scholarships
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>Fastweb</strong>
+                        <p class="small">Scholarship search and college planning</p>
+                        <a href="https://www.fastweb.com" target="_blank" class="btn btn-sm btn-outline-success">
+                            Visit Fastweb
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Academic Support -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-warning text-dark">
+                    <h6><i class="fas fa-book"></i> Academic Support & Study Resources</h6>
+                </div>
+                <div class="card-body">
+                    <div class="resource-item mb-3">
+                        <strong>Khan Academy</strong>
+                        <p class="small">Free courses and test prep materials</p>
+                        <a href="https://www.khanacademy.org" target="_blank" class="btn btn-sm btn-outline-warning">
+                            Start Learning
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item mb-3">
+                        <strong>Coursera</strong>
+                        <p class="small">University courses and certificates online</p>
+                        <a href="https://www.coursera.org" target="_blank" class="btn btn-sm btn-outline-warning">
+                            Explore Courses
+                        </a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>Academic Writing Centers</strong>
+                        <p class="small">Writing support and essay assistance</p>
+                        <a href="https://owl.purdue.edu" target="_blank" class="btn btn-sm btn-outline-warning">
+                            Get Writing Help
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scholarship Resources -->
+    {% if scholarship_resources %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4><i class="fas fa-award"></i> Scholarship Opportunities</h4>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for resource in scholarship_resources %}
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">{{ resource.title }}</h6>
+                    <small class="text-muted">{{ resource.resource_type|title }}</small>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ resource.description }}</p>
+                    {% if resource.deadline_date %}
+                    <p>
+                        <strong>Deadline:</strong> 
+                        <span class="badge badge-warning">{{ resource.deadline_date }}</span>
+                    </p>
+                    {% endif %}
+                    {% if resource.url %}
+                    <a href="{{ resource.url }}" target="_blank" class="btn btn-primary btn-sm">
+                        <i class="fas fa-external-link-alt"></i> Apply Now
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Student Campaigns -->
+    {% if student_campaigns %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4><i class="fas fa-bullhorn"></i> Student Opportunities</h4>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for campaign in student_campaigns %}
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">{{ campaign.title }}</h6>
+                    <small class="text-muted">{{ campaign.campaign_type|title }}</small>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ campaign.description }}</p>
+                    {% if campaign.university %}
+                    <p><strong>University:</strong> {{ campaign.university }}</p>
+                    {% endif %}
+                    {% if campaign.deadline %}
+                    <p>
+                        <strong>Deadline:</strong> 
+                        <span class="badge badge-danger">{{ campaign.deadline }}</span>
+                    </p>
+                    {% endif %}
+                    {% if campaign.application_url %}
+                    <a href="{{ campaign.application_url }}" target="_blank" class="btn btn-primary btn-sm">
+                        <i class="fas fa-external-link-alt"></i> Learn More
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Back to Chat -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="{% url 'chat' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-comments"></i> Back to Chat
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

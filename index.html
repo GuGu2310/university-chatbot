@@ -1,0 +1,104 @@
+
+{% extends 'chatbot/base.html' %}
+{% load static %}
+
+{% block title %}HMAWBI University Guide - Your Engineering Future Starts Here{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card text-center">
+                <div class="card-body p-5">
+                    <div class="mb-5">
+                        <i class="fas fa-university fa-4x text-primary mb-3"></i>
+                        <h1 class="display-3 fw-bold text-primary mb-3">HMAWBI University Guide</h1>
+                        <p class="lead text-muted fs-4">Your comprehensive guide to engineering excellence at HMAWBI Technological University</p>
+                        <p class="text-muted">Empowering Myanmar's next generation of engineers through world-class education</p>
+                    </div>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-4 mb-4">
+                            <div class="program-card h-100">
+                                <i class="fas fa-graduation-cap fa-3x text-success mb-3"></i>
+                                <h4 class="text-primary">Engineering Programs</h4>
+                                <p class="text-muted">Explore 6 comprehensive engineering disciplines designed for Myanmar's technological advancement</p>
+                                <div class="university-badge">6 Major Programs</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="program-card h-100">
+                                <i class="fas fa-building fa-3x text-info mb-3"></i>
+                                <h4 class="text-primary">Campus Life</h4>
+                                <p class="text-muted">Modern facilities, vibrant student organizations, and comprehensive support services</p>
+                                <div class="university-badge">World-Class Facilities</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="program-card h-100">
+                                <i class="fas fa-briefcase fa-3x text-warning mb-3"></i>
+                                <h4 class="text-primary">Career Success</h4>
+                                <p class="text-muted">85% placement rate with excellent career prospects in Myanmar's growing tech sector</p>
+                                <div class="university-badge">85% Placement Rate</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-primary">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">
+                                        <i class="fas fa-tools"></i> Engineering Excellence
+                                    </h5>
+                                    <p class="card-text">Choose from Civil, Mechanical, Electrical Power, Information Technology, Architecture, and Mechatronics Engineering</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-success">
+                                <div class="card-body">
+                                    <h5 class="card-title text-success">
+                                        <i class="fas fa-users"></i> Student Support
+                                    </h5>
+                                    <p class="card-text">Comprehensive academic counseling, career guidance, and personal development programs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="text-primary mb-3">Start Your Engineering Journey</h3>
+                        <p class="lead mb-4">Chat with our intelligent guide for personalized advice about admissions, programs, and career opportunities!</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <a href="{% url 'chat' %}" class="btn btn-primary btn-lg me-md-2">
+                                <i class="fas fa-comments"></i> Start Guidance Chat
+                            </a>
+                            <a href="{% url 'program_explorer' %}" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-search"></i> Explore Programs
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row text-start">
+                        <div class="col-md-6">
+                            <h5 class="text-primary"><i class="fas fa-map-marker-alt"></i> Location</h5>
+                            <p class="text-muted">HMAWBI Township, Yangon Region, Myanmar</p>
+                            
+                            <h5 class="text-primary"><i class="fas fa-calendar-alt"></i> Academic Year</h5>
+                            <p class="text-muted">June - March (2 Semesters)</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-primary"><i class="fas fa-phone"></i> Contact</h5>
+                            <p class="text-muted">Get in touch for more information</p>
+                            
+                            <h5 class="text-primary"><i class="fas fa-bus"></i> Transportation</h5>
+                            <p class="text-muted">University bus service from Yangon city center</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
