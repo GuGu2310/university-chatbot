@@ -1216,3 +1216,21 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /chat/ HTTP/1.1" 200 16882
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+"POST /process-message/ HTTP/1.1" 200 245
+"GET /chat/ HTTP/1.1" 200 17260
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 16882
+"POST /process-message/ HTTP/1.1" 200 246
+"POST /process-message/ HTTP/1.1" 200 246
+"POST /process-message/ HTTP/1.1" 200 875
+"POST /process-message/ HTTP/1.1" 200 670
+"POST /process-message/ HTTP/1.1" 200 2596
