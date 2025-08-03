@@ -151,9 +151,20 @@ class UniversityGuidanceChatbot:
                 'intent': 'farewell'
             }
 
-        # Fun content and jokes
-        if any(word in user_message for word in ['joke', 'funny', 'humor', 'laugh', 'fun']):
-            return self._handle_fun_content(user_message, is_urgent)
+        # Fun content and jokes - check for joke keywords OR direct joke questions
+        is_joke_request = any(word in user_message for word in ['joke', 'funny', 'humor', 'laugh', 'fun'])
+        
+        # Check if message matches any joke setup directly
+        is_direct_joke = False
+        matching_joke = None
+        for joke in self.funny_jokes:
+            if joke['setup'].lower().replace('?', '').strip() in user_message.replace('?', '').strip():
+                is_direct_joke = True
+                matching_joke = joke
+                break
+        
+        if is_joke_request or is_direct_joke:
+            return self._handle_fun_content(user_message, is_urgent, matching_joke)
 
         # Personal encouragement and motivation
         if any(word in user_message for word in ['stressed', 'tired', 'difficult', 'hard', 'struggling']):
@@ -505,8 +516,24 @@ class UniversityGuidanceChatbot:
         """Generate enhanced comprehensive response for general queries"""
         return random.choice(self.comprehensive_responses)
 
-    def _handle_fun_content(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_fun_content(self, user_message: str, is_urgent: bool = False, direct_joke: Dict = None) -> Dict[str, Any]:
         """Handle requests for jokes and fun content"""
+        
+        # If someone asked a direct joke question, give them the punchline immediately
+        if direct_joke:
+            response = f"😄 **Here's the answer!** 🎉\n\n"
+            response += f"**{direct_joke['punchline']}**\n\n"
+            response += f"🤓 **Bonus Fun Fact:**\n{random.choice(self.fun_facts)}\n\n"
+            response += f"💡 Want more jokes? Just ask for 'engineering jokes' or 'funny jokes'!"
+            
+            return {
+                'message': response,
+                'is_urgent': is_urgent,
+                'helpfulness': 0.95,
+                'intent': 'direct_joke_answer'
+            }
+        
+        # Regular joke content handling
         response = "😄 **Time for Some Engineering Fun!** 🎉\n\n"
         
         # Detect specific engineering category for targeted jokes
