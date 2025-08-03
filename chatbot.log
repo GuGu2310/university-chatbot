@@ -1119,3 +1119,21 @@ Watching for file changes with StatReloader
 "GET /static/chatbot/css/style.css HTTP/1.1" 304 0
 "GET /chat/ HTTP/1.1" 200 24028
 "GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+"POST /process-message/ HTTP/1.1" 200 226
+"GET /chat/ HTTP/1.1" 200 25419
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 13347
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 13347
+"GET /chat/ HTTP/1.1" 200 27198
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 200 13229
+"POST /process-message/ HTTP/1.1" 200 1272
+"POST /process-message/ HTTP/1.1" 200 2595
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 16423
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+"POST /process-message/ HTTP/1.1" 200 835
