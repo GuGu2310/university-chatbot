@@ -1094,3 +1094,28 @@ Not Found: /favicon.ico
 "POST /process-message/ HTTP/1.1" 200 239
 "POST /process-message/ HTTP/1.1" 200 244
 "POST /process-message/ HTTP/1.1" 200 835
+"GET / HTTP/1.1" 200 27834
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 11356
+"GET / HTTP/1.1" 200 27659
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 27659
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 27698
+"GET / HTTP/1.1" 200 27698
+"GET / HTTP/1.1" 200 27698
+"GET /chat/ HTTP/1.1" 200 22613
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /chat/ HTTP/1.1" 200 22613
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 11424
+"POST /process-message/ HTTP/1.1" 200 245
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /chat/ HTTP/1.1" 200 24028
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
