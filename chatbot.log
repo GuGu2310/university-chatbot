@@ -1137,3 +1137,16 @@ Watching for file changes with StatReloader
 "GET /static/chatbot/css/style.css HTTP/1.1" 304 0
 "GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
 "POST /process-message/ HTTP/1.1" 200 835
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 13731
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 13731
+"GET /chat/ HTTP/1.1" 200 17812
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 200 14257
+"POST /process-message/ HTTP/1.1" 200 874
