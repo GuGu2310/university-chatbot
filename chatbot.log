@@ -1060,3 +1060,6 @@ Not Found: /favicon.ico
 "GET /static/chatbot/css/style.css HTTP/1.1" 304 0
 "GET /program-explorer/ HTTP/1.1" 200 19105
 "GET /resources/ HTTP/1.1" 200 14995
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8551
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 8708
