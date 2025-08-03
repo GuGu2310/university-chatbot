@@ -1,104 +1,456 @@
 
-{% extends 'chatbot/base.html' %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMAWBI Technological University - Engineering Excellence</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chatbot/css/style.css' %}">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-elements::before {
+            top: -150px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+        
+        .floating-elements::after {
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 3s;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stats-section {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .program-preview {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-graduation-cap"></i> HMAWBI University
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary ms-2" href="{% url 'chat' %}">
+                            <i class="fas fa-comments"></i> Chat Guide
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-{% block title %}HMAWBI University Guide - Your Engineering Future Starts Here{% endblock %}
-
-{% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card text-center">
-                <div class="card-body p-5">
-                    <div class="mb-5">
-                        <i class="fas fa-university fa-4x text-primary mb-3"></i>
-                        <h1 class="display-3 fw-bold text-primary mb-3">HMAWBI University Guide</h1>
-                        <p class="lead text-muted fs-4">Your comprehensive guide to engineering excellence at HMAWBI Technological University</p>
-                        <p class="text-muted">Empowering Myanmar's next generation of engineers through world-class education</p>
-                    </div>
-                    
-                    <div class="row mb-5">
-                        <div class="col-md-4 mb-4">
-                            <div class="program-card h-100">
-                                <i class="fas fa-graduation-cap fa-3x text-success mb-3"></i>
-                                <h4 class="text-primary">Engineering Programs</h4>
-                                <p class="text-muted">Explore 6 comprehensive engineering disciplines designed for Myanmar's technological advancement</p>
-                                <div class="university-badge">6 Major Programs</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="program-card h-100">
-                                <i class="fas fa-building fa-3x text-info mb-3"></i>
-                                <h4 class="text-primary">Campus Life</h4>
-                                <p class="text-muted">Modern facilities, vibrant student organizations, and comprehensive support services</p>
-                                <div class="university-badge">World-Class Facilities</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="program-card h-100">
-                                <i class="fas fa-briefcase fa-3x text-warning mb-3"></i>
-                                <h4 class="text-primary">Career Success</h4>
-                                <p class="text-muted">85% placement rate with excellent career prospects in Myanmar's growing tech sector</p>
-                                <div class="university-badge">85% Placement Rate</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-5">
-                        <div class="col-md-6 mb-3">
-                            <div class="card border-primary">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary">
-                                        <i class="fas fa-tools"></i> Engineering Excellence
-                                    </h5>
-                                    <p class="card-text">Choose from Civil, Mechanical, Electrical Power, Information Technology, Architecture, and Mechatronics Engineering</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card border-success">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success">
-                                        <i class="fas fa-users"></i> Student Support
-                                    </h5>
-                                    <p class="card-text">Comprehensive academic counseling, career guidance, and personal development programs</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="floating-elements"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
                     <div class="mb-4">
-                        <h3 class="text-primary mb-3">Start Your Engineering Journey</h3>
-                        <p class="lead mb-4">Chat with our intelligent guide for personalized advice about admissions, programs, and career opportunities!</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <a href="{% url 'chat' %}" class="btn btn-primary btn-lg me-md-2">
-                                <i class="fas fa-comments"></i> Start Guidance Chat
+                        <h1 class="display-3 fw-bold text-white mb-4 animation-delay-1" style="animation: fadeInUp 1s ease-out;">
+                            Shape the Future with
+                            <span class="text-gradient-primary d-block">Engineering Excellence</span>
+                        </h1>
+                        <p class="lead text-white mb-5 animation-delay-2" style="animation: fadeInUp 1s ease-out 0.2s both;">
+                            Join HMAWBI Technological University and become part of Myanmar's leading engineering institution. 
+                            Discover cutting-edge programs, world-class facilities, and endless opportunities.
+                        </p>
+                        
+                        <div class="d-flex flex-column flex-md-row gap-3 animation-delay-3" style="animation: fadeInUp 1s ease-out 0.4s both;">
+                            <a href="{% url 'chat' %}" class="btn btn-warning btn-lg">
+                                <i class="fas fa-comments me-2"></i>Start Your Journey
                             </a>
-                            <a href="{% url 'program_explorer' %}" class="btn btn-outline-primary btn-lg">
-                                <i class="fas fa-search"></i> Explore Programs
+                            <a href="{% url 'program_explorer' %}" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-search me-2"></i>Explore Programs
                             </a>
                         </div>
                     </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="text-center animation-delay-3" style="animation: slideInRight 1s ease-out 0.6s both;">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="HMAWBI University Campus" class="img-fluid rounded-4 shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="row text-start">
-                        <div class="col-md-6">
-                            <h5 class="text-primary"><i class="fas fa-map-marker-alt"></i> Location</h5>
-                            <p class="text-muted">HMAWBI Township, Yangon Region, Myanmar</p>
-                            
-                            <h5 class="text-primary"><i class="fas fa-calendar-alt"></i> Academic Year</h5>
-                            <p class="text-muted">June - March (2 Semesters)</p>
+    <!-- Stats Section -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Engineering Programs</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Graduates</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Employment Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Preview -->
+    <section id="programs" class="py-5 program-preview">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-4">Engineering Programs</h2>
+                <p class="lead text-muted">Choose from 6 specialized engineering disciplines designed for Myanmar's future</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card">
+                        <div class="card-header bg-gradient-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-building"></i> Civil Engineering</h5>
                         </div>
-                        <div class="col-md-6">
-                            <h5 class="text-primary"><i class="fas fa-phone"></i> Contact</h5>
-                            <p class="text-muted">Get in touch for more information</p>
-                            
-                            <h5 class="text-primary"><i class="fas fa-bus"></i> Transportation</h5>
-                            <p class="text-muted">University bus service from Yangon city center</p>
+                        <div class="card-body">
+                            <p>Infrastructure development, construction, and structural design for Myanmar's growing cities.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> 6 years Bachelor + 2 years ME</li>
+                                <li><i class="fas fa-check text-success"></i> Infrastructure projects focus</li>
+                                <li><i class="fas fa-check text-success"></i> High industry demand</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card">
+                        <div class="card-header bg-gradient-info text-white">
+                            <h5 class="mb-0"><i class="fas fa-laptop-code"></i> Information Technology</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Software development, cybersecurity, and IT systems for digital transformation.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-info"></i> Modern curriculum</li>
+                                <li><i class="fas fa-check text-info"></i> Industry partnerships</li>
+                                <li><i class="fas fa-check text-info"></i> High salary potential</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card">
+                        <div class="card-header bg-gradient-warning text-white">
+                            <h5 class="mb-0"><i class="fas fa-bolt"></i> Electrical Power</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Power systems, renewable energy, and electrical infrastructure solutions.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-warning"></i> Renewable energy focus</li>
+                                <li><i class="fas fa-check text-warning"></i> Smart grid technology</li>
+                                <li><i class="fas fa-check text-warning"></i> Critical industry need</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="{% url 'program_explorer' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-search me-2"></i>Explore All Programs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-4">Why Choose HMAWBI?</h2>
+                <p class="lead text-muted">Experience world-class education with cutting-edge facilities</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="display-4 text-primary mb-3">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h4 class="fw-bold">Advanced Laboratories</h4>
+                            <p class="text-muted">State-of-the-art labs equipped with modern technology and industry-standard equipment for hands-on learning.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="display-4 text-success mb-3">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4 class="fw-bold">Expert Faculty</h4>
+                            <p class="text-muted">Learn from experienced professors and industry professionals who bring real-world expertise to the classroom.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="display-4 text-warning mb-3">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h4 class="fw-bold">Industry Connections</h4>
+                            <p class="text-muted">Strong partnerships with leading companies provide internships, projects, and job opportunities.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-{% endblock %}
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3 class="display-5 fw-bold mb-3">Ready to Start Your Engineering Journey?</h3>
+                    <p class="lead mb-0">Get personalized guidance and answers to all your questions with our AI-powered university assistant.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{% url 'chat' %}" class="btn btn-warning btn-lg">
+                        <i class="fas fa-comments me-2"></i>Chat with Guide
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">HMAWBI Technological University</h5>
+                    <p class="text-muted">Shaping Myanmar's engineering future with excellence in education, research, and innovation.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-muted"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'program_explorer' %}" class="text-muted">Programs</a></li>
+                        <li><a href="{% url 'chat' %}" class="text-muted">Chat Guide</a></li>
+                        <li><a href="{% url 'resources' %}" class="text-muted">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Programs</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted">Civil Engineering</a></li>
+                        <li><a href="#" class="text-muted">Information Technology</a></li>
+                        <li><a href="#" class="text-muted">Electrical Power</a></li>
+                        <li><a href="#" class="text-muted">Mechanical Engineering</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold mb-3">Contact Info</h6>
+                    <ul class="list-unstyled">
+                        <li class="text-muted mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            HMAWBI Township, Yangon Region
+                        </li>
+                        <li class="text-muted mb-2">
+                            <i class="fas fa-phone me-2"></i>
+                            +95 1 234 5678
+                        </li>
+                        <li class="text-muted">
+                            <i class="fas fa-envelope me-2"></i>
+                            info@hmawbi.edu.mm
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="text-muted mb-0">© 2025 HMAWBI Technological University. Empowering Myanmar's Future Engineers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation classes on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/\D/g, ''));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = counter.textContent.replace(/\d+/, target);
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                    }
+                }, 20);
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
