@@ -1,4 +1,3 @@
-
 """
 Student Engagement Content
 Fun jokes, personal speech data, and entertainment content for students
@@ -277,7 +276,7 @@ def add_university_news(title, content, category="general", tags=None):
     """Add new university news"""
     if tags is None:
         tags = []
-    
+
     new_news = {
         "title": title,
         "content": content,
@@ -305,7 +304,7 @@ def search_news(keyword):
 
 # Quick add examples
 def add_sports_news():
-    """Example: Add sports news"""
+    """Example: Add sports achievement"""
     return add_university_news(
         "Volleyball Team Victory! 🏐",
         "The IT Engineering volleyball team defeated Civil Engineering 3-1 in the championship finals!",
@@ -327,12 +326,12 @@ if __name__ == "__main__":
     print("Sample Joke:")
     print(f"Q: {FUNNY_JOKES[0]['setup']}")
     print(f"A: {FUNNY_JOKES[0]['punchline']}")
-    
+
     print("\nSample Encouragement:")
     print(PERSONAL_ENCOURAGEMENT[0]['message'])
-    
+
     print("\nSample University News:")
     print(f"Title: {UNIVERSITY_NEWS[0]['title']}")
     print(f"Content: {UNIVERSITY_NEWS[0]['content']}")
-    
+
     print(f"\nTotal Content: {len(FUNNY_JOKES)} jokes, {len(PERSONAL_ENCOURAGEMENT)} encouragements, {len(UNIVERSITY_NEWS)} news items")

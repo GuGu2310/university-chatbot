@@ -20,8 +20,9 @@ from .data.responses_templates import (CONVERSATION_STARTERS, CASUAL_RESPONSES,
 from .data.student_engagement import (FUNNY_JOKES, PERSONAL_ENCOURAGEMENT,
                                       FUN_FACTS, CASUAL_CHATS,
                                       CELEBRATION_MESSAGES, UNIVERSITY_NEWS,
-                                      CAMPUS_ACHIEVEMENTS, search_news,
-                                      get_news_by_category)
+                                      CAMPUS_ACHIEVEMENTS, STUDENT_LIFE_QUOTES,
+                                      search_news, get_news_by_category,
+                                      get_joke_by_category, get_random_encouragement)
 
 # Download required NLTK data
 try:
@@ -62,14 +63,6 @@ except ImportError:
     logger.warning(
         "NLTK not installed. Some advanced text processing will be skipped.")
     NLTK_AVAILABLE = False
-
-STUDENT_LIFE_QUOTES = [
-    "Life is what happens when you're busy making other plans.",
-    "The future belongs to those who believe in the beauty of their dreams.",
-    "Don't watch the clock; do what it does. Keep going.",
-    "In the middle of every difficulty lies opportunity."
-]
-
 
 class UniversityGuidanceChatbot:
 
