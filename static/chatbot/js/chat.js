@@ -37,12 +37,26 @@ class UniversityGuidanceChatbot {
         this.focusInput();
         this.setupKeyboardShortcuts();
         this.initializeAutoResize();
+        this.checkQuickQuestionsPreference();
 
         // Set initial state
         this.updateSendButtonState();
         this.scrollToBottom();
 
         console.log('University Guidance Chatbot initialized successfully');
+    }
+
+    /**
+     * Check if user has hidden quick questions before
+     */
+    checkQuickQuestionsPreference() {
+        const hideQuickQuestions = localStorage.getItem('hideQuickQuestions');
+        if (hideQuickQuestions === 'true') {
+            const container = document.getElementById('quick-buttons-container');
+            if (container) {
+                container.style.display = 'none';
+            }
+        }
     }
 
     /**
@@ -437,9 +451,26 @@ function dismissQuickButton(dismissBtn) {
             
             // Check if container is empty and hide it
             const container = document.getElementById('quick-buttons-container');
-            if (container && container.children[0].children.length === 0) {
+            if (container && container.children[1].children.length === 0) {
                 container.style.display = 'none';
             }
+        }, 300);
+    }
+}
+
+function dismissQuickArea() {
+    const container = document.getElementById('quick-buttons-container');
+    if (container) {
+        // Add fade out animation
+        container.style.transition = 'all 0.3s ease';
+        container.style.opacity = '0';
+        container.style.transform = 'scale(0.95)';
+        
+        // Remove after animation
+        setTimeout(() => {
+            container.style.display = 'none';
+            // Store preference in localStorage
+            localStorage.setItem('hideQuickQuestions', 'true');
         }, 300);
     }
 }

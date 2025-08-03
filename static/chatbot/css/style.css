@@ -464,6 +464,25 @@ h6 { font-size: 1.125rem; }
     box-shadow: none !important;
 }
 
+.quick-area-dismiss {
+    opacity: 0.6;
+    transition: var(--transition);
+    border: none !important;
+    background: none !important;
+    font-size: 0.8rem !important;
+    color: var(--text-light) !important;
+}
+
+.quick-area-dismiss:hover {
+    opacity: 1;
+    color: #dc3545 !important;
+    transform: scale(1.1);
+}
+
+.quick-area-dismiss:focus {
+    box-shadow: none !important;
+}
+
 /* Hide quick buttons container when empty */
 .quick-buttons-container:empty {
     display: none;

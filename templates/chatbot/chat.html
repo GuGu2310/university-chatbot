@@ -188,6 +188,12 @@
                 <div class="card-footer bg-light">
                     <!-- Compact Quick Questions -->
                     <div class="quick-buttons-container mb-2" id="quick-buttons-container">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <small class="text-muted">Quick Questions:</small>
+                            <button class="btn btn-link btn-sm p-0 quick-area-dismiss" onclick="dismissQuickArea()" title="Hide quick questions">
+                                <i class="fas fa-times text-muted"></i>
+                            </button>
+                        </div>
                         <div class="d-flex flex-wrap gap-1 justify-content-center">
                             <span class="quick-button-item">
                                 <button class="btn btn-outline-primary btn-sm quick-btn" onclick="sendQuickQuestion('Admission requirements')">

@@ -90,6 +90,10 @@ class UniversityGuidanceChatbot:
         self.student_quotes = STUDENT_LIFE_QUOTES
         self.celebration_messages = CELEBRATION_MESSAGES
         self.fun_facts = FUN_FACTS
+        
+        # Initialize engagement utilities
+        self.get_joke_by_category = get_joke_by_category
+        self.get_random_encouragement = get_random_encouragement
 
         # Initialize OpenAI if available
         openai.api_key = getattr(settings, 'OPENAI_API_KEY', None)
@@ -522,7 +526,7 @@ class UniversityGuidanceChatbot:
                 break
         
         # Get jokes by category or random
-        relevant_jokes = get_joke_by_category(joke_category)
+        relevant_jokes = self.get_joke_by_category(joke_category)
         if not relevant_jokes:
             relevant_jokes = self.funny_jokes
         
@@ -562,7 +566,7 @@ class UniversityGuidanceChatbot:
             context = 'general'
         
         # Get relevant encouragement
-        relevant_encouragement = get_random_encouragement(context)
+        relevant_encouragement = self.get_random_encouragement(context)
         if not relevant_encouragement:
             relevant_encouragement = self.personal_encouragement
         
