@@ -35,8 +35,12 @@ class Command(BaseCommand):
             self.add_study_tip_interactive(manager)
         elif action == 'search':
             self.search_programs(manager, options.get('value', ''))
+        elif action == 'add_news':
+            self.add_news_interactive(manager)
+        elif action == 'search_news':
+            self.search_news(manager, options.get('value', ''))
         else:
-            self.stdout.write(self.style.WARNING('Available actions: stats, backup, add_program, update_fees, add_tip, search'))
+            self.stdout.write(self.style.WARNING('Available actions: stats, backup, add_program, update_fees, add_tip, search, add_news, search_news'))
 
     def show_statistics(self, manager):
         """Display current data statistics"""
@@ -148,3 +152,40 @@ class Command(BaseCommand):
                 self.stdout.write(f"  - {program}")
         else:
             self.stdout.write(self.style.WARNING(f'No programs found matching "{query}"'))
+
+    def add_news_interactive(self, manager):
+        """Interactive news addition"""
+        self.stdout.write(self.style.WARNING('\n=== Add University News ==='))
+        
+        title = input("News title: ")
+        content = input("News content: ")
+        category = input("Category (sports/academic/campus_life/facilities): ")
+        
+        # Tags
+        tags = []
+        self.stdout.write("Enter tags (press Enter on empty line to finish):")
+        while True:
+            tag = input("Tag: ")
+            if not tag:
+                break
+            tags.append(tag)
+        
+        success = manager.add_news(title, content, category, tags)
+        if success:
+            self.stdout.write(self.style.SUCCESS(f'News "{title}" added successfully!'))
+        else:
+            self.stdout.write(self.style.ERROR(f'Failed to add news "{title}"'))
+
+    def search_news(self, manager, query):
+        """Search university news"""
+        if not query:
+            query = input("Enter search query: ")
+        
+        results = manager.search_university_news(query)
+        
+        if results:
+            self.stdout.write(self.style.SUCCESS(f'\nFound {len(results)} news items matching "{query}":'))
+            for news in results:
+                self.stdout.write(f"  - {news['title']}: {news['content'][:100]}...")
+        else:
+            self.stdout.write(self.style.WARNING(f'No news found matching "{query}"'))

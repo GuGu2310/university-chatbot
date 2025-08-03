@@ -216,6 +216,112 @@ def quick_add_motivation():
         "motivation"
     )
 
+UNIVERSITY_NEWS = [
+    {
+        "title": "Basketball Championship Victory! 🏆",
+        "content": "The Mechanical Engineering team won the Inter-Faculty Basketball Championship 2024! Congratulations to our amazing athletes!",
+        "category": "sports",
+        "date": "2024-12-15",
+        "tags": ["basketball", "championship", "mechanical", "sports"]
+    },
+    {
+        "title": "HMAWBI University Queen 2024 👑",
+        "content": "Miss Thant Zin from Civil Engineering has been crowned HMAWBI University Queen 2024! She impressed judges with her talent and advocacy for women in engineering.",
+        "category": "campus_life",
+        "date": "2024-11-20",
+        "tags": ["beauty_pageant", "civil", "women_empowerment"]
+    },
+    {
+        "title": "Robotics Team Wins National Competition 🤖",
+        "content": "Our Mechatronics students won 1st place at the Myanmar National Robotics Competition with their innovative automation project!",
+        "category": "academic",
+        "date": "2024-10-25",
+        "tags": ["robotics", "mechatronics", "competition", "innovation"]
+    },
+    {
+        "title": "New Research Lab Opening 🔬",
+        "content": "HMAWBI University is opening a state-of-the-art AI and Machine Learning Research Lab in collaboration with international partners!",
+        "category": "facilities",
+        "date": "2024-09-30",
+        "tags": ["research", "ai", "lab", "technology"]
+    },
+    {
+        "title": "Football Team Reaches Finals ⚽",
+        "content": "The HMAWBI Eagles football team has reached the University League Finals! Match scheduled for next Saturday at the main stadium.",
+        "category": "sports",
+        "date": "2024-12-01",
+        "tags": ["football", "finals", "eagles", "league"]
+    }
+]
+
+CAMPUS_ACHIEVEMENTS = [
+    {
+        "achievement": "Top Engineering University in Myanmar 2024",
+        "description": "HMAWBI ranked #1 in engineering education by Myanmar Education Rankings",
+        "year": "2024"
+    },
+    {
+        "achievement": "95% Graduate Employment Rate",
+        "description": "Our graduates find jobs within 6 months of graduation",
+        "year": "2024"
+    },
+    {
+        "achievement": "International Partnership Expansion",
+        "description": "New partnerships with universities in Singapore, Japan, and Germany",
+        "year": "2024"
+    }
+]
+
+# Easy data management functions for news
+def add_university_news(title, content, category="general", tags=None):
+    """Add new university news"""
+    if tags is None:
+        tags = []
+    
+    new_news = {
+        "title": title,
+        "content": content,
+        "category": category,
+        "date": "2024-12-20",  # You can make this dynamic
+        "tags": tags
+    }
+    UNIVERSITY_NEWS.append(new_news)
+    return True
+
+def get_news_by_category(category):
+    """Get news by specific category"""
+    return [news for news in UNIVERSITY_NEWS if news.get("category") == category]
+
+def search_news(keyword):
+    """Search news by keyword in title, content, or tags"""
+    keyword = keyword.lower()
+    results = []
+    for news in UNIVERSITY_NEWS:
+        if (keyword in news["title"].lower() or 
+            keyword in news["content"].lower() or 
+            any(keyword in tag.lower() for tag in news["tags"])):
+            results.append(news)
+    return results
+
+# Quick add examples
+def add_sports_news():
+    """Example: Add sports news"""
+    return add_university_news(
+        "Volleyball Team Victory! 🏐",
+        "The IT Engineering volleyball team defeated Civil Engineering 3-1 in the championship finals!",
+        "sports",
+        ["volleyball", "it", "championship"]
+    )
+
+def add_academic_news():
+    """Example: Add academic achievement"""
+    return add_university_news(
+        "Student Research Published 📚",
+        "Final year Electrical Engineering student published research on renewable energy in international journal!",
+        "academic",
+        ["research", "electrical", "renewable_energy", "publication"]
+    )
+
 if __name__ == "__main__":
     # Demo usage
     print("Sample Joke:")
@@ -225,4 +331,8 @@ if __name__ == "__main__":
     print("\nSample Encouragement:")
     print(PERSONAL_ENCOURAGEMENT[0]['message'])
     
-    print(f"\nTotal Content: {len(FUNNY_JOKES)} jokes, {len(PERSONAL_ENCOURAGEMENT)} encouragements")
+    print("\nSample University News:")
+    print(f"Title: {UNIVERSITY_NEWS[0]['title']}")
+    print(f"Content: {UNIVERSITY_NEWS[0]['content']}")
+    
+    print(f"\nTotal Content: {len(FUNNY_JOKES)} jokes, {len(PERSONAL_ENCOURAGEMENT)} encouragements, {len(UNIVERSITY_NEWS)} news items")
