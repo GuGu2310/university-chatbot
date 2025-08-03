@@ -423,18 +423,24 @@ function clearChat() {
     }
 }
 
-function toggleQuickQuestions() {
-    const quickContent = document.getElementById('quick-questions-content');
-    const toggleBtn = document.getElementById('toggle-quick-btn');
-    
-    if (quickContent && toggleBtn) {
-        if (quickContent.style.display === 'none') {
-            quickContent.style.display = 'block';
-            toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Hide';
-        } else {
-            quickContent.style.display = 'none';
-            toggleBtn.innerHTML = '<i class="fas fa-eye"></i> Show';
-        }
+function dismissQuickButton(dismissBtn) {
+    const quickButtonItem = dismissBtn.closest('.quick-button-item');
+    if (quickButtonItem) {
+        // Add fade out animation
+        quickButtonItem.style.transition = 'all 0.3s ease';
+        quickButtonItem.style.opacity = '0';
+        quickButtonItem.style.transform = 'scale(0.8)';
+        
+        // Remove after animation
+        setTimeout(() => {
+            quickButtonItem.remove();
+            
+            // Check if container is empty and hide it
+            const container = document.getElementById('quick-buttons-container');
+            if (container && container.children[0].children.length === 0) {
+                container.style.display = 'none';
+            }
+        }, 300);
     }
 }
 

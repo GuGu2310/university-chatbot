@@ -351,34 +351,122 @@ h6 { font-size: 1.125rem; }
     border-radius: 0;
 }
 
-/* Quick actions - Compact design */
-.quick-actions {
+/* Compact Quick Buttons */
+.quick-buttons-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(10px);
+}
+
+.quick-button-item {
+    display: inline-flex;
+    align-items: center;
     background: var(--bg-white);
-    border-radius: var(--radius-md);
-    padding: 1rem;
+    border-radius: var(--radius-sm);
+    padding: 0.25rem 0.5rem;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-light);
-    margin-top: 1rem;
-}
-
-.quick-question {
-    background: var(--bg-light);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-sm);
-    padding: 0.5rem 1rem;
-    margin: 0.25rem;
+    margin: 0.125rem;
     transition: var(--transition);
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.9rem;
-    display: inline-block;
 }
 
-.quick-question:hover {
-    background: var(--primary-gradient);
-    color: white;
-    transform: translateY(-2px);
+.quick-button-item:hover {
     box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.quick-btn {
+    border: none !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-sm) !important;
+    transition: var(--transition) !important;
+    background: transparent !important;
+}
+
+.quick-btn:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-outline-primary.quick-btn {
+    color: var(--primary-color) !important;
+}
+
+.btn-outline-primary.quick-btn:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+}
+
+.btn-outline-success.quick-btn {
+    color: var(--success-color) !important;
+}
+
+.btn-outline-success.quick-btn:hover {
+    background: var(--success-color) !important;
+    color: white !important;
+}
+
+.btn-outline-info.quick-btn {
+    color: var(--accent-color) !important;
+}
+
+.btn-outline-info.quick-btn:hover {
+    background: var(--accent-color) !important;
+    color: white !important;
+}
+
+.btn-outline-warning.quick-btn {
+    color: var(--warning-color) !important;
+}
+
+.btn-outline-warning.quick-btn:hover {
+    background: var(--warning-color) !important;
+    color: white !important;
+}
+
+.btn-outline-secondary.quick-btn {
+    color: var(--secondary-color) !important;
+}
+
+.btn-outline-secondary.quick-btn:hover {
+    background: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.btn-outline-dark.quick-btn {
+    color: var(--text-dark) !important;
+}
+
+.btn-outline-dark.quick-btn:hover {
+    background: var(--text-dark) !important;
+    color: white !important;
+}
+
+.quick-dismiss {
+    opacity: 0.6;
+    transition: var(--transition);
+    border: none !important;
+    background: none !important;
+    font-size: 0.7rem !important;
+}
+
+.quick-dismiss:hover {
+    opacity: 1;
+    color: #dc3545 !important;
+    transform: scale(1.1);
+}
+
+.quick-dismiss:focus {
+    box-shadow: none !important;
+}
+
+/* Hide quick buttons container when empty */
+.quick-buttons-container:empty {
+    display: none;
 }
 
 /* Hero sections */

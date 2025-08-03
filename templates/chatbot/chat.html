@@ -186,37 +186,57 @@
                 </div>
 
                 <div class="card-footer bg-light">
-                    <!-- Quick Questions Section -->
-                    <div class="quick-actions mb-3" id="quick-actions-section">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="mb-0"><i class="fas fa-bolt"></i> Quick Questions:</h6>
-                            <button class="btn btn-sm btn-outline-secondary" onclick="toggleQuickQuestions()" id="toggle-quick-btn">
-                                <i class="fas fa-eye-slash"></i> Hide
-                            </button>
-                        </div>
-                        <div id="quick-questions-content">
-                        <div class="row">
-                            <div class="col-md-3 mb-2">
-                                <button class="btn btn-outline-primary btn-sm quick-question w-100" onclick="sendQuickQuestion('Admission requirements')">
-                                    Admission requirements
+                    <!-- Compact Quick Questions -->
+                    <div class="quick-buttons-container mb-2" id="quick-buttons-container">
+                        <div class="d-flex flex-wrap gap-1 justify-content-center">
+                            <span class="quick-button-item">
+                                <button class="btn btn-outline-primary btn-sm quick-btn" onclick="sendQuickQuestion('Admission requirements')">
+                                    📝 Admission
                                 </button>
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <button class="btn btn-outline-success btn-sm quick-question w-100" onclick="sendQuickQuestion('Engineering programs')">
-                                    Engineering programs
+                                <button class="btn btn-link btn-sm p-0 ms-1 quick-dismiss" onclick="dismissQuickButton(this)" title="Remove this suggestion">
+                                    <i class="fas fa-times text-muted"></i>
                                 </button>
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <button class="btn btn-outline-info btn-sm quick-question w-100" onclick="sendQuickQuestion('Campus facilities')">
-                                    Campus facilities
+                            </span>
+                            <span class="quick-button-item">
+                                <button class="btn btn-outline-success btn-sm quick-btn" onclick="sendQuickQuestion('Engineering programs')">
+                                    🎓 Programs
                                 </button>
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <button class="btn btn-outline-warning btn-sm quick-question w-100" onclick="sendQuickQuestion('Career prospects')">
-                                    Career prospects
+                                <button class="btn btn-link btn-sm p-0 ms-1 quick-dismiss" onclick="dismissQuickButton(this)" title="Remove this suggestion">
+                                    <i class="fas fa-times text-muted"></i>
                                 </button>
-                            </div>
-                        </div>
+                            </span>
+                            <span class="quick-button-item">
+                                <button class="btn btn-outline-info btn-sm quick-btn" onclick="sendQuickQuestion('Campus facilities')">
+                                    🏫 Campus
+                                </button>
+                                <button class="btn btn-link btn-sm p-0 ms-1 quick-dismiss" onclick="dismissQuickButton(this)" title="Remove this suggestion">
+                                    <i class="fas fa-times text-muted"></i>
+                                </button>
+                            </span>
+                            <span class="quick-button-item">
+                                <button class="btn btn-outline-warning btn-sm quick-btn" onclick="sendQuickQuestion('Career prospects')">
+                                    💼 Careers
+                                </button>
+                                <button class="btn btn-link btn-sm p-0 ms-1 quick-dismiss" onclick="dismissQuickButton(this)" title="Remove this suggestion">
+                                    <i class="fas fa-times text-muted"></i>
+                                </button>
+                            </span>
+                            <span class="quick-button-item">
+                                <button class="btn btn-outline-secondary btn-sm quick-btn" onclick="sendQuickQuestion('Scholarship information')">
+                                    💰 Scholarships
+                                </button>
+                                <button class="btn btn-link btn-sm p-0 ms-1 quick-dismiss" onclick="dismissQuickButton(this)" title="Remove this suggestion">
+                                    <i class="fas fa-times text-muted"></i>
+                                </button>
+                            </span>
+                            <span class="quick-button-item">
+                                <button class="btn btn-outline-dark btn-sm quick-btn" onclick="sendQuickQuestion('Student life')">
+                                    🎯 Student Life
+                                </button>
+                                <button class="btn btn-link btn-sm p-0 ms-1 quick-dismiss" onclick="dismissQuickButton(this)" title="Remove this suggestion">
+                                    <i class="fas fa-times text-muted"></i>
+                                </button>
+                            </span>
                         </div>
                     </div>
 
