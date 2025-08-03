@@ -1208,3 +1208,11 @@ Watching for file changes with StatReloader
 "POST /process-message/ HTTP/1.1" 200 1581
 "POST /process-message/ HTTP/1.1" 200 245
 "POST /process-message/ HTTP/1.1" 200 245
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 16882
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+/home/runner/workspace/chatbot/data/student_engagement.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
