@@ -9,6 +9,7 @@ import os
 from typing import Dict, List, Any
 from .data.university_programs import UNIVERSITY_PROGRAMS, CAMPUS_INFO, ADMISSION_INFO, STUDENT_LIFE
 from .data.responses_templates import CONVERSATION_STARTERS, CASUAL_RESPONSES, STUDY_TIPS, CAREER_ADVICE
+from .data.student_engagement import FUNNY_JOKES, PERSONAL_ENCOURAGEMENT, FUN_FACTS, add_joke, add_encouragement, add_fun_fact
 
 class DataManager:
     """Centralized data management for university information"""
@@ -24,6 +25,11 @@ class DataManager:
                 'casual': CASUAL_RESPONSES,
                 'study_tips': STUDY_TIPS,
                 'career_advice': CAREER_ADVICE
+            },
+            'engagement': {
+                'jokes': FUNNY_JOKES,
+                'encouragement': PERSONAL_ENCOURAGEMENT,
+                'fun_facts': FUN_FACTS
             }
         }
     
@@ -166,6 +172,30 @@ class DataManager:
         
         return matching_programs
     
+    def add_joke(self, setup: str, punchline: str, category: str = "general") -> bool:
+        """Add a new joke to the engagement content"""
+        try:
+            return add_joke(setup, punchline, category)
+        except Exception as e:
+            print(f"Error adding joke: {e}")
+            return False
+    
+    def add_encouragement_message(self, message: str, tone: str = "encouraging", context: str = "general") -> bool:
+        """Add a new encouragement message"""
+        try:
+            return add_encouragement(message, tone, context)
+        except Exception as e:
+            print(f"Error adding encouragement: {e}")
+            return False
+    
+    def add_fun_fact_item(self, fact: str) -> bool:
+        """Add a new fun fact"""
+        try:
+            return add_fun_fact(fact)
+        except Exception as e:
+            print(f"Error adding fun fact: {e}")
+            return False
+    
     def get_statistics(self) -> Dict[str, Any]:
         """Get statistics about the data"""
         return {
@@ -174,7 +204,10 @@ class DataManager:
             'total_study_tips': len(self.data_sources['responses']['study_tips']),
             'total_career_advice': len(self.data_sources['responses']['career_advice']),
             'student_organizations': len(self.data_sources['student_life']['clubs_organizations']),
-            'annual_events': len(self.data_sources['student_life']['annual_events'])
+            'annual_events': len(self.data_sources['student_life']['annual_events']),
+            'total_jokes': len(self.data_sources['engagement']['jokes']),
+            'total_encouragements': len(self.data_sources['engagement']['encouragement']),
+            'total_fun_facts': len(self.data_sources['engagement']['fun_facts'])
         }
 
 # Example usage functions

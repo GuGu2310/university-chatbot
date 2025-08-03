@@ -16,6 +16,10 @@ from .data.responses_templates import (
     MOTIVATIONAL_QUOTES, COMPREHENSIVE_RESPONSES, ERROR_RESPONSES,
     URGENCY_INDICATORS, RESPONSE_CATEGORIES
 )
+from .data.student_engagement import (
+    FUNNY_JOKES, PERSONAL_ENCOURAGEMENT, CASUAL_CHATS, STUDENT_LIFE_QUOTES,
+    CELEBRATION_MESSAGES, FUN_FACTS, get_joke_by_category, get_random_encouragement
+)
 
 # Download required NLTK data
 try:
@@ -78,6 +82,14 @@ class UniversityGuidanceChatbot:
         self.error_responses = ERROR_RESPONSES
         self.urgency_indicators = URGENCY_INDICATORS
         self.response_categories = RESPONSE_CATEGORIES
+        
+        # Load student engagement content
+        self.funny_jokes = FUNNY_JOKES
+        self.personal_encouragement = PERSONAL_ENCOURAGEMENT
+        self.casual_chats = CASUAL_CHATS
+        self.student_quotes = STUDENT_LIFE_QUOTES
+        self.celebration_messages = CELEBRATION_MESSAGES
+        self.fun_facts = FUN_FACTS
 
         # Initialize OpenAI if available
         openai.api_key = getattr(settings, 'OPENAI_API_KEY', None)
@@ -134,6 +146,14 @@ class UniversityGuidanceChatbot:
                 'helpfulness': 0.8,
                 'intent': 'farewell'
             }
+
+        # Fun content and jokes
+        if any(word in user_message for word in ['joke', 'funny', 'humor', 'laugh', 'fun']):
+            return self._handle_fun_content(user_message, is_urgent)
+
+        # Personal encouragement and motivation
+        if any(word in user_message for word in ['stressed', 'tired', 'difficult', 'hard', 'struggling']):
+            return self._handle_personal_support(user_message, is_urgent)
 
         # Enhanced category-based responses
         detected_category = self._detect_category(user_message)
@@ -480,6 +500,101 @@ class UniversityGuidanceChatbot:
     def _generate_comprehensive_response(self, user_message: str) -> str:
         """Generate enhanced comprehensive response for general queries"""
         return random.choice(self.comprehensive_responses)
+
+    def _handle_fun_content(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+        """Handle requests for jokes and fun content"""
+        response = "😄 **Time for Some Engineering Fun!** 🎉\n\n"
+        
+        # Detect specific engineering category for targeted jokes
+        program_keywords = {
+            'civil': ['civil', 'construction', 'building'],
+            'electrical': ['electrical', 'power', 'energy'],
+            'mechanical': ['mechanical', 'machine', 'automotive'],
+            'it': ['programming', 'computer', 'software', 'coding'],
+            'architecture': ['architecture', 'design'],
+            'mechatronics': ['robotics', 'automation', 'robot']
+        }
+        
+        joke_category = "general"
+        for category, keywords in program_keywords.items():
+            if any(keyword in user_message for keyword in keywords):
+                joke_category = category
+                break
+        
+        # Get jokes by category or random
+        relevant_jokes = get_joke_by_category(joke_category)
+        if not relevant_jokes:
+            relevant_jokes = self.funny_jokes
+        
+        # Select and format jokes
+        selected_jokes = random.sample(relevant_jokes, min(2, len(relevant_jokes)))
+        
+        for i, joke in enumerate(selected_jokes, 1):
+            response += f"**Joke #{i}:**\n"
+            response += f"Q: {joke['setup']}\n"
+            response += f"A: {joke['punchline']}\n\n"
+        
+        # Add a fun fact
+        response += f"🤓 **Bonus Fun Fact:**\n{random.choice(self.fun_facts)}\n\n"
+        
+        # Add encouraging note
+        response += f"💡 {random.choice(self.student_quotes)}"
+        
+        return {
+            'message': response,
+            'is_urgent': is_urgent,
+            'helpfulness': 0.85,
+            'intent': 'entertainment'
+        }
+
+    def _handle_personal_support(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+        """Handle personal encouragement and emotional support"""
+        response = "💙 **You're Not Alone in This Journey!** 🌟\n\n"
+        
+        # Detect context for targeted encouragement
+        if any(word in user_message for word in ['exam', 'test', 'grade']):
+            context = 'exam_stress'
+        elif any(word in user_message for word in ['assignment', 'project', 'homework']):
+            context = 'academic_struggle'
+        elif any(word in user_message for word in ['tired', 'exhausted', 'sleepy']):
+            context = 'general'
+        else:
+            context = 'general'
+        
+        # Get relevant encouragement
+        relevant_encouragement = get_random_encouragement(context)
+        if not relevant_encouragement:
+            relevant_encouragement = self.personal_encouragement
+        
+        # Select encouraging messages
+        selected_msg = random.choice(relevant_encouragement)
+        response += f"{selected_msg['message']}\n\n"
+        
+        # Add practical tips
+        response += "🎯 **Quick Mood Boosters:**\n"
+        response += "• Take 5 deep breaths and stretch 🧘‍♀️\n"
+        response += "• Grab a healthy snack and water 🍎💧\n"
+        response += "• Chat with a friend or family member 👥\n"
+        response += "• Take a 10-minute walk outside 🚶‍♂️\n"
+        response += "• Listen to your favorite music 🎵\n\n"
+        
+        # Add motivational quote
+        response += f"✨ **Remember:** {random.choice(self.student_quotes)}\n\n"
+        
+        # Check for casual chat triggers
+        for chat in self.casual_chats:
+            if any(trigger in user_message for trigger in chat['trigger']):
+                response += f"💬 {random.choice(chat['responses'])}\n\n"
+                break
+        
+        response += "🤗 **I'm here whenever you need support! Feel free to chat anytime!**"
+        
+        return {
+            'message': response,
+            'is_urgent': is_urgent,
+            'helpfulness': 0.9,
+            'intent': 'emotional_support'
+        }
 
     def _analyze_helpfulness(self, message: str) -> float:
         """Enhanced sentiment analysis for helpfulness"""
