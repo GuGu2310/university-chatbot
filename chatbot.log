@@ -1063,3 +1063,34 @@ Not Found: /favicon.ico
 Watching for file changes with StatReloader
 "GET / HTTP/1.1" 200 8551
 "GET /static/chatbot/css/style.css HTTP/1.1" 200 8708
+"GET / HTTP/1.1" 200 8551
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 8551
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 19908
+"GET / HTTP/1.1" 200 19908
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 11356
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4013
+"GET /chat/ HTTP/1.1" 200 14644
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 200 13023
+"POST /process-message/ HTTP/1.1" 200 1272
+"GET /program-explorer/ HTTP/1.1" 200 21000
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /resources/ HTTP/1.1" 200 14995
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 19908
+"GET /chat/ HTTP/1.1" 200 16018
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"POST /process-message/ HTTP/1.1" 200 835
+"GET / HTTP/1.1" 200 19908
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /chat/ HTTP/1.1" 200 17940
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+"POST /process-message/ HTTP/1.1" 200 239
+"POST /process-message/ HTTP/1.1" 200 244
+"POST /process-message/ HTTP/1.1" 200 835
