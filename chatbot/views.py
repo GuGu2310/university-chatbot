@@ -82,31 +82,39 @@ def process_message(request):
             }
             conversation_history.append(messages_for_history)
 
-        response = chatbot.generate_response(user_message, conversation_history)
+        try:
+            chatbot = UniversityGuidanceChatbot()
+            response = chatbot.generate_response(user_message, conversation_history)
 
-        # Save bot response
-        bot_msg = Message.objects.create(
-            conversation=conversation,
-            message_type='bot',
-            content=response['message'],
-            helpfulness_score=response.get('helpfulness')
-        )
+            # Save bot response
+            bot_msg = Message.objects.create(
+                conversation=conversation,
+                message_type='bot',
+                content=response['message'],
+                helpfulness_score=response.get('helpfulness')
+            )
 
-        # Get relevant resources based on conversation topic
-        relevant_resources = []
-        if response.get('is_urgent'):
-            relevant_resources = list(AdmissionResource.objects.filter(
-                is_priority=True
-            ).values('title', 'description', 'url', 'deadline_date'))
+            # Get relevant resources based on conversation topic
+            relevant_resources = []
+            if response.get('is_urgent'):
+                relevant_resources = list(AdmissionResource.objects.filter(
+                    is_priority=True
+                ).values('title', 'description', 'url', 'deadline_date'))
 
-        return JsonResponse({
-            'bot_response': response['message'],
-            'is_urgent': response.get('is_urgent', False),
-            'helpfulness': response.get('helpfulness'),
-            'relevant_resources': relevant_resources,
-            'timestamp': bot_msg.timestamp.isoformat(),
-            'message_id': bot_msg.id
-        })
+            return JsonResponse({
+                'bot_response': response['message'],
+                'is_urgent': response.get('is_urgent', False),
+                'helpfulness': response.get('helpfulness'),
+                'relevant_resources': relevant_resources,
+                'timestamp': bot_msg.timestamp.isoformat(),
+                'message_id': bot_msg.id
+            })
+
+        except Exception as e:
+            logger.error(f"Error in chat processing: {e}")
+            return JsonResponse({
+                'error': 'Internal server error processing message.'
+            }, status=500)
 
     except json.JSONDecodeError:
         logger.error(f"JSON Decode Error in process_message. Request Body: {request.body.decode('utf-8')}")
@@ -121,18 +129,18 @@ def program_explorer(request):
         try:
             program_level = request.POST.get('program_level')
             interest_area = request.POST.get('interest_area', '')
-            
+
             # Filter programs based on criteria
             programs = UniversityProgram.objects.all()
             if program_level:
                 programs = programs.filter(level=program_level)
             if interest_area:
                 programs = programs.filter(name__icontains=interest_area)
-            
+
             programs_data = list(programs.values(
                 'name', 'university', 'level', 'description', 'duration', 'career_prospects'
             )[:10])
-            
+
             return JsonResponse({
                 'status': 'success', 
                 'programs': programs_data,
@@ -145,7 +153,7 @@ def program_explorer(request):
     # GET request - show the explorer interface
     programs = UniversityProgram.objects.all()[:10]  # Show some sample programs
     career_paths = CareerPath.objects.all()[:5]  # Show some career options
-    
+
     return render(request, 'chatbot/program_explorer.html', {
         'recent_programs': programs,
         'career_paths': career_paths

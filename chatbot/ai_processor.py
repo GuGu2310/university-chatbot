@@ -104,6 +104,9 @@ class UniversityGuidanceChatbot:
         # Initialize engagement utilities
         self.get_joke_by_category = get_joke_by_category
         self.get_random_encouragement = get_random_encouragement
+        self.get_news_by_category = get_news_by_category
+        self.university_news = UNIVERSITY_NEWS
+        self.campus_achievements = CAMPUS_ACHIEVEMENTS
 
         # Initialize OpenAI if available
         openai.api_key = getattr(settings, 'OPENAI_API_KEY', None)
@@ -117,10 +120,90 @@ class UniversityGuidanceChatbot:
         self.lemmatizer = lemmatizer if NLTK_AVAILABLE else None
         self.stop_words = stop_words if NLTK_AVAILABLE else None
 
-    def generate_response(
-            self,
-            user_message: str,
-            conversation_history: List[Dict] = None) -> Dict[str, Any]:
+        # Initialize question categories
+        self.question_categories = self._initialize_question_categories()
+
+    def _handle_news_queries(self, user_message: str) -> str:
+        """Handle news and updates queries"""
+        message_lower = user_message.lower()
+
+        if any(keyword in message_lower for keyword in ['sport', 'basketball', 'football', 'volleyball', 'athletic']):
+            sports_news = self.get_news_by_category('sports')
+            if sports_news:
+                response = "🏆 **HMAWBI Sports News** ⚽\n\n"
+                for news in sports_news[:3]:  # Show latest 3 sports news
+                    response += f"🎉 **{news['title']}**\n   {news['content']}\n\n"
+                return response
+            else:
+                return "🏆 **Sports at HMAWBI** ⚽\n\nWe have active sports teams including basketball, football, and volleyball! Our students regularly participate in inter-faculty championships. Stay tuned for updates on upcoming matches and tournaments! 🎯"
+
+        elif any(keyword in message_lower for keyword in ['news', 'update', 'latest', 'recent', 'achievement']):
+            response = "📰 **HMAWBI University News & Updates** 🎉\n\n🌟 **Latest University Highlights:**\n\n"
+
+            for news in self.university_news[:4]:  # Show latest 4 news items
+                response += f"🎯 **{news['title']}**\n   {news['content']}\n\n"
+
+            response += "🏅 **University Achievements 2024:**\n"
+            for achievement in self.campus_achievements:
+                response += f"• **{achievement['achievement']}** - {achievement['description']}\n"
+
+            return response
+
+        return None
+
+    def _handle_entertainment_queries(self, user_message: str) -> str:
+        """Handle jokes, fun facts, and entertainment queries"""
+        message_lower = user_message.lower()
+
+        # Handle specific joke setups
+        if "why don't engineers ever get lost" in message_lower:
+            return "😄 **Here's the answer!** 🎉\n\n**Because they always know their coordinates! 📐**\n\n🤓 **Bonus Fun Fact:**\n💻 Tech fact: The first 1GB hard drive in 1980 weighed 550 pounds!\n\n💡 Want more jokes? Just ask for 'engineering jokes' or 'funny jokes'!"
+
+        # Handle general entertainment requests
+        if any(keyword in message_lower for keyword in ['joke', 'funny', 'humor', 'laugh']):
+            jokes = random.sample(self.funny_jokes, 2)
+            fun_fact = random.choice(self.fun_facts)
+            quote = random.choice(self.student_quotes)
+
+            response = "😄 **Time for Some Engineering Fun!** 🎉\n\n"
+            response += f"**Joke #1:**\nQ: {jokes[0]['setup']}\nA: {jokes[0]['punchline']}\n\n"
+            response += f"**Joke #2:**\nQ: {jokes[1]['setup']}\nA: {jokes[1]['punchline']}\n\n"
+            response += f"🤓 **Bonus Fun Fact:**\n{fun_fact}\n\n💡 {quote}"
+
+            return response
+
+        elif any(keyword in message_lower for keyword in ['fun fact', 'fact', 'interesting', 'cool']):
+            fun_fact = random.choice(self.fun_facts)
+            quote = random.choice(self.student_quotes)
+
+            return f"🤓 **Fun Engineering Fact:**\n{fun_fact}\n\n💫 **Inspiration:**\n{quote}"
+
+        elif any(keyword in message_lower for keyword in ['quote', 'motivation', 'inspire', 'encourage']):
+            quote = random.choice(self.student_quotes)
+            encouragement = random.choice(self.personal_encouragement)
+
+            return f"💫 **Motivation for You:**\n{quote}\n\n🌟 **Personal Message:**\n{encouragement['message']}"
+
+        return None
+
+    def _handle_casual_responses(self, user_message: str) -> str:
+        """Handle casual conversation and student life responses"""
+        message_lower = user_message.lower()
+
+        # Check for specific casual triggers
+        for chat_item in self.casual_chats:
+            if any(trigger in message_lower for trigger in chat_item['trigger']):
+                response = random.choice(chat_item['responses'])
+                return f"💭 **I understand!** 😊\n\n{response}\n\nNeed any specific help with your studies? I'm here for you! 🎓"
+
+        # Handle celebration contexts
+        if any(keyword in message_lower for keyword in ['pass', 'passed', 'success', 'won', 'celebrate']):
+            celebration = random.choice(self.celebration_messages[0]['messages'])  # exam_pass
+            return f"🎉 **Congratulations!** 🎊\n\n{celebration}\n\nKeep up the great work! What's next on your engineering journey? 🚀"
+
+        return None
+
+    def generate_response(self, user_message: str, conversation_history: List[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Generate enhanced contextual response based on user message and conversation history"""
         user_message = user_message.lower().strip()
         self.turn_count += 1
@@ -743,7 +826,6 @@ class UniversityGuidanceChatbot:
         response += "• Academic achievements and research\n"
         response += "• Campus events and student life\n"
         response += "• New facilities and improvements"
-
         return {
             'message': response,
             'is_urgent': is_urgent,
@@ -756,18 +838,113 @@ class UniversityGuidanceChatbot:
         try:
             blob = TextBlob(message)
             sentiment = blob.sentiment.polarity
-
             # Adjust sentiment based on question complexity
             question_words = [
                 'what', 'how', 'why', 'when', 'where', 'which', 'who'
             ]
             question_count = sum(1 for word in question_words
                                  if word in message.lower())
-
             # More complex questions get higher helpfulness scores
             complexity_bonus = min(question_count * 0.1, 0.3)
-
             return max(0.1, min(1.0, 0.7 + sentiment * 0.2 + complexity_bonus))
         except Exception as e:
             logger.error(f"Sentiment analysis error: {e}")
             return 0.7  # Default moderate helpfulness
+
+    def _initialize_question_categories(self):
+        """Initialize comprehensive question categories for the chatbot"""
+        return {
+            "Programs": [
+                "What engineering programs do you offer?",
+                "Can you tell me about the Civil Engineering curriculum?",
+                "What specializations are available in Information Technology?",
+                "How long is the Mechanical Engineering program?",
+                "What subjects do Electrical Power students study?",
+                "Tell me about the Mechatronics program",
+                "What's the difference between your engineering programs?"
+            ],
+            "Admissions": [
+                "What are the admission requirements?",
+                "How do I apply for the university?",
+                "When is the application deadline?",
+                "What documents do I need for admission?",
+                "What are the entrance exam requirements?",
+                "How much are the application fees?",
+                "When do admissions open?"
+            ],
+            "Campus Information": [
+                "What facilities are available on campus?",
+                "Is there accommodation for students?",
+                "What are the sports facilities like?",
+                "Tell me about the library facilities",
+                "What laboratories do you have?",
+                "How is the campus environment?",
+                "What dining options are available?"
+            ],
+            "Financial Information": [
+                "What are the tuition fees?",
+                "Are there any scholarships available?",
+                "How can I apply for financial aid?",
+                "What payment plans do you offer?",
+                "Are there work-study opportunities?",
+                "What are the living costs?",
+                "Do you offer student loans?"
+            ],
+            "Student Life": [
+                "What is student life like at HMAWBI?",
+                "Are there clubs and activities for students?",
+                "What kind of support does the university provide?",
+                "What sports teams do you have?",
+                "Are there cultural activities?",
+                "How active is campus social life?",
+                "What events happen throughout the year?"
+            ],
+            "Career Prospects": [
+                "What is the employment rate for graduates?",
+                "Does the university help with internships?",
+                "What kind of industries do graduates work in?",
+                "What are the average starting salaries?",
+                "Do you have industry partnerships?",
+                "What career services do you provide?",
+                "How do you prepare students for jobs?"
+            ],
+            "News & Updates": [
+                "What's the latest university news?",
+                "Tell me about recent achievements",
+                "Any sports news?",
+                "What competitions have students won?",
+                "Any new facilities or programs?",
+                "Tell me about campus events",
+                "What's happening at the university?"
+            ],
+            "Entertainment": [
+                "Can you tell me a joke?",
+                "What's a fun fact about engineering?",
+                "Give me some motivation",
+                "Tell me an inspiring quote",
+                "I need encouragement",
+                "Make me laugh",
+                "Share something interesting"
+            ],
+            "Academic Support": [
+                "How can I improve my study habits?",
+                "What resources are available for struggling students?",
+                "Do you offer tutoring services?",
+                "How can I get academic help?",
+                "What study tips do you recommend?",
+                "How do I manage my time better?",
+                "What if I'm failing a course?"
+            ]
+        }
+
+    def get_chatbot_question_categories(self):
+        """Get all question categories for the chatbot"""
+        return self.question_categories
+
+    def __del__(self):
+        """Cleanup resources"""
+        try:
+            # Any cleanup needed
+            pass
+        except Exception as e:
+            logger.error(f"Error during cleanup: {e}")

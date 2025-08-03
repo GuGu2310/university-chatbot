@@ -3,6 +3,8 @@ Student Engagement Content
 Fun jokes, personal speech data, and entertainment content for students
 """
 
+import random
+
 FUNNY_JOKES = [
     {
         "setup": "Why don't engineers ever get lost?",
