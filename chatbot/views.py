@@ -190,4 +190,63 @@ def clear_chat(request):
 
     return redirect('chat')
 
+def get_question_categories(request):
+    """Get available question categories for the chatbot"""
+    categories = {
+        "Programs": [
+            "What engineering programs do you offer?",
+            "Can you tell me more about the curriculum for Civil Engineering?",
+            "Are there any specializations available within IT programs?",
+            "What is the duration of each program?",
+            "Which program has the highest employment rate?"
+        ],
+        "Admissions": [
+            "What are the admission requirements?",
+            "How do I apply for the university?",
+            "When is the application deadline?",
+            "What documents do I need for admission?",
+            "Are there entrance exams?"
+        ],
+        "Campus Information": [
+            "What facilities are available on campus?",
+            "Is there accommodation for students?",
+            "What are the sports facilities like?",
+            "Tell me about the library facilities",
+            "What clubs and activities are available?"
+        ],
+        "Financial Information": [
+            "What are the tuition fees?",
+            "Are there any scholarships available?",
+            "How can I apply for financial aid?",
+            "What are the living costs?",
+            "Are there payment plan options?"
+        ],
+        "Student Life": [
+            "What is student life like at HMAWBI?",
+            "Are there clubs and activities for students?",
+            "What kind of support does the university provide?",
+            "Tell me about campus events",
+            "How is the food on campus?"
+        ],
+        "Career Prospects": [
+            "What is the employment rate for graduates?",
+            "Does the university help with internships?",
+            "What kind of industries do your graduates work in?",
+            "What are the salary expectations?",
+            "Are there job placement services?"
+        ],
+        "General Queries": [
+            "Can you tell me a joke?",
+            "What is a fun fact about HMAWBI?",
+            "What motivational quotes do you have for students?",
+            "Tell me about university news",
+            "What are the university achievements?"
+        ]
+    }
+    
+    return JsonResponse({
+        'status': 'success',
+        'categories': categories
+    })
+
 # University guidance admin functionality
