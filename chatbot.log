@@ -1164,3 +1164,26 @@ Watching for file changes with StatReloader
 "POST /process-message/ HTTP/1.1" 200 466
 "POST /process-message/ HTTP/1.1" 200 703
 "POST /process-message/ HTTP/1.1" 200 1273
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /chat/ HTTP/1.1" 200 25585
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+Internal Server Error: /process-message/
+"POST /process-message/ HTTP/1.1" 500 54
+Internal Server Error: /process-message/
+"POST /process-message/ HTTP/1.1" 500 54
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /chat/ HTTP/1.1" 200 26881
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+Internal Server Error: /process-message/
+"POST /process-message/ HTTP/1.1" 500 54

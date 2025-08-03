@@ -10,17 +10,18 @@ from textblob import TextBlob
 
 # Import separated data files
 from .data.university_programs import UNIVERSITY_PROGRAMS, CAMPUS_INFO, ADMISSION_INFO, STUDENT_LIFE
-from .data.responses_templates import (
-    CONVERSATION_STARTERS, CASUAL_RESPONSES, STUDY_TIPS, CAREER_ADVICE, 
-    MOTIVATIONAL_QUOTES, COMPREHENSIVE_RESPONSES, ERROR_RESPONSES,
-    URGENCY_INDICATORS, RESPONSE_CATEGORIES
-)
+from .data.responses_templates import (CONVERSATION_STARTERS, CASUAL_RESPONSES,
+                                       STUDY_TIPS, CAREER_ADVICE,
+                                       MOTIVATIONAL_QUOTES,
+                                       COMPREHENSIVE_RESPONSES,
+                                       ERROR_RESPONSES, URGENCY_INDICATORS,
+                                       RESPONSE_CATEGORIES)
 # Import student engagement data
-from .data.student_engagement import (
-    FUNNY_JOKES, PERSONAL_ENCOURAGEMENT, FUN_FACTS,
-    CASUAL_CHATS, CELEBRATION_MESSAGES, UNIVERSITY_NEWS,
-    CAMPUS_ACHIEVEMENTS, search_news, get_news_by_category
-)
+from .data.student_engagement import (FUNNY_JOKES, PERSONAL_ENCOURAGEMENT,
+                                      FUN_FACTS, CASUAL_CHATS,
+                                      CELEBRATION_MESSAGES, UNIVERSITY_NEWS,
+                                      CAMPUS_ACHIEVEMENTS, search_news,
+                                      get_news_by_category)
 
 # Download required NLTK data
 try:
@@ -58,11 +59,26 @@ try:
             logger.error(f"Failed to auto-download NLTK data: {e}")
             NLTK_AVAILABLE = False
 except ImportError:
-    logger.warning("NLTK not installed. Some advanced text processing will be skipped.")
+    logger.warning(
+        "NLTK not installed. Some advanced text processing will be skipped.")
     NLTK_AVAILABLE = False
+
+STUDENT_LIFE_QUOTES = [
+    "Life is what happens when you're busy making other plans.",
+    "The future belongs to those who believe in the beauty of their dreams.",
+    "Don't watch the clock; do what it does. Keep going.",
+    "In the middle of every difficulty lies opportunity."
+]
 
 
 class UniversityGuidanceChatbot:
+
+    def __init__(self):
+        self.student_quotes = STUDENT_LIFE_QUOTES
+
+
+class UniversityGuidanceChatbot:
+
     def __init__(self):
         """Initialize the Enhanced University Guidance Chatbot"""
         # Load data from separated files
@@ -108,16 +124,21 @@ class UniversityGuidanceChatbot:
         self.lemmatizer = lemmatizer if NLTK_AVAILABLE else None
         self.stop_words = stop_words if NLTK_AVAILABLE else None
 
-    def generate_response(self, user_message: str, conversation_history: List[Dict] = None) -> Dict[str, Any]:
+    def generate_response(
+            self,
+            user_message: str,
+            conversation_history: List[Dict] = None) -> Dict[str, Any]:
         """Generate enhanced contextual response based on user message and conversation history"""
         user_message = user_message.lower().strip()
         self.turn_count += 1
 
         # Check for urgency indicators
-        is_urgent = any(indicator in user_message for indicator in self.urgency_indicators)
+        is_urgent = any(indicator in user_message
+                        for indicator in self.urgency_indicators)
 
         # Casual conversation patterns with enhanced responses
-        if any(word in user_message for word in ['hello', 'hi', 'hey', 'greetings', 'start']):
+        if any(word in user_message
+               for word in ['hello', 'hi', 'hey', 'greetings', 'start']):
             return {
                 'message': random.choice(self.casual_responses['greetings']),
                 'is_urgent': False,
@@ -125,7 +146,8 @@ class UniversityGuidanceChatbot:
                 'intent': 'greeting'
             }
 
-        if any(phrase in user_message for phrase in ['how are you', 'how do you do', 'how are things']):
+        if any(phrase in user_message for phrase in
+               ['how are you', 'how do you do', 'how are things']):
             return {
                 'message': random.choice(self.casual_responses['how_are_you']),
                 'is_urgent': False,
@@ -133,7 +155,8 @@ class UniversityGuidanceChatbot:
                 'intent': 'casual_inquiry'
             }
 
-        if any(word in user_message for word in ['thank', 'thanks', 'appreciate']):
+        if any(word in user_message
+               for word in ['thank', 'thanks', 'appreciate']):
             response = random.choice(self.casual_responses['thank_you'])
             if random.choice([True, False]):
                 response += f"\n\n💡 {random.choice(self.motivational_quotes)}"
@@ -144,7 +167,8 @@ class UniversityGuidanceChatbot:
                 'intent': 'gratitude'
             }
 
-        if any(word in user_message for word in ['bye', 'goodbye', 'see you', 'farewell']):
+        if any(word in user_message
+               for word in ['bye', 'goodbye', 'see you', 'farewell']):
             return {
                 'message': random.choice(self.casual_responses['goodbye']),
                 'is_urgent': False,
@@ -153,26 +177,33 @@ class UniversityGuidanceChatbot:
             }
 
         # Fun content and jokes - check for joke keywords OR direct joke questions
-        is_joke_request = any(word in user_message for word in ['joke', 'funny', 'humor', 'laugh', 'fun'])
+        is_joke_request = any(
+            word in user_message
+            for word in ['joke', 'funny', 'humor', 'laugh', 'fun'])
 
         # Check if message matches any joke setup directly
         is_direct_joke = False
         matching_joke = None
         for joke in self.funny_jokes:
-            if joke['setup'].lower().replace('?', '').strip() in user_message.replace('?', '').strip():
+            if joke['setup'].lower().replace(
+                    '?', '').strip() in user_message.replace('?', '').strip():
                 is_direct_joke = True
                 matching_joke = joke
                 break
 
         if is_joke_request or is_direct_joke:
-            return self._handle_fun_content(user_message, is_urgent, matching_joke)
+            return self._handle_fun_content(user_message, is_urgent,
+                                            matching_joke)
 
         # Personal encouragement and motivation
-        if any(word in user_message for word in ['stressed', 'tired', 'difficult', 'hard', 'struggling']):
+        if any(word in user_message for word in
+               ['stressed', 'tired', 'difficult', 'hard', 'struggling']):
             return self._handle_personal_support(user_message, is_urgent)
 
-         # University News and Updates
-        if any(word in user_message for word in ['news', 'update', 'event', 'achievement', 'queen', 'basketball']):
+        # University News and Updates
+        if any(
+                word in user_message for word in
+            ['news', 'update', 'event', 'achievement', 'queen', 'basketball']):
             return self._handle_university_news(user_message, is_urgent)
 
         # Enhanced category-based responses
@@ -219,7 +250,9 @@ class UniversityGuidanceChatbot:
 
         return max(category_scores, key=category_scores.get)
 
-    def _handle_program_query(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_program_query(self,
+                              user_message: str,
+                              is_urgent: bool = False) -> Dict[str, Any]:
         """Enhanced program-related query handling"""
         programs = list(self.university_data['hmawbi_programs'].keys())
 
@@ -231,7 +264,8 @@ class UniversityGuidanceChatbot:
                 break
 
         if mentioned_program:
-            program_info = self.university_data['hmawbi_programs'][mentioned_program]
+            program_info = self.university_data['hmawbi_programs'][
+                mentioned_program]
             response = f"🎓 **{mentioned_program}** at HMAWBI University\n\n"
             response += f"⏱️ **Duration**: {program_info['duration']}\n"
             response += f"📖 **Description**: {program_info['description']}\n\n"
@@ -252,7 +286,8 @@ class UniversityGuidanceChatbot:
             response += "💡 *Want to know more about admission requirements or other programs? Just ask!*"
         else:
             response = "🎓 **Engineering Programs at HMAWBI University**\n\n"
-            for i, (program, info) in enumerate(self.university_data['hmawbi_programs'].items(), 1):
+            for i, (program, info) in enumerate(
+                    self.university_data['hmawbi_programs'].items(), 1):
                 icon = "🏗️" if "Civil" in program else "⚡" if "Electrical" in program else "💻" if "IT" in program else "🔧" if "Mechanical" in program else "🏛️" if "Architecture" in program else "🤖"
                 response += f"{icon} **{program}**\n"
                 response += f"   Duration: {info['duration']}\n"
@@ -268,7 +303,9 @@ class UniversityGuidanceChatbot:
             'intent': 'program_inquiry'
         }
 
-    def _handle_admission_query(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_admission_query(self,
+                                user_message: str,
+                                is_urgent: bool = False) -> Dict[str, Any]:
         """Enhanced admission-related query handling"""
         admission = self.university_data['admission_info']
 
@@ -310,7 +347,9 @@ class UniversityGuidanceChatbot:
             'intent': 'admission_inquiry'
         }
 
-    def _handle_campus_query(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_campus_query(self,
+                             user_message: str,
+                             is_urgent: bool = False) -> Dict[str, Any]:
         """Enhanced campus and facilities query handling"""
         campus = self.university_data['campus_info']
 
@@ -348,7 +387,9 @@ class UniversityGuidanceChatbot:
             'intent': 'campus_inquiry'
         }
 
-    def _handle_career_query(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_career_query(self,
+                             user_message: str,
+                             is_urgent: bool = False) -> Dict[str, Any]:
         """Enhanced career and job-related query handling"""
         response = "💼 **Career Success at HMAWBI University**\n\n"
 
@@ -389,7 +430,9 @@ class UniversityGuidanceChatbot:
             'intent': 'career_inquiry'
         }
 
-    def _handle_study_query(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_study_query(self,
+                            user_message: str,
+                            is_urgent: bool = False) -> Dict[str, Any]:
         """Enhanced study tips and academic help query handling"""
         response = "📚 **Academic Success at HMAWBI**\n\n"
 
@@ -412,7 +455,8 @@ class UniversityGuidanceChatbot:
         student_life = self.university_data['student_life']
         if 'support_services' in student_life:
             response += "\n🤝 **Student Support Services**:\n"
-            for service, description in student_life['support_services'].items():
+            for service, description in student_life['support_services'].items(
+            ):
                 response += f"• **{service.title()}**: {description}\n"
 
         if is_urgent:
@@ -427,7 +471,9 @@ class UniversityGuidanceChatbot:
             'intent': 'academic_inquiry'
         }
 
-    def _handle_financial_query(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_financial_query(self,
+                                user_message: str,
+                                is_urgent: bool = False) -> Dict[str, Any]:
         """Enhanced financial query handling"""
         admission = self.university_data['admission_info']
         fees = admission['fees']
@@ -474,7 +520,9 @@ class UniversityGuidanceChatbot:
             'intent': 'financial_inquiry'
         }
 
-    def _handle_student_life_query(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_student_life_query(self,
+                                   user_message: str,
+                                   is_urgent: bool = False) -> Dict[str, Any]:
         """Enhanced student life and activities query handling"""
         student_life = self.university_data['student_life']
 
@@ -496,7 +544,8 @@ class UniversityGuidanceChatbot:
         # Academic enrichment
         if 'academic_programs' in student_life:
             response += "🚀 **Academic Enrichment Programs**:\n"
-            for program, description in student_life['academic_programs'].items():
+            for program, description in student_life[
+                    'academic_programs'].items():
                 response += f"• **{program.title()}**: {description}\n"
 
         # Why students love HMAWBI
@@ -521,7 +570,10 @@ class UniversityGuidanceChatbot:
         """Generate enhanced comprehensive response for general queries"""
         return random.choice(self.comprehensive_responses)
 
-    def _handle_fun_content(self, user_message: str, is_urgent: bool = False, direct_joke: Dict = None) -> Dict[str, Any]:
+    def _handle_fun_content(self,
+                            user_message: str,
+                            is_urgent: bool = False,
+                            direct_joke: Dict = None) -> Dict[str, Any]:
         """Handle requests for jokes and fun content"""
 
         # If someone asked a direct joke question, give them the punchline immediately
@@ -563,7 +615,8 @@ class UniversityGuidanceChatbot:
             relevant_jokes = self.funny_jokes
 
         # Select and format jokes
-        selected_jokes = random.sample(relevant_jokes, min(2, len(relevant_jokes)))
+        selected_jokes = random.sample(relevant_jokes,
+                                       min(2, len(relevant_jokes)))
 
         for i, joke in enumerate(selected_jokes, 1):
             response += f"**Joke #{i}:**\n"
@@ -583,16 +636,20 @@ class UniversityGuidanceChatbot:
             'intent': 'entertainment'
         }
 
-    def _handle_personal_support(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_personal_support(self,
+                                 user_message: str,
+                                 is_urgent: bool = False) -> Dict[str, Any]:
         """Handle personal encouragement and emotional support"""
         response = "💙 **You're Not Alone in This Journey!** 🌟\n\n"
 
         # Detect context for targeted encouragement
         if any(word in user_message for word in ['exam', 'test', 'grade']):
             context = 'exam_stress'
-        elif any(word in user_message for word in ['assignment', 'project', 'homework']):
+        elif any(word in user_message
+                 for word in ['assignment', 'project', 'homework']):
             context = 'academic_struggle'
-        elif any(word in user_message for word in ['tired', 'exhausted', 'sleepy']):
+        elif any(word in user_message
+                 for word in ['tired', 'exhausted', 'sleepy']):
             context = 'general'
         else:
             context = 'general'
@@ -632,25 +689,34 @@ class UniversityGuidanceChatbot:
             'intent': 'personal_support'
         }
 
-    def _handle_university_news(self, user_message: str, is_urgent: bool = False) -> Dict[str, Any]:
+    def _handle_university_news(self,
+                                user_message: str,
+                                is_urgent: bool = False) -> Dict[str, Any]:
         """Handle queries about university news, achievements, and recent events"""
         response = "📰 **HMAWBI University News & Updates** 🎉\n\n"
 
         # Check for specific queries
-        if any(word in user_message.lower() for word in ['queen', 'beauty', 'pageant']):
-            queen_news = [news for news in UNIVERSITY_NEWS if 'queen' in news['title'].lower() or 'queen' in news['content'].lower()]
+        if any(word in user_message.lower()
+               for word in ['queen', 'beauty', 'pageant']):
+            queen_news = [
+                news for news in UNIVERSITY_NEWS
+                if 'queen' in news['title'].lower()
+                or 'queen' in news['content'].lower()
+            ]
             if queen_news:
                 news = queen_news[0]
                 response += f"👑 **{news['title']}**\n{news['content']}\n\n"
 
-        elif any(word in user_message.lower() for word in ['basketball', 'champion', 'sports', 'winner']):
+        elif any(word in user_message.lower()
+                 for word in ['basketball', 'champion', 'sports', 'winner']):
             sports_news = get_news_by_category('sports')
             if sports_news:
                 response += "🏆 **Recent Sports Achievements:**\n"
                 for news in sports_news[:3]:  # Show top 3 sports news
                     response += f"• **{news['title']}**\n  {news['content']}\n\n"
 
-        elif any(word in user_message.lower() for word in ['research', 'academic', 'lab']):
+        elif any(word in user_message.lower()
+                 for word in ['research', 'academic', 'lab']):
             academic_news = get_news_by_category('academic')
             if academic_news:
                 response += "🔬 **Academic & Research News:**\n"
@@ -699,8 +765,11 @@ class UniversityGuidanceChatbot:
             sentiment = blob.sentiment.polarity
 
             # Adjust sentiment based on question complexity
-            question_words = ['what', 'how', 'why', 'when', 'where', 'which', 'who']
-            question_count = sum(1 for word in question_words if word in message.lower())
+            question_words = [
+                'what', 'how', 'why', 'when', 'where', 'which', 'who'
+            ]
+            question_count = sum(1 for word in question_words
+                                 if word in message.lower())
 
             # More complex questions get higher helpfulness scores
             complexity_bonus = min(question_count * 0.1, 0.3)
