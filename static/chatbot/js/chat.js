@@ -47,14 +47,16 @@ class UniversityGuidanceChatbot {
     }
 
     /**
-     * Check if user has hidden quick questions before
+     * Check if user has hidden quick questions during this session
      */
     checkQuickQuestionsPreference() {
-        const hideQuickQuestions = localStorage.getItem('hideQuickQuestions');
+        const hideQuickQuestions = sessionStorage.getItem('hideQuickQuestions');
         if (hideQuickQuestions === 'true') {
             const container = document.getElementById('quick-buttons-container');
             if (container) {
                 container.style.display = 'none';
+                // Show restore button since user dismissed quick questions this session
+                setTimeout(() => showRestoreQuickQuestionsButton(), 100);
             }
         }
     }
@@ -469,9 +471,54 @@ function dismissQuickArea() {
         // Remove after animation
         setTimeout(() => {
             container.style.display = 'none';
-            // Store preference in localStorage
-            localStorage.setItem('hideQuickQuestions', 'true');
+            // Store preference in sessionStorage (only for current session)
+            sessionStorage.setItem('hideQuickQuestions', 'true');
+            // Show a small button to bring back quick questions
+            showRestoreQuickQuestionsButton();
         }, 300);
+    }
+}
+
+function showRestoreQuickQuestionsButton() {
+    // Check if restore button already exists
+    if (document.getElementById('restore-quick-questions')) return;
+    
+    const chatActions = document.querySelector('.chat-actions');
+    if (chatActions) {
+        const restoreButton = document.createElement('button');
+        restoreButton.id = 'restore-quick-questions';
+        restoreButton.className = 'btn btn-sm btn-outline-primary me-2';
+        restoreButton.innerHTML = '<i class="fas fa-plus"></i> Show Quick Questions';
+        restoreButton.onclick = showQuickArea;
+        
+        chatActions.insertBefore(restoreButton, chatActions.firstChild);
+    }
+}
+
+function showQuickArea() {
+    const container = document.getElementById('quick-buttons-container');
+    const restoreButton = document.getElementById('restore-quick-questions');
+    
+    if (container) {
+        // Remove the session storage flag
+        sessionStorage.removeItem('hideQuickQuestions');
+        
+        // Show container with animation
+        container.style.display = 'block';
+        container.style.transition = 'all 0.3s ease';
+        container.style.opacity = '0';
+        container.style.transform = 'scale(0.95)';
+        
+        // Trigger reflow and animate in
+        setTimeout(() => {
+            container.style.opacity = '1';
+            container.style.transform = 'scale(1)';
+        }, 10);
+        
+        // Remove restore button
+        if (restoreButton) {
+            restoreButton.remove();
+        }
     }
 }
 
