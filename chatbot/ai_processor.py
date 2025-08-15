@@ -139,13 +139,13 @@ For disallowed requests (identifying/ranking individuals), politely refuse and o
         
         # Check for fun content requests
         if any(word in message_lower for word in ['joke', 'fun', 'funny', 'laugh']):
-            context['jokes'] = self.data_manager.data_sources['engagement']['jokes'][:3]
+            context['jokes'] = self.data_manager.get_engagement_content('joke', 3)
         
         if any(word in message_lower for word in ['motivation', 'encourage', 'support', 'help']):
-            context['encouragement'] = self.data_manager.data_sources['engagement']['encouragement'][:2]
+            context['encouragement'] = self.data_manager.get_engagement_content('encouragement', 2)
         
         if any(word in message_lower for word in ['fact', 'interesting', 'trivia']):
-            context['fun_facts'] = self.data_manager.data_sources['engagement']['fun_facts'][:2]
+            context['fun_facts'] = self.data_manager.get_engagement_content('fun_fact', 2)
         
         return context
     
@@ -202,10 +202,13 @@ For disallowed requests (identifying/ranking individuals), politely refuse and o
         
         # Fun content
         if 'joke' in message_lower:
-            jokes = self.data_manager.data_sources['engagement']['jokes']
+            jokes = self.data_manager.get_engagement_content('joke', 1)
             if jokes:
                 joke = jokes[0]
-                return f"Here's a joke for you: {joke['setup']} {joke['punchline']}"
+                if 'title' in joke:
+                    return f"Here's a joke for you: {joke['content']}"
+                else:
+                    return f"Here's a joke for you: {joke['content']}"
         
         # Default response
         return "Thank you for your question! I'm here to help with information about HMAWBI University programs, admissions, campus facilities, and student services. Could you please be more specific about what you'd like to know?"
