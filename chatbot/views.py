@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .models import Conversation, Message, UniversityProgram, CareerPath, AdmissionResource, StudentCampaign
+from .models import Conversation, Message, UniversityProgram, Scholarship, UniversityEvent
 from .ai_processor import UniversityGuidanceChatbot
 import json
 import uuid 
@@ -97,9 +97,9 @@ def process_message(request):
             # Get relevant resources based on conversation topic
             relevant_resources = []
             if response.get('is_urgent'):
-                relevant_resources = list(AdmissionResource.objects.filter(
-                    is_priority=True
-                ).values('title', 'description', 'url', 'deadline_date'))
+                relevant_resources = list(Scholarship.objects.filter(
+                    is_active=True
+                ).values('name', 'description', 'benefit_amount', 'application_deadline'))
 
             return JsonResponse({
                 'bot_response': response['message'],
@@ -152,23 +152,21 @@ def program_explorer(request):
 
     # GET request - show the explorer interface
     programs = UniversityProgram.objects.all()[:10]  # Show some sample programs
-    career_paths = CareerPath.objects.all()[:5]  # Show some career options
+    scholarships = Scholarship.objects.filter(is_active=True)[:5]  # Show some scholarships
 
     return render(request, 'chatbot/program_explorer.html', {
         'recent_programs': programs,
-        'career_paths': career_paths
+        'scholarships': scholarships
     })
 
 def resources(request):
     """University resources and opportunities page"""
-    admission_resources = AdmissionResource.objects.filter(is_priority=True)
-    scholarship_resources = AdmissionResource.objects.filter(resource_type='scholarship')
-    student_campaigns = StudentCampaign.objects.filter(is_active=True)[:10]
+    scholarships = Scholarship.objects.filter(is_active=True)
+    events = UniversityEvent.objects.filter(is_public=True)[:10]
 
     return render(request, 'chatbot/resources.html', {
-        'admission_resources': admission_resources,
-        'scholarship_resources': scholarship_resources,
-        'student_campaigns': student_campaigns
+        'scholarships': scholarships,
+        'events': events
     })
 
 def clear_chat(request):
