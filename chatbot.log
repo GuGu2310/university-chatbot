@@ -1368,3 +1368,12 @@ Watching for file changes with StatReloader
 /home/runner/workspace/chatbot/ai_processor.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/data_manager.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/management/commands/populate_resources.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
