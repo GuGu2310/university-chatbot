@@ -1,11 +1,9 @@
 
 """
 AI Processor for HMAWBI University Chatbot
-Handles conversation processing and response generation using OpenAI
+Handles conversation processing and response generation using rule-based system
 """
 
-import os
-import openai
 from typing import Dict, List, Any, Optional
 from django.conf import settings
 from .data_manager import DataManager
@@ -17,42 +15,58 @@ logger = logging.getLogger(__name__)
 
 class UniversityGuidanceChatbot:
     """
-    University Guidance Chatbot using OpenAI GPT for intelligent responses
+    University Guidance Chatbot using rule-based system for intelligent responses
     Follows the UniGuideBot specifications for university assistance
     """
     
     def __init__(self):
-        """Initialize the chatbot with OpenAI configuration"""
-        self.api_key = getattr(settings, 'OPENAI_API_KEY', '')
-        if self.api_key:
-            openai.api_key = self.api_key
-        
+        """Initialize the chatbot with system-based configuration"""
         self.data_manager = DataManager()
-        self.system_prompt = self._get_system_prompt()
-        self.temperature = 0.15
-        self.max_tokens = 600
+        self.response_templates = self._load_response_templates()
         
-    def _get_system_prompt(self) -> str:
-        """Get the comprehensive system prompt for UniGuideBot"""
-        return """You are "UniGuideBot," the official HMAWBI University guidance assistant. Your role is to give accurate, helpful, and neutral information about the university: organization, departments, programs, admission dates and requirements, tuition and fees, location and campus map, events and student activities, clubs, facilities, transport options, exams/announcements, job/internship opportunities, partnerships, scholarships, and other student services.
-
-Always:
-- Use a friendly, concise, professional tone
-- Answer from the university knowledge base when available. If you are not sure, say "I don't have that info right now" and offer to find it or provide the next steps
-- Ask a clarifying question if the user request is incomplete
-- Respect privacy and safety: never produce content that identifies private individuals in a defamatory way
-- For "fun news" / gossip: only publish content that is campus-official, aggregated anonymous poll results, or clearly labeled fiction
-- Provide sources for factual answers when possible
-- If user needs official action (complaint, discipline, legal), provide the relevant office contact and recommend filing an official report
-- When asked about events, ask whether they want dates, registration, or directions
-- If the user is a prospective student, include admission deadlines, required documents, contacts, and next steps
-- Indicate escalation to human office when necessary
-
-For disallowed requests (identifying/ranking individuals), politely refuse and offer alternatives like anonymous polls or campus-approved highlights."""
+    def _load_response_templates(self) -> Dict[str, Any]:
+        """Load response templates for different query types"""
+        return {
+            'greeting': [
+                "Hello! I'm UniGuideBot, your HMAWBI University guidance assistant. How can I help you with information about programs, admissions, or campus life?",
+                "Welcome to HMAWBI University! I'm here to help you with questions about our programs, facilities, admissions, and student services. What would you like to know?",
+                "Hi there! I'm UniGuideBot, ready to assist you with any questions about HMAWBI University. How can I help you today?"
+            ],
+            'programs': [
+                "We offer various programs at HMAWBI University. Here are some popular ones:",
+                "HMAWBI University provides excellent academic programs. Let me share information about our offerings:",
+                "Our university has comprehensive programs designed for your career success:"
+            ],
+            'admission': [
+                "For admission information at HMAWBI University:",
+                "Here's what you need to know about applying to HMAWBI University:",
+                "Admission to HMAWBI University involves several steps:"
+            ],
+            'campus': [
+                "HMAWBI University campus offers excellent facilities:",
+                "Our campus provides a comprehensive learning environment:",
+                "Campus life at HMAWBI University includes:"
+            ],
+            'fees': [
+                "Regarding fees and financial information:",
+                "Here's information about costs at HMAWBI University:",
+                "Financial details for HMAWBI University:"
+            ],
+            'scholarships': [
+                "HMAWBI University offers various scholarship opportunities:",
+                "Scholarship programs available at our university:",
+                "Financial aid and scholarship options:"
+            ],
+            'default': [
+                "I'm here to help with information about HMAWBI University. Could you please be more specific about what you'd like to know?",
+                "I can assist you with questions about programs, admissions, campus facilities, fees, scholarships, and student life at HMAWBI University. What interests you?",
+                "Thank you for your question. I can provide information about various aspects of HMAWBI University. Please let me know what specific area you'd like to learn about."
+            ]
+        }
 
     def generate_response(self, user_message: str, conversation_history: List[Dict] = None) -> Dict[str, Any]:
         """
-        Generate a response to user message using OpenAI
+        Generate a response to user message using rule-based system
         
         Args:
             user_message: The user's input message
@@ -66,17 +80,14 @@ For disallowed requests (identifying/ranking individuals), politely refuse and o
             if self._is_disallowed_request(user_message):
                 return self._handle_disallowed_request(user_message)
             
+            # Classify the message intent
+            intent = self._classify_message_intent(user_message)
+            
             # Get relevant university data for context
-            context_data = self._get_relevant_context(user_message)
+            context_data = self._get_relevant_context(user_message, intent)
             
-            # Build messages for OpenAI
-            messages = self._build_messages(user_message, conversation_history, context_data)
-            
-            # Generate response using OpenAI
-            if self.api_key:
-                response = self._call_openai(messages)
-            else:
-                response = self._fallback_response(user_message, context_data)
+            # Generate response based on intent and context
+            response = self._generate_rule_based_response(user_message, intent, context_data)
             
             # Analyze response for urgency and helpfulness
             analysis = self._analyze_response(user_message, response)
@@ -85,7 +96,8 @@ For disallowed requests (identifying/ranking individuals), politely refuse and o
                 'message': response,
                 'is_urgent': analysis.get('is_urgent', False),
                 'helpfulness': analysis.get('helpfulness', 0.8),
-                'context_used': bool(context_data)
+                'context_used': bool(context_data),
+                'intent': intent
             }
             
         except Exception as e:
@@ -93,8 +105,55 @@ For disallowed requests (identifying/ranking individuals), politely refuse and o
             return {
                 'message': "I'm sorry, I'm having trouble processing your request right now. Please try again or contact our student services office for immediate assistance.",
                 'is_urgent': False,
-                'helpfulness': 0.3
+                'helpfulness': 0.3,
+                'intent': 'error'
             }
+    
+    def _classify_message_intent(self, message: str) -> str:
+        """Classify user message intent using keyword matching"""
+        message_lower = message.lower()
+        
+        # Greeting patterns
+        greeting_patterns = [r'\b(hello|hi|hey|good morning|good afternoon|good evening)\b']
+        if any(re.search(pattern, message_lower) for pattern in greeting_patterns):
+            return 'greeting'
+        
+        # Program-related queries
+        program_keywords = ['program', 'course', 'degree', 'study', 'major', 'curriculum', 'engineering', 'it', 'computer']
+        if any(keyword in message_lower for keyword in program_keywords):
+            return 'programs'
+        
+        # Admission-related queries
+        admission_keywords = ['admission', 'apply', 'application', 'requirement', 'deadline', 'entrance', 'enroll']
+        if any(keyword in message_lower for keyword in admission_keywords):
+            return 'admission'
+        
+        # Campus-related queries
+        campus_keywords = ['campus', 'facility', 'library', 'hostel', 'cafeteria', 'sports', 'gym', 'dormitory']
+        if any(keyword in message_lower for keyword in campus_keywords):
+            return 'campus'
+        
+        # Fee-related queries
+        fee_keywords = ['fee', 'cost', 'tuition', 'price', 'payment', 'financial', 'money']
+        if any(keyword in message_lower for keyword in fee_keywords):
+            return 'fees'
+        
+        # Scholarship queries
+        scholarship_keywords = ['scholarship', 'financial aid', 'grant', 'funding', 'assistance']
+        if any(keyword in message_lower for keyword in scholarship_keywords):
+            return 'scholarships'
+        
+        # Fun content requests
+        if any(word in message_lower for word in ['joke', 'fun', 'funny', 'laugh']):
+            return 'entertainment'
+        
+        if any(word in message_lower for word in ['motivation', 'encourage', 'support']):
+            return 'motivation'
+        
+        if any(word in message_lower for word in ['fact', 'interesting', 'trivia', 'news']):
+            return 'news'
+        
+        return 'default'
     
     def _is_disallowed_request(self, message: str) -> bool:
         """Check if the request violates privacy/gossip policies"""
@@ -113,105 +172,118 @@ For disallowed requests (identifying/ranking individuals), politely refuse and o
         return {
             'message': "I can't help identify or rank private individuals by appearance or make negative claims about staff. I can help in one of these ways: (1) run an anonymous poll for campus awards, (2) show campus-approved highlights or official recognitions, (3) explain how to submit formal feedback. Which would you prefer?",
             'is_urgent': False,
-            'helpfulness': 0.6
+            'helpfulness': 0.6,
+            'intent': 'policy_violation'
         }
     
-    def _get_relevant_context(self, user_message: str) -> Dict[str, Any]:
-        """Get relevant university data based on user message"""
+    def _get_relevant_context(self, user_message: str, intent: str) -> Dict[str, Any]:
+        """Get relevant university data based on user message and intent"""
         context = {}
-        message_lower = user_message.lower()
         
-        # Check for program-related queries
-        if any(word in message_lower for word in ['program', 'degree', 'course', 'study', 'major']):
+        if intent == 'programs':
             context['programs'] = self.data_manager.get_all_programs()
-        
-        # Check for admission-related queries
-        if any(word in message_lower for word in ['admission', 'apply', 'requirement', 'deadline', 'entrance']):
+        elif intent == 'admission':
             context['admission'] = self.data_manager.get_admission_info()
-        
-        # Check for campus-related queries
-        if any(word in message_lower for word in ['campus', 'facility', 'library', 'hostel', 'cafeteria']):
+        elif intent == 'campus':
             context['campus'] = self.data_manager.get_campus_info()
-        
-        # Check for news-related queries
-        if any(word in message_lower for word in ['news', 'announcement', 'event', 'happening']):
-            context['news'] = self.data_manager.get_latest_news(5)
-        
-        # Check for fun content requests
-        if any(word in message_lower for word in ['joke', 'fun', 'funny', 'laugh']):
+        elif intent == 'fees':
+            context['admission'] = self.data_manager.get_admission_info()
+        elif intent == 'scholarships':
+            context['scholarships'] = self.data_manager.get_scholarships()
+        elif intent == 'entertainment':
             context['jokes'] = self.data_manager.get_engagement_content('joke', 3)
-        
-        if any(word in message_lower for word in ['motivation', 'encourage', 'support', 'help']):
+        elif intent == 'motivation':
             context['encouragement'] = self.data_manager.get_engagement_content('encouragement', 2)
-        
-        if any(word in message_lower for word in ['fact', 'interesting', 'trivia']):
+        elif intent == 'news':
+            context['news'] = self.data_manager.get_latest_news(5)
             context['fun_facts'] = self.data_manager.get_engagement_content('fun_fact', 2)
         
         return context
     
-    def _build_messages(self, user_message: str, conversation_history: List[Dict], context_data: Dict) -> List[Dict]:
-        """Build message array for OpenAI API"""
-        messages = [{"role": "system", "content": self.system_prompt}]
+    def _generate_rule_based_response(self, user_message: str, intent: str, context_data: Dict) -> str:
+        """Generate response using rule-based system"""
         
-        # Add conversation history if available
-        if conversation_history:
-            messages.extend(conversation_history[-6:])  # Last 6 messages for context
+        if intent == 'greeting':
+            import random
+            return random.choice(self.response_templates['greeting'])
         
-        # Add context data as system message
-        if context_data:
-            context_message = "Here's relevant university information to help answer the user:\n"
-            for key, value in context_data.items():
-                context_message += f"\n{key.upper()}:\n{json.dumps(value, indent=2)}\n"
+        elif intent == 'programs':
+            response = random.choice(self.response_templates['programs'])
+            if 'programs' in context_data and context_data['programs']:
+                programs = list(context_data['programs'].keys())[:5]
+                response += f"\n\n• {chr(10).join(['• ' + prog for prog in programs])}"
+                response += "\n\nWould you like detailed information about any specific program?"
+            return response
+        
+        elif intent == 'admission':
+            response = random.choice(self.response_templates['admission'])
+            if 'admission' in context_data:
+                admission_info = context_data['admission']
+                response += f"\n\n• Contact: {admission_info.get('contact_email', 'admissions@hmawbi.edu.mm')}"
+                response += f"\n• Office Hours: {admission_info.get('office_hours', 'Monday-Friday 9:00 AM - 5:00 PM')}"
+                if 'requirements' in admission_info:
+                    response += f"\n• Requirements: {admission_info['requirements']}"
+            return response
+        
+        elif intent == 'campus':
+            response = random.choice(self.response_templates['campus'])
+            if 'campus' in context_data:
+                campus_info = context_data['campus']
+                facilities = campus_info.get('facilities', [])
+                if facilities:
+                    response += f"\n\n• {chr(10).join(['• ' + facility for facility in facilities[:5]])}"
+            return response
+        
+        elif intent == 'fees':
+            response = random.choice(self.response_templates['fees'])
+            if 'admission' in context_data:
+                fees = context_data['admission'].get('fees', {})
+                if fees:
+                    response += "\n\n"
+                    for fee_type, amount in fees.items():
+                        response += f"• {fee_type.replace('_', ' ').title()}: {amount}\n"
+            return response
+        
+        elif intent == 'scholarships':
+            response = random.choice(self.response_templates['scholarships'])
+            if 'scholarships' in context_data and context_data['scholarships']:
+                scholarships = context_data['scholarships'][:3]
+                response += "\n\n"
+                for scholarship in scholarships:
+                    response += f"• {scholarship.get('name', 'Scholarship')}: {scholarship.get('description', 'Available for eligible students')}\n"
+            return response
+        
+        elif intent == 'entertainment':
+            if 'jokes' in context_data and context_data['jokes']:
+                joke = context_data['jokes'][0]
+                return f"Here's a joke for you: {joke['content']}"
+            else:
+                return "Here's a little university humor: Why don't engineers ever get lost on campus? Because they always know how to find their way around problems! 😄"
+        
+        elif intent == 'motivation':
+            if 'encouragement' in context_data and context_data['encouragement']:
+                encouragement = context_data['encouragement'][0]
+                return encouragement['content']
+            else:
+                return "Remember, every expert was once a beginner. Your journey at HMAWBI University is just the beginning of great achievements! Keep pushing forward! 💪"
+        
+        elif intent == 'news':
+            response = "Here's what's happening at HMAWBI University:\n\n"
+            if 'news' in context_data and context_data['news']:
+                for news_item in context_data['news'][:3]:
+                    response += f"• {news_item.get('title', 'University News')}: {news_item.get('content', 'Updates coming soon')}\n"
+            else:
+                response += "• Stay tuned for exciting university updates and announcements!\n"
             
-            messages.append({"role": "system", "content": context_message})
+            if 'fun_facts' in context_data and context_data['fun_facts']:
+                fact = context_data['fun_facts'][0]
+                response += f"\n🎓 Fun Fact: {fact['content']}"
+            
+            return response
         
-        # Add user message
-        messages.append({"role": "user", "content": user_message})
-        
-        return messages
-    
-    def _call_openai(self, messages: List[Dict]) -> str:
-        """Call OpenAI API to generate response"""
-        try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",  # Use gpt-4 if available
-                messages=messages,
-                temperature=self.temperature,
-                max_tokens=self.max_tokens
-            )
-            return response.choices[0].message.content
-        except Exception as e:
-            logger.error(f"OpenAI API error: {e}")
-            raise
-    
-    def _fallback_response(self, user_message: str, context_data: Dict) -> str:
-        """Generate fallback response when OpenAI is not available"""
-        message_lower = user_message.lower()
-        
-        # Program queries
-        if 'program' in message_lower or 'course' in message_lower:
-            programs = self.data_manager.get_all_programs()
-            if programs:
-                program_names = list(programs.keys())[:5]
-                return f"We offer several programs including: {', '.join(program_names)}. Would you like detailed information about any specific program?"
-        
-        # Admission queries
-        if 'admission' in message_lower or 'apply' in message_lower:
-            admission_info = self.data_manager.get_admission_info()
-            return f"For admissions, you can contact us at: {admission_info.get('contact_email', 'admissions@hmawbi.edu.mm')}. Visit our admissions office during {admission_info.get('office_hours', 'business hours')}."
-        
-        # Fun content
-        if 'joke' in message_lower:
-            jokes = self.data_manager.get_engagement_content('joke', 1)
-            if jokes:
-                joke = jokes[0]
-                if 'title' in joke:
-                    return f"Here's a joke for you: {joke['content']}"
-                else:
-                    return f"Here's a joke for you: {joke['content']}"
-        
-        # Default response
-        return "Thank you for your question! I'm here to help with information about HMAWBI University programs, admissions, campus facilities, and student services. Could you please be more specific about what you'd like to know?"
+        else:  # default
+            import random
+            return random.choice(self.response_templates['default'])
     
     def _analyze_response(self, user_message: str, response: str) -> Dict[str, Any]:
         """Analyze the response for urgency and helpfulness"""
@@ -254,24 +326,7 @@ For disallowed requests (identifying/ranking individuals), politely refuse and o
     
     def get_quick_responses(self, category: str) -> List[str]:
         """Get quick responses for specific categories"""
-        responses = {
-            'greeting': [
-                "Hello! I'm UniGuideBot, your HMAWBI University assistant. How can I help you today?",
-                "Welcome to HMAWBI University! What would you like to know about our programs and services?",
-                "Hi there! I'm here to help with any questions about university life, admissions, or programs."
-            ],
-            'goodbye': [
-                "Thank you for visiting HMAWBI University! Feel free to reach out anytime you need assistance.",
-                "Goodbye! Best of luck with your academic journey at HMAWBI University!",
-                "Take care! I'm always here if you need more information about our university."
-            ],
-            'thanks': [
-                "You're welcome! Is there anything else I can help you with?",
-                "Happy to help! Feel free to ask if you have more questions.",
-                "Glad I could assist! Let me know if you need anything else."
-            ]
-        }
-        return responses.get(category, [])
+        return self.response_templates.get(category, self.response_templates['default'])
 
 
 # Utility functions for testing and development
@@ -280,6 +335,8 @@ def test_chatbot():
     chatbot = UniversityGuidanceChatbot()
     
     test_messages = [
+        "Hello",
+        "Hi there",
         "What engineering programs do you offer?",
         "How can I apply for admission?",
         "Tell me a joke",
@@ -291,7 +348,7 @@ def test_chatbot():
         print(f"\nUser: {message}")
         response = chatbot.generate_response(message)
         print(f"Bot: {response['message']}")
-        print(f"Urgent: {response['is_urgent']}, Helpfulness: {response['helpfulness']}")
+        print(f"Intent: {response.get('intent', 'unknown')}, Urgent: {response['is_urgent']}, Helpfulness: {response['helpfulness']}")
 
 
 if __name__ == "__main__":

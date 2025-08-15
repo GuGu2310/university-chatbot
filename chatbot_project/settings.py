@@ -146,8 +146,8 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 CSRF_COOKIE_SECURE = not DEBUG  # True in production (HTTPS)
 SESSION_COOKIE_SECURE = not DEBUG  # True in production (HTTPS)
 
-# OpenAI Configuration
-OPENAI_API_KEY = config('OPENAI_API_KEY', default='')
+# System-based chatbot configuration
+# No external API keys required
 
 # Logging
 LOGGING = {
