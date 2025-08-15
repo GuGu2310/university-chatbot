@@ -208,6 +208,7 @@ class UniversityGuidanceChatbot:
             return random.choice(self.response_templates['greeting'])
         
         elif intent == 'programs':
+            import random
             response = random.choice(self.response_templates['programs'])
             if 'programs' in context_data and context_data['programs']:
                 programs = list(context_data['programs'].keys())[:5]
@@ -216,6 +217,7 @@ class UniversityGuidanceChatbot:
             return response
         
         elif intent == 'admission':
+            import random
             response = random.choice(self.response_templates['admission'])
             if 'admission' in context_data:
                 admission_info = context_data['admission']
@@ -226,6 +228,7 @@ class UniversityGuidanceChatbot:
             return response
         
         elif intent == 'campus':
+            import random
             response = random.choice(self.response_templates['campus'])
             if 'campus' in context_data:
                 campus_info = context_data['campus']
@@ -235,6 +238,7 @@ class UniversityGuidanceChatbot:
             return response
         
         elif intent == 'fees':
+            import random
             response = random.choice(self.response_templates['fees'])
             if 'admission' in context_data:
                 fees = context_data['admission'].get('fees', {})
@@ -245,6 +249,7 @@ class UniversityGuidanceChatbot:
             return response
         
         elif intent == 'scholarships':
+            import random
             response = random.choice(self.response_templates['scholarships'])
             if 'scholarships' in context_data and context_data['scholarships']:
                 scholarships = context_data['scholarships'][:3]

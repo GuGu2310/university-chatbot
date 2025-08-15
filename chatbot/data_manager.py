@@ -1,4 +1,3 @@
-
 """
 Data Manager for HMAWBI University Chatbot
 Now integrated with Django models for admin panel management
@@ -43,7 +42,7 @@ class DataManager:
                 name__icontains=program_name, 
                 is_active=True
             ).first()
-            
+
             if program:
                 return {
                     'name': program.name,
@@ -58,7 +57,7 @@ class DataManager:
                 }
         except:
             pass
-        
+
         return self.fallback_data['programs'].get(program_name, {})
 
     def get_all_programs(self) -> Dict[str, Any]:
@@ -67,7 +66,7 @@ class DataManager:
             from .models import UniversityProgram
             programs = UniversityProgram.objects.filter(is_active=True)
             result = {}
-            
+
             for program in programs:
                 result[program.name] = {
                     'duration': program.duration,
@@ -88,18 +87,18 @@ class DataManager:
             from .models import CampusFacility, ContactInformation
             facilities = CampusFacility.objects.filter(is_available=True)
             contacts = ContactInformation.objects.filter(is_active=True)
-            
+
             facilities_by_type = {}
             for facility in facilities:
                 facility_type = facility.facility_type
                 if facility_type not in facilities_by_type:
                     facilities_by_type[facility_type] = []
-                
+
                 facility_info = facility.name
                 if facility.capacity:
                     facility_info += f" ({facility.capacity})"
                 facilities_by_type[facility_type].append(facility_info)
-            
+
             contact_info = {}
             for contact in contacts:
                 contact_info[contact.department] = {
@@ -108,7 +107,7 @@ class DataManager:
                     'location': contact.office_location,
                     'hours': contact.office_hours
                 }
-            
+
             return {
                 'location': 'Hmawbi Township, Yangon Region, Myanmar',
                 'facilities': facilities_by_type,
@@ -121,13 +120,13 @@ class DataManager:
         """Get current admission information"""
         try:
             from .models import AdmissionInfo, Scholarship, UniversityFee
-            
+
             current_admission = AdmissionInfo.objects.filter(is_current=True).first()
             scholarships = Scholarship.objects.filter(is_active=True)
             current_fees = UniversityFee.objects.filter(is_current=True)
-            
+
             result = {}
-            
+
             if current_admission:
                 result = {
                     'academic_year': current_admission.academic_year,
@@ -139,7 +138,7 @@ class DataManager:
                     'contact_phone': current_admission.contact_phone,
                     'office_hours': current_admission.office_hours
                 }
-            
+
             # Add scholarships
             scholarship_list = []
             for scholarship in scholarships:
@@ -149,13 +148,13 @@ class DataManager:
                     'benefit': scholarship.benefit_amount
                 })
             result['scholarships'] = scholarship_list
-            
+
             # Add fees
             fees = {}
             for fee in current_fees:
                 fees[fee.fee_type] = f"{fee.amount} {fee.currency}"
             result['fees'] = fees
-            
+
             return result
         except:
             return self.fallback_data['admission']
@@ -164,13 +163,13 @@ class DataManager:
         """Get student life information"""
         try:
             from .models import StudentClub, UniversityEvent
-            
+
             clubs = StudentClub.objects.filter(is_active=True)
             upcoming_events = UniversityEvent.objects.filter(
                 start_date__gte=timezone.now(),
                 is_public=True
             ).order_by('start_date')[:10]
-            
+
             club_list = [club.name for club in clubs]
             event_list = []
             for event in upcoming_events:
@@ -180,7 +179,7 @@ class DataManager:
                     'location': event.location,
                     'type': event.get_event_type_display()
                 })
-            
+
             return {
                 'clubs_organizations': club_list,
                 'upcoming_events': event_list
@@ -195,12 +194,12 @@ class DataManager:
         """Get latest approved university news"""
         try:
             from .models import UniversityNews
-            
+
             news_items = UniversityNews.objects.filter(
                 is_published=True,
                 content_approved=True
             ).order_by('-created_at')[:limit]
-            
+
             result = []
             for news in news_items:
                 result.append({
@@ -226,7 +225,7 @@ class DataManager:
         """Search programs by keyword"""
         try:
             from .models import UniversityProgram
-            
+
             programs = UniversityProgram.objects.filter(
                 name__icontains=query,
                 is_active=True
@@ -237,7 +236,7 @@ class DataManager:
                 career_paths__icontains=query,
                 is_active=True
             )
-            
+
             return [program.name for program in programs.distinct()]
         except:
             return []
@@ -246,12 +245,12 @@ class DataManager:
         """Get engagement content (jokes, encouragement, etc.)"""
         try:
             from .models import EngagementContent
-            
+
             content = EngagementContent.objects.filter(
                 content_type=content_type,
                 is_active=True
             ).order_by('?')[:limit]  # Random order
-            
+
             result = []
             for item in content:
                 content_data = {
@@ -264,7 +263,7 @@ class DataManager:
                     content_data['tone'] = item.tone
                 if item.context:
                     content_data['context'] = item.context
-                    
+
                 result.append(content_data)
             return result
         except:
@@ -296,7 +295,7 @@ class DataManager:
         """Search university news by keyword"""
         try:
             from .models import UniversityNews
-            
+
             news_items = UniversityNews.objects.filter(
                 title__icontains=keyword,
                 is_published=True,
@@ -310,7 +309,7 @@ class DataManager:
                 is_published=True,
                 content_approved=True
             )
-            
+
             result = []
             for news in news_items.distinct():
                 result.append({
@@ -329,7 +328,7 @@ class DataManager:
         """Get contact information for departments"""
         try:
             from .models import ContactInformation
-            
+
             if department:
                 contact = ContactInformation.objects.filter(
                     department__icontains=department,
@@ -368,7 +367,7 @@ class DataManager:
                 UniversityProgram, CampusFacility, Scholarship, 
                 StudentClub, UniversityEvent, UniversityNews, EngagementContent
             )
-            
+
             return {
                 'total_programs': UniversityProgram.objects.filter(is_active=True).count(),
                 'total_facilities': CampusFacility.objects.filter(is_available=True).count(),
@@ -400,7 +399,7 @@ class DataManager:
 def test_data_manager():
     """Test function for development"""
     manager = DataManager()
-    
+
     print("Programs:", list(manager.get_all_programs().keys()))
     print("Campus Info:", manager.get_campus_info())
     print("Statistics:", manager.get_statistics())
