@@ -119,7 +119,7 @@ class UniversityGuidanceChatbot:
             return 'greeting'
         
         # Program-related queries
-        program_keywords = ['program', 'course', 'degree', 'study', 'major', 'curriculum', 'engineering', 'it', 'computer']
+        program_keywords = ['program', 'course', 'degree', 'study', 'major', 'curriculum', 'engineering', 'it', 'computer', 'civil', 'electrical', 'mechanical', 'software']
         if any(keyword in message_lower for keyword in program_keywords):
             return 'programs'
         
@@ -211,9 +211,30 @@ class UniversityGuidanceChatbot:
             import random
             response = random.choice(self.response_templates['programs'])
             if 'programs' in context_data and context_data['programs']:
-                programs = list(context_data['programs'].keys())[:5]
-                response += f"\n\n• {chr(10).join(['• ' + prog for prog in programs])}"
-                response += "\n\nWould you like detailed information about any specific program?"
+                # Check if user asked about a specific program
+                message_lower = user_message.lower()
+                specific_program = None
+                for program_name, program_data in context_data['programs'].items():
+                    if any(word in message_lower for word in program_name.lower().split()):
+                        specific_program = program_name
+                        break
+                
+                if specific_program:
+                    # Show detailed info for specific program
+                    prog_data = context_data['programs'][specific_program]
+                    response = f"Here's information about {specific_program}:\n\n"
+                    response += f"📚 Duration: {prog_data.get('duration', 'Not specified')}\n"
+                    response += f"📝 Description: {prog_data.get('description', 'No description available')}\n"
+                    response += f"🎯 Career Paths: {', '.join(prog_data.get('career_paths', ['Not specified']))}\n"
+                    response += f"📋 Entry Requirements: {prog_data.get('entry_requirements', 'Contact admissions for details')}\n"
+                    response += f"💰 Salary Range: {prog_data.get('salary_range', 'Contact career services for details')}\n"
+                    if prog_data.get('specializations'):
+                        response += f"🔬 Specializations: {', '.join(prog_data.get('specializations', []))}\n"
+                else:
+                    # Show list of all programs
+                    programs = list(context_data['programs'].keys())[:5]
+                    response += f"\n\n• {chr(10).join(['• ' + prog for prog in programs])}"
+                    response += "\n\nWould you like detailed information about any specific program?"
             return response
         
         elif intent == 'admission':
@@ -221,10 +242,17 @@ class UniversityGuidanceChatbot:
             response = random.choice(self.response_templates['admission'])
             if 'admission' in context_data:
                 admission_info = context_data['admission']
-                response += f"\n\n• Contact: {admission_info.get('contact_email', 'admissions@hmawbi.edu.mm')}"
-                response += f"\n• Office Hours: {admission_info.get('office_hours', 'Monday-Friday 9:00 AM - 5:00 PM')}"
+                response += f"\n\n📅 Academic Year: {admission_info.get('academic_year', 'Current Year')}"
+                response += f"\n📆 Application Deadline: {admission_info.get('application_deadline', 'Contact admissions')}"
+                response += f"\n📝 Entrance Exam: {admission_info.get('entrance_exam_date', 'TBA')}"
+                response += f"\n💰 Application Fee: {admission_info.get('application_fee', 'Contact for details')}"
+                response += f"\n📧 Contact: {admission_info.get('contact_email', 'admissions@hmawbi.edu.mm')}"
+                response += f"\n📞 Phone: {admission_info.get('contact_phone', 'Contact university')}"
+                response += f"\n🕒 Office Hours: {admission_info.get('office_hours', 'Monday-Friday 9:00 AM - 5:00 PM')}"
                 if 'requirements' in admission_info:
-                    response += f"\n• Requirements: {admission_info['requirements']}"
+                    response += f"\n📋 Requirements: {admission_info['requirements']}"
+                if 'documents_needed' in admission_info:
+                    response += f"\n📄 Documents Needed: {admission_info['documents_needed']}"
             return response
         
         elif intent == 'campus':

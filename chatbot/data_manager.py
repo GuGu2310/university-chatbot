@@ -136,7 +136,8 @@ class DataManager:
                     'documents_needed': current_admission.documents_needed,
                     'contact_email': current_admission.contact_email,
                     'contact_phone': current_admission.contact_phone,
-                    'office_hours': current_admission.office_hours
+                    'office_hours': current_admission.office_hours,
+                    'application_fee': f"{current_admission.application_fee} MMK"
                 }
 
             # Add scholarships
@@ -156,8 +157,31 @@ class DataManager:
             result['fees'] = fees
 
             return result
-        except:
+        except Exception as e:
+            print(f"Error getting admission info: {e}")
             return self.fallback_data['admission']
+
+    def get_scholarships(self) -> List[Dict[str, Any]]:
+        """Get active scholarships"""
+        try:
+            from .models import Scholarship
+
+            scholarships = Scholarship.objects.filter(is_active=True)
+            result = []
+            for scholarship in scholarships:
+                result.append({
+                    'name': scholarship.name,
+                    'description': scholarship.description,
+                    'criteria': scholarship.eligibility_criteria,
+                    'benefit': scholarship.benefit_amount,
+                    'benefit_type': scholarship.get_benefit_type_display(),
+                    'deadline': scholarship.application_deadline.strftime('%B %d, %Y') if scholarship.application_deadline else 'No deadline specified',
+                    'application_process': scholarship.application_process
+                })
+            return result
+        except Exception as e:
+            print(f"Error getting scholarships: {e}")
+            return []
 
     def get_student_life_info(self) -> Dict[str, Any]:
         """Get student life information"""
