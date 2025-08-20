@@ -7,7 +7,6 @@ import json
 import logging
 import traceback
 from django.utils import timezone 
-from typing import Optional, Dict, Any, List
 
 logger = logging.getLogger(__name__)
 
@@ -19,8 +18,6 @@ def chat_view(request):
     """Main university guidance chat interface"""
     # Create or get conversation session
     session_id = request.session.get('conversation_id')
-    conversation: Optional[Conversation] = None
-
     if not session_id:
         conversation = Conversation.objects.create()
         request.session['conversation_id'] = str(conversation.session_id)
@@ -58,8 +55,6 @@ def process_message(request):
 
         # Get or create conversation based on session_id
         session_id = request.session.get('conversation_id')
-        conversation: Optional[Conversation] = None
-
         if not session_id:
             conversation = Conversation.objects.create()
             request.session['conversation_id'] = str(conversation.session_id)
@@ -69,24 +64,25 @@ def process_message(request):
                 conversation = Conversation.objects.get(session_id=session_id)
                 logger.info(f"Using existing conversation: {conversation.session_id}")
             except Conversation.DoesNotExist:
+                # If a session_id exists but the conversation doesn't, create a new one
                 conversation = Conversation.objects.create()
                 request.session['conversation_id'] = str(conversation.session_id)
                 logger.info(f"Created new conversation after DoesNotExist: {conversation.session_id}")
 
         # Save user message
-        user_msg: Message = Message.objects.create(
+        user_msg = Message.objects.create(
             conversation=conversation,
             message_type='user',
             content=user_message
         )
-        logger.info(f"Saved user message: {user_msg.pk}")
+        logger.info(f"Saved user message: {user_msg.id}")
 
         # Get conversation history for context (last 10 messages)
         recent_messages = Message.objects.filter(
             conversation=conversation
         ).order_by('-timestamp')[:10]
 
-        conversation_history: List[Dict[str, str]] = []
+        conversation_history = []
         for msg in reversed(recent_messages):
             message_for_history = {
                 'role': 'user' if msg.message_type == 'user' else 'assistant',
@@ -105,16 +101,16 @@ def process_message(request):
             logger.info(f"Generated response with intent: {response.get('intent', 'unknown')}")
 
             # Save bot response
-            bot_msg: Message = Message.objects.create(
+            bot_msg = Message.objects.create(
                 conversation=conversation,
                 message_type='bot',
                 content=response['message'],
                 helpfulness_score=response.get('helpfulness')
             )
-            logger.info(f"Saved bot message: {bot_msg.pk}")
+            logger.info(f"Saved bot message: {bot_msg.id}")
 
             # Get relevant resources based on conversation topic
-            relevant_resources: List[Dict[str, Any]] = []
+            relevant_resources = []
             if response.get('is_urgent'):
                 try:
                     relevant_resources = list(Scholarship.objects.filter(
@@ -131,7 +127,7 @@ def process_message(request):
                 'intent': response.get('intent', 'unknown'),
                 'relevant_resources': relevant_resources,
                 'timestamp': bot_msg.timestamp.isoformat(),
-                'message_id': bot_msg.pk
+                'message_id': bot_msg.id
             })
 
         except Exception as chatbot_error:
@@ -140,7 +136,7 @@ def process_message(request):
 
             # Save error response
             error_response = "I'm sorry, I'm having trouble processing your request right now. Please try again or contact our student services office for immediate assistance."
-            bot_msg: Message = Message.objects.create(
+            bot_msg = Message.objects.create(
                 conversation=conversation,
                 message_type='bot',
                 content=error_response,
@@ -154,7 +150,7 @@ def process_message(request):
                 'intent': 'error',
                 'relevant_resources': [],
                 'timestamp': bot_msg.timestamp.isoformat(),
-                'message_id': bot_msg.pk,
+                'message_id': bot_msg.id,
                 'error_debug': str(chatbot_error) if logger.level == logging.DEBUG else None
             })
 
@@ -185,14 +181,11 @@ def program_explorer(request):
             if interest_area:
                 programs = programs.filter(name__icontains=interest_area)
 
-            programs_data: List[Dict[str, Any]] = []
+            programs_data = []
             for program in programs[:10]:
-                # Safe handling of level display - avoid get_level_display entirely
-                level_display = str(program.level) if hasattr(program, 'level') else 'Unknown'
-
                 programs_data.append({
                     'name': program.name,
-                    'level': level_display,
+                    'level': program.get_level_display() if hasattr(program, 'get_level_display') else program.level,
                     'description': program.description,
                     'duration': program.duration,
                     'career_paths': program.career_paths,
@@ -243,59 +236,28 @@ def resources(request):
 
 def clear_chat(request):
     """Clear current chat session"""
-    try:
-        session_id = request.session.get('conversation_id')
-        if session_id:
-            try:
-                # Mark the conversation as inactive if it exists
-                conversation = Conversation.objects.get(session_id=session_id)
-                conversation.is_active = False
-                conversation.ended_at = timezone.now()
-                conversation.save()
-                logger.info(f"Marked conversation {session_id} as inactive")
-            except (Conversation.DoesNotExist, ValueError) as e:
-                logger.warning(f"Could not find conversation to clear: {e}")
-            except Exception as e:
-                logger.error(f"Error updating conversation: {e}")
-
-            # Remove the conversation_id from the session to start fresh
-            try:
-                if 'conversation_id' in request.session:
-                    del request.session['conversation_id']
-                    request.session.modified = True
-                    logger.info("Cleared conversation_id from session")
-            except Exception as e:
-                logger.error(f"Error clearing session: {e}")
-
-        # Check if this is an AJAX request
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({
-                'status': 'success',
-                'message': 'Chat cleared successfully'
-            })
-
-        # For regular HTTP requests, redirect to chat view
+    session_id = request.session.get('conversation_id')
+    if session_id:
         try:
-            return redirect('chat_view')  # Try the named URL first
-        except Exception:
-            return redirect('/chat/')  # Fallback to absolute URL
+            # Mark the conversation as inactive if it exists
+            conversation = Conversation.objects.get(session_id=session_id)
+            conversation.is_active = False
+            conversation.ended_at = timezone.now()
+            conversation.save()
+            logger.info(f"Marked conversation {session_id} as inactive")
+        except (Conversation.DoesNotExist, ValueError) as e:
+            logger.warning(f"Could not find conversation to clear: {e}")
 
-    except Exception as e:
-        logger.error(f"Error in clear_chat: {e}")
-        logger.error(f"Clear chat error traceback: {traceback.format_exc()}")
+        # Remove the conversation_id from the session to start fresh
+        if 'conversation_id' in request.session:
+            del request.session['conversation_id']
+            logger.info("Cleared conversation_id from session")
 
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({
-                'status': 'error',
-                'message': 'Error clearing chat session'
-            }, status=500)
-
-        # Return a safe fallback redirect
-        return redirect('/chat/')
+    return redirect('chat_view')  # Make sure this matches your URL name
 
 def get_question_categories(request):
     """Get available question categories for the chatbot"""
-    categories: Dict[str, List[str]] = {
+    categories = {
         "Programs": [
             "What engineering programs do you offer?",
             "Can you tell me more about the curriculum for Civil Engineering?",
