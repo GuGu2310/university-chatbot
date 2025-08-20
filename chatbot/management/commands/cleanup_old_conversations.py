@@ -3,6 +3,7 @@ from django.utils import timezone
 from datetime import timedelta
 from chatbot.models import Conversation, Message
 
+
 class Command(BaseCommand):
     help = 'Cleanup old conversations for privacy'
 
@@ -17,23 +18,19 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         days = options['days']
         cutoff_date = timezone.now() - timedelta(days=days)
-        
+
         # Get old conversations
         old_conversations = Conversation.objects.filter(
-            started_at__lt=cutoff_date
-        )
-        
+            started_at__lt=cutoff_date)
+
         conversation_count = old_conversations.count()
         message_count = Message.objects.filter(
-            conversation__in=old_conversations
-        ).count()
-        
+            conversation__in=old_conversations).count()
+
         # Delete old conversations (messages will be deleted via cascade)
         old_conversations.delete()
-        
+
         self.stdout.write(
             self.style.SUCCESS(
                 f'Deleted {conversation_count} conversations and {message_count} messages '
-                f'older than {days} days'
-            )
-        )
+                f'older than {days} days'))

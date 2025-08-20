@@ -1,7 +1,6 @@
-
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
+# Removed 'from django.utils import timezone' as it's not used in models.py
 import uuid
 
 class UserProfile(models.Model):
@@ -12,7 +11,7 @@ class UserProfile(models.Model):
     consent_given = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     privacy_accepted = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return f"{self.user.username if self.user else 'Anonymous'}'s Profile"
 
@@ -23,10 +22,10 @@ class Conversation(models.Model):
     ended_at = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     topic_category = models.CharField(max_length=50, blank=True)
-    
+
     class Meta:
         ordering = ['-started_at']
-    
+
     def __str__(self):
         return f"Conversation {str(self.session_id)[:8]}"
 
@@ -36,16 +35,16 @@ class Message(models.Model):
         ('bot', 'Bot'),
         ('system', 'System')
     ]
-    
+
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
     message_type = models.CharField(max_length=10, choices=MESSAGE_TYPES)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     helpfulness_score = models.FloatField(null=True, blank=True)
-    
+
     class Meta:
         ordering = ['timestamp']
-    
+
     def __str__(self):
         return f"{self.message_type}: {self.content[:50]}..."
 
@@ -57,7 +56,7 @@ class UniversityProgram(models.Model):
         ('doctorate', 'Doctorate'),
         ('certificate', 'Certificate')
     ]
-    
+
     name = models.CharField(max_length=200)
     duration = models.CharField(max_length=50)
     description = models.TextField()
@@ -72,7 +71,7 @@ class UniversityProgram(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return self.name
 
@@ -86,7 +85,7 @@ class CampusFacility(models.Model):
         ('transport', 'Transportation'),
         ('other', 'Other')
     ]
-    
+
     name = models.CharField(max_length=200)
     facility_type = models.CharField(max_length=20, choices=FACILITY_TYPES)
     description = models.TextField()
@@ -95,9 +94,11 @@ class CampusFacility(models.Model):
     operating_hours = models.CharField(max_length=100, blank=True)
     contact_info = models.TextField(blank=True)
     is_available = models.BooleanField(default=True)
-    
+
     def __str__(self):
-        return f"{self.name} ({self.get_facility_type_display()})"
+        # Manual handling to avoid pyright errors
+        facility_type_dict = dict(self.FACILITY_TYPES)
+        return f"{self.name} ({facility_type_dict.get(self.facility_type, self.facility_type)})"
 
 class AdmissionInfo(models.Model):
     academic_year = models.CharField(max_length=20)
@@ -113,10 +114,10 @@ class AdmissionInfo(models.Model):
     contact_phone = models.CharField(max_length=20)
     office_hours = models.CharField(max_length=100)
     is_current = models.BooleanField(default=False)
-    
+
     class Meta:
         verbose_name_plural = "Admission Information"
-    
+
     def __str__(self):
         return f"Admission {self.academic_year}"
 
@@ -136,31 +137,9 @@ class Scholarship(models.Model):
     contact_email = models.EmailField(blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.name
-
-class UniversityFee(models.Model):
-    FEE_TYPES = [
-        ('tuition', 'Tuition Fee'),
-        ('hostel', 'Hostel Fee'),
-        ('application', 'Application Fee'),
-        ('examination', 'Examination Fee'),
-        ('library', 'Library Fee'),
-        ('sports', 'Sports Fee'),
-        ('other', 'Other Fees')
-    ]
-    
-    fee_type = models.CharField(max_length=20, choices=FEE_TYPES)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    currency = models.CharField(max_length=10, default='MMK')
-    academic_year = models.CharField(max_length=20)
-    payment_schedule = models.CharField(max_length=100, blank=True)
-    description = models.TextField(blank=True)
-    is_current = models.BooleanField(default=True)
-    
-    def __str__(self):
-        return f"{self.get_fee_type_display()} - {self.amount} {self.currency}"
 
 class StudentClub(models.Model):
     name = models.CharField(max_length=200)
@@ -179,7 +158,7 @@ class StudentClub(models.Model):
     membership_requirements = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
     established_date = models.DateField(null=True, blank=True)
-    
+
     def __str__(self):
         return self.name
 
@@ -194,7 +173,7 @@ class UniversityEvent(models.Model):
         ('competition', 'Competition'),
         ('other', 'Other')
     ]
-    
+
     title = models.CharField(max_length=200)
     description = models.TextField()
     event_type = models.CharField(max_length=20, choices=EVENT_TYPES)
@@ -207,7 +186,7 @@ class UniversityEvent(models.Model):
     contact_info = models.TextField(blank=True)
     is_public = models.BooleanField(default=True)
     max_participants = models.IntegerField(null=True, blank=True)
-    
+
     def __str__(self):
         return f"{self.title} - {self.start_date.strftime('%Y-%m-%d')}"
 
@@ -221,7 +200,7 @@ class UniversityNews(models.Model):
         ('announcements', 'Announcements'),
         ('entertainment', 'Entertainment')
     ]
-    
+
     title = models.CharField(max_length=200)
     content = models.TextField()
     category = models.CharField(max_length=20, choices=NEWS_CATEGORIES)
@@ -231,15 +210,15 @@ class UniversityNews(models.Model):
     is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(null=True, blank=True)
-    
+
     # Content policy fields
     content_approved = models.BooleanField(default=False)
     moderator_notes = models.TextField(blank=True)
-    
+
     class Meta:
         verbose_name_plural = "University News"
         ordering = ['-created_at']
-    
+
     def __str__(self):
         return self.title
 
@@ -247,31 +226,37 @@ class ContactInformation(models.Model):
     department = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
+    teacher = models.CharField(max_length=100)
     office_location = models.CharField(max_length=200)
     office_hours = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
-    
+
     def __str__(self):
         return f"{self.department} - {self.phone}"
 
-class EngagementContent(models.Model):
-    CONTENT_TYPES = [
-        ('joke', 'Joke'),
-        ('encouragement', 'Encouragement'),
-        ('fun_fact', 'Fun Fact'),
-        ('tip', 'Study Tip'),
-        ('advice', 'Career Advice')
+# NEW MODEL: University Information
+class UniversityInfo(models.Model):
+    INFO_TYPES = [
+        ('general', 'General Information'),
+        ('leadership', 'Leadership'),
+        ('location', 'Location & Transportation'),
+        ('history', 'History'),
+        ('other', 'Other')
     ]
-    
-    content_type = models.CharField(max_length=20, choices=CONTENT_TYPES)
-    title = models.CharField(max_length=200, blank=True)
+
+    title = models.CharField(max_length=200)
+    info_type = models.CharField(max_length=20, choices=INFO_TYPES)
     content = models.TextField()
-    category = models.CharField(max_length=50, blank=True)
-    tone = models.CharField(max_length=50, blank=True)
-    context = models.CharField(max_length=50, blank=True)
+    description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return f"{self.get_content_type_display()}: {self.content[:50]}..."
+        # Manual handling to avoid pyright errors
+        info_type_dict = dict(self.INFO_TYPES)
+        return f"{self.title} ({info_type_dict.get(self.info_type, self.info_type)})"
+
+    class Meta:
+        verbose_name_plural = "University Information"
