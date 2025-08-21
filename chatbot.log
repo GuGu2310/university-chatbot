@@ -11393,3 +11393,1059 @@ Watching for file changes with StatReloader
 "GET /chat/ HTTP/1.1" 200 19751
 "POST /process-message/ HTTP/1.1" 200 585
 "GET /admin/ HTTP/1.1" 200 18430
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET / HTTP/1.1" 200 27698
+"GET /chat/ HTTP/1.1" 200 21420
+"POST /process-message/ HTTP/1.1" 200 918
+"POST /process-message/ HTTP/1.1" 200 922
+"POST /process-message/ HTTP/1.1" 200 585
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19342
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 200 18938
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19555
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 613
+"POST /process-message/ HTTP/1.1" 200 587
+"POST /process-message/ HTTP/1.1" 200 922
+"GET /admin/chatbot/universityinfo/4/change/ HTTP/1.1" 200 18874
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19324
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19276
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 565
+"POST /process-message/ HTTP/1.1" 200 565
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 16977
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/campusfacility/ HTTP/1.1" 200 17238
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19276
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19324
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 338
+"POST /process-message/ HTTP/1.1" 200 891
+"POST /process-message/ HTTP/1.1" 200 585
+"POST /admin/chatbot/universityinfo/ HTTP/1.1" 200 13662
+"GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+"POST /admin/chatbot/universityinfo/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 18999
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 841
+"POST /process-message/ HTTP/1.1" 200 841
+"GET /admin/chatbot/universityinfo/1/change/ HTTP/1.1" 200 18992
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityinfo/1/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19106
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 868
+"POST /process-message/ HTTP/1.1" 200 587
+"POST /process-message/ HTTP/1.1" 200 868
+"POST /process-message/ HTTP/1.1" 200 585
+"POST /process-message/ HTTP/1.1" 200 585
+"POST /process-message/ HTTP/1.1" 200 872
+"GET / HTTP/1.1" 200 27698
+"POST /process-message/ HTTP/1.1" 200 872
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"POST /process-message/ HTTP/1.1" 200 435
+"POST /process-message/ HTTP/1.1" 200 594
+"POST /process-message/ HTTP/1.1" 200 426
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 200 18911
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19112
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /chat/ HTTP/1.1" 200 63210
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /static/chatbot/js/chat.js HTTP/1.1" 304 0
+"POST /process-message/ HTTP/1.1" 200 442
+"POST /process-message/ HTTP/1.1" 200 320
+"GET /admin/chatbot/universityinfo/add/ HTTP/1.1" 200 18558
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 18872
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 18939
+"GET /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 200 18979
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19140
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /chat/ HTTP/1.1" 200 66431
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 614
+"GET /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 200 18940
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 16977
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/admissioninfo/1/change/ HTTP/1.1" 200 23805
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /admin/chatbot/campusfacility/ HTTP/1.1" 200 17238
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/campusfacility/add/ HTTP/1.1" 200 19061
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /admin/chatbot/scholarship/ HTTP/1.1" 200 18366
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4013
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4013
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4013
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /admin/login/?next=%2FWJtKq%2F HTTP/1.1" 200 4191
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4356
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4352
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4352
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4354
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4354
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4355
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4354
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4354
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4363
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4354
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4363
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4362
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4362
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4364
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18343
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 200 18940
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19276
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/chatbot/contactinformation/ HTTP/1.1" 200 4241
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /admin/ HTTP/1.1" 200 18343
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/universityprogram/ HTTP/1.1" 200 21256
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityprogram/7/change/ HTTP/1.1" 200 24068
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/chatbot/universityprogram/ HTTP/1.1" 200 21256
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4013
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18343
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"POST /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19140
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 16977
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/ HTTP/1.1" 200 18320
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 18794
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /admin/chatbot/campusfacility/add/ HTTP/1.1" 200 19061
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /admin/ HTTP/1.1" 200 18320
+"GET /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 23347
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 18794
+"GET /admin/chatbot/universityevent/1/change/ HTTP/1.1" 200 22568
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/ HTTP/1.1" 200 18320
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/ HTTP/1.1" 200 18320
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET / HTTP/1.1" 200 27698
+"GET /chat/ HTTP/1.1" 200 69818
+"POST /process-message/ HTTP/1.1" 200 346
+"POST /process-message/ HTTP/1.1" 200 320
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 16977
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 18913
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/add/ HTTP/1.1" 200 18600
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 200 18320
+"POST /admin/chatbot/universityinfo/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19629
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 346
+"POST /process-message/ HTTP/1.1" 200 346
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"POST /process-message/ HTTP/1.1" 200 346
+"GET /chat/ HTTP/1.1" 200 80566
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4013
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 320
+"GET / HTTP/1.1" 200 27698
+"GET /admin/ HTTP/1.1" 200 18301
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 346
+"GET /admin/chatbot/campusfacility/add/ HTTP/1.1" 200 19061
+"GET /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 18774
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19396
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19276
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/5/change/ HTTP/1.1" 200 19183
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19276
+"GET /admin/chatbot/universityprogram/ HTTP/1.1" 200 21256
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 200 18301
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19276
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"POST /admin/chatbot/contactinformation/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19401
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 291
+"GET /static/admin/img/icon-alert.svg HTTP/1.1" 200 504
+"GET /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 18774
+"GET /admin/chatbot/campusfacility/ HTTP/1.1" 200 17238
+"GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+"GET /static/admin/js/core.js HTTP/1.1" 304 0
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+"GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+"GET /static/admin/js/actions.js HTTP/1.1" 304 0
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+"GET /static/admin/img/search.svg HTTP/1.1" 304 0
+"GET /static/admin/js/filters.js HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/campusfacility/add/ HTTP/1.1" 200 19061
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 448
+"POST /admin/chatbot/campusfacility/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/campusfacility/ HTTP/1.1" 200 17929
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"POST /process-message/ HTTP/1.1" 200 320
+"GET /admin/chatbot/campusfacility/1/change/ HTTP/1.1" 200 19472
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 320
+"GET /admin/chatbot/campusfacility/ HTTP/1.1" 200 17696
+"GET /admin/chatbot/campusfacility/2/change/ HTTP/1.1" 200 19433
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 320
+"GET /admin/chatbot/campusfacility/add/ HTTP/1.1" 200 19061
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"POST /process-message/ HTTP/1.1" 200 448
+"POST /process-message/ HTTP/1.1" 200 320
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 320
+"GET /admin/chatbot/campusfacility/ HTTP/1.1" 200 17696
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 302 0
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20752
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20508
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/campusfacility/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/campusfacility/ HTTP/1.1" 200 18384
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/6/change/ HTTP/1.1" 200 19217
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/6/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20754
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/6/change/ HTTP/1.1" 200 19217
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20508
+"GET /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 18774
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20508
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20508
+"GET /admin/ HTTP/1.1" 200 18367
+"GET /admin/ HTTP/1.1" 200 18367
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20508
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4013
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 18367
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 18774
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /admin/ HTTP/1.1" 200 18367
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 18794
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 19165
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 19165
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21385
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21330
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21330
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 18774
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22654
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/calendar-icons.svg HTTP/1.1" 200 2455
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22662
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/calendar-icons.svg HTTP/1.1" 200 2455
+"GET /admin/ HTTP/1.1" 200 18360
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21137
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21262
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22671
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/ HTTP/1.1" 200 13994
+"GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+"POST /admin/chatbot/contactinformation/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20103
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 19573
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19953
+"GET /admin/ HTTP/1.1" 200 18278
+"GET /admin/chatbot/universityprogram/ HTTP/1.1" 200 21256
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 200 18278
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 16977
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 23347
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/1/change/ HTTP/1.1" 200 22568
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/calendar-icons.svg HTTP/1.1" 200 2455
+"POST /admin/chatbot/universityevent/1/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 19572
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/1/change/ HTTP/1.1" 200 22612
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 19333
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22559
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22552
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 320
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 23347
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 16977
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24050
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19396
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 200 18940
+"GET /static/admin/css/forms.css HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+"GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+"GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24047
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24052
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 20094
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 23347
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22426
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24047
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 200 18889
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24060
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24052
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityinfo/3/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19592
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24060
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/5/change/ HTTP/1.1" 200 18948
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24198
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 21096
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 20859
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 20859
+"GET /admin/chatbot/universityevent/1/change/ HTTP/1.1" 200 22612
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 20859
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 20859
+"GET /admin/ HTTP/1.1" 200 18290
+"POST /admin/chatbot/universityinfo/5/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19627
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/add/ HTTP/1.1" 200 18558
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 20859
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24060
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/4/change/ HTTP/1.1" 200 22934
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 20859
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24065
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24049
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19381
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24198
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24056
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24060
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24052
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24047
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 24047
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /static/chatbot/css/style.css HTTP/1.1" 304 0
+"GET /chat/ HTTP/1.1" 200 105508
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 460
+"GET /admin/ HTTP/1.1" 200 18290
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 16977
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 23347
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"POST /admin/chatbot/admissioninfo/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17715
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /admin/chatbot/admissioninfo/add/ HTTP/1.1" 200 23347
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17488
+"GET /chat/ HTTP/1.1" 200 17802
+"GET /admin/ HTTP/1.1" 200 18269
+"GET /admin/chatbot/userprofile/ HTTP/1.1" 200 18019
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 200 18269
+"POST /process-message/ HTTP/1.1" 200 614
+"GET /admin/ HTTP/1.1" 200 18269
+"GET /admin/chatbot/scholarship/ HTTP/1.1" 200 18366
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/scholarship/2/change/ HTTP/1.1" 200 20428
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/scholarship/ HTTP/1.1" 200 18366
+"GET /admin/chatbot/scholarship/1/change/ HTTP/1.1" 200 20378
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/scholarship/ HTTP/1.1" 200 18366
+"GET /admin/chatbot/scholarship/add/ HTTP/1.1" 200 19930
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 460
+"POST /admin/chatbot/scholarship/add/ HTTP/1.1" 200 20852
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/scholarship/add/ HTTP/1.1" 200 19930
+"GET /admin/chatbot/scholarship/ HTTP/1.1" 200 18366
+"GET /admin/ HTTP/1.1" 200 18269
+"POST /process-message/ HTTP/1.1" 200 495
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 495
+"POST /process-message/ HTTP/1.1" 200 460
+"POST /process-message/ HTTP/1.1" 200 423
+"POST /process-message/ HTTP/1.1" 200 460
+"POST /admin/chatbot/universityevent/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 21713
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 21469
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/6/change/ HTTP/1.1" 200 22828
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 21469
+"POST /process-message/ HTTP/1.1" 200 319
+"POST /process-message/ HTTP/1.1" 200 309
+"GET /admin/chatbot/universityevent/add/ HTTP/1.1" 200 22145
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/ HTTP/1.1" 200 21469
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityevent/?start_date__year=2025 HTTP/1.1" 200 21223
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 553
+"GET /admin/chatbot/universityevent/? HTTP/1.1" 200 21469
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17488
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /admin/chatbot/admissioninfo/2/change/ HTTP/1.1" 200 23801
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/2/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17717
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/admissioninfo/1/change/ HTTP/1.1" 200 23805
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/admissioninfo/1/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17717
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 616
+"GET /admin/ HTTP/1.1" 200 18356
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17488
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/ HTTP/1.1" 200 18356
+"GET /admin/chatbot/universityprogram/ HTTP/1.1" 200 21256
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityprogram/1/change/ HTTP/1.1" 200 23785
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityprogram/ HTTP/1.1" 200 21256
+"GET /admin/ HTTP/1.1" 200 18356
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19953
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/2/change/ HTTP/1.1" 200 19238
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17488
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/admissioninfo/ HTTP/1.1" 200 17488
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19381
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 423
+"POST /process-message/ HTTP/1.1" 200 343
+"POST /process-message/ HTTP/1.1" 200 343
+"POST /process-message/ HTTP/1.1" 200 495
+"POST /admin/chatbot/contactinformation/2/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20201
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/1/change/ HTTP/1.1" 200 19253
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19953
+"GET /admin/chatbot/contactinformation/3/change/ HTTP/1.1" 200 19251
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 19953
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 343
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 320
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /admin/chatbot/contactinformation/1/change/ HTTP/1.1" 200 19253
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /chat/ HTTP/1.1" 200 50637
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 882
+"GET /admin/chatbot/universityinfo/?o=1 HTTP/1.1" 200 19900
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /admin/chatbot/contactinformation/1/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20217
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/3/change/ HTTP/1.1" 200 19251
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+/home/runner/workspace/chatbot/ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27698
+"GET /chat/ HTTP/1.1" 200 19895
+"POST /process-message/ HTTP/1.1" 200 588
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 426
+"POST /admin/chatbot/contactinformation/3/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20205
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 320
+"POST /process-message/ HTTP/1.1" 200 595
+Watching for file changes with StatReloader

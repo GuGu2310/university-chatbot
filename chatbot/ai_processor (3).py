@@ -667,143 +667,45 @@ class UniversityGuidanceChatbot:
 
         elif intent == 'university_info':
             import random
+            response = random.choice(self.response_templates['university_info'])
             message_lower = user_message.lower()
-    
+
             if 'university_info' in context_data and context_data['university_info']:
                 university_info_data = context_data['university_info']
-    
+
+                # Check if user is asking about a specific type of info (general, leadership, location, etc.)
                 specific_info_type = None
-                response = ""
-    
-                # Prioritize EXTREMELY specific rector/pro-rector queries
-                if any(phrase in message_lower for phrase in ['who is rector', 'rector name', 'current rector', 'rector is']):
-                    # Look for entries specifically mentioning "Rector" in title
-                    for info_type_key, info_item in university_info_data.items():
-                        if 'rector' in info_item.get('title', '').lower() and 'pro-rector' not in info_item.get('title', '').lower():
-                            response = f"🎓 **{info_item.get('title', 'University Rector')}**\n"
-                            response += f"{info_item.get('content', 'Contact administration for current rector information.')}\n"
-                            if info_item.get('description') and info_item.get('description') != 'Not specified':
-                                response += f"\n💡 {info_item.get('description')}\n"
-                            response += "\n📞 Need to contact the rector's office? Ask for contact information!"
-                            return response
-    
-                    # Fallback: Check general leadership entry for rector
-                    for info_type_key, info_item in university_info_data.items():
-                        if 'leadership' in info_type_key.lower():
-                            content = info_item.get('content', '')
-                            if 'rector:' in content.lower() and 'pro-rector:' not in content.lower():
-                                lines = content.split('\n')
-                                rector_info = None
-                                for line in lines:
-                                    if 'rector:' in line.lower() and 'pro-rector' not in line.lower():
-                                        rector_info = line.strip()
-                                        break
-                                if rector_info:
-                                    response = f"🎓 **University Rector**\n{rector_info}\n"
-                                    response += "\n📞 Need to contact the rector's office? Ask for contact information!"
-                                    return response
-    
-                    # If still no rector info found, use general response
-                    response = "I couldn't find specific information for the rector. You might find details in the general 'University Leadership' information. Would you like me to show that?"
-                    return response
-    
-                elif any(phrase in message_lower for phrase in ['who is pro-rector', 'pro-rector name', 'current pro-rector', 'pro rector name']):
-                    # Look for entries specifically mentioning "Pro-Rector" in title
-                    for info_type_key, info_item in university_info_data.items():
-                        if 'pro-rector' in info_item.get('title', '').lower():
-                            response = f"🎓 **{info_item.get('title', 'University Pro-Rector')}**\n"
-                            response += f"{info_item.get('content', 'Contact administration for current pro-rector information.')}\n"
-                            if info_item.get('description') and info_item.get('description') != 'Not specified':
-                                response += f"\n💡 {info_item.get('description')}\n"
-                            response += "\n📞 Need to contact the pro-rector's office? Ask for contact information!"
-                            return response
-    
-                    # Fallback: Check general leadership entry for pro-rector
-                    for info_type_key, info_item in university_info_data.items():
-                        if 'leadership' in info_type_key.lower():
-                            content = info_item.get('content', '')
-                            if 'pro-rector:' in content.lower():
-                                lines = content.split('\n')
-                                pro_rector_info = None
-                                for line in lines:
-                                    if 'pro-rector:' in line.lower():
-                                        pro_rector_info = line.strip()
-                                        break
-                                if pro_rector_info:
-                                    response = f"🎓 **University Pro-Rector**\n{pro_rector_info}\n"
-                                    response += "\n📞 Need to contact the pro-rector's office? Ask for contact information!"
-                                    return response
-    
-                    # If still no pro-rector info found, use general response
-                    response = "I couldn't find specific information for the pro-rector. You might find details in the general 'University Leadership' information. Would you like me to show that?"
-                    return response
-    
-                # Check for general "Leadership" queries (that are not specifically rector/pro-rector)
-                elif any(word in message_lower for word in ['leadership', 'administration', 'officials', 'management team']):
-                    for info_type_key in university_info_data.keys():
-                        if 'leadership' in info_type_key.lower():
-                            specific_info_type = info_type_key
-                            break
-    
-                # Check for location keywords  
-                elif any(word in message_lower for word in ['location', 'address', 'transportation', 'bus', 'directions', 'how to get', 'where is']):
-                    for info_type_key in university_info_data.keys():
-                        if any(word in info_type_key.lower() for word in ['location', 'transportation']):
-                            specific_info_type = info_type_key
-                            break
-    
-                # Check for history keywords
-                elif any(word in message_lower for word in ['history', 'background', 'founded', 'established']):
-                    for info_type_key in university_info_data.keys():
-                        if 'history' in info_type_key.lower():
-                            specific_info_type = info_type_key
-                            break
-    
-                # General fallback matching for other university info types
-                else:
-                    for info_type_key, info_content in university_info_data.items():
-                        if info_type_key.lower() in message_lower:
-                            specific_info_type = info_type_key
-                            break
-    
+                for info_type_key, info_content in university_info_data.items():
+                    if info_type_key.lower() in message_lower:
+                        specific_info_type = info_type_key
+                        break
+
                 if specific_info_type:
-                    # Provide ONLY the specific info requested
+                    # Provide detailed info for a specific university info type
                     info_item = university_info_data[specific_info_type]
                     response = f"Here is the information about **{specific_info_type}** at HMAWBI University:\n\n"
-                    response += f"📍 **{info_item.get('title', specific_info_type)}**\n"
-                    response += f"{info_item.get('content', 'No content available.')}\n"
-                    if info_item.get('description') and info_item.get('description') != 'Not specified':
-                        response += f"\n💡 {info_item.get('description')}\n"
-    
-                    # Add helpful follow-up suggestion
-                    if 'location' in specific_info_type.lower():
-                        response += "\n🚌 Need directions or transportation details? Just ask!"
-                    elif 'leadership' in specific_info_type.lower():
-                        response += "\n📞 Need to contact university administration? Ask for contact information!"
-    
+                    response += f"📚 **{info_item.get('title', specific_info_type)}**\n"
+                    response += f"   {info_item.get('content', 'No content available.')}\n"
+                    if info_item.get('description'):
+                        response += f"   {info_item.get('description')}\n"
                 else:
-                    # Show overview if user asks generally about "university information"
-                    if any(phrase in message_lower for phrase in ['university information', 'about university', 'tell me about university', 'general information']):
-                        response = random.choice(self.response_templates['university_info']) + "\n\n"
-                        for info_type_key, info_item in university_info_data.items():
-                            response += f"📚 **{info_item.get('title', info_type_key)}**:\n"
-                            content_snippet = info_item.get('content', 'No details available.')
-                            if len(content_snippet) > 100:
-                                content_snippet = content_snippet[:97] + "..."
-                            response += f"   {content_snippet}\n\n"
-                        response += "💡 You can ask for specific details like 'Who is the rector?', 'university location', or 'university history'."
-                    else:
-                        # If no match found, suggest what's available
-                        available_types = list(university_info_data.keys())
-                        response = f"I can help you with information about HMAWBI University. Here's what I can tell you about:\n\n"
-                        for info_type in available_types:
-                            response += f"• {info_type}\n"
-                        response += f"\n💡 Try asking: 'Who is the rector?', 'Who is the pro-rector?', or 'Tell me about university location'"
-            else:
-                # If no university info data is available
-                response = random.choice(self.response_templates['university_info']) + "\n\nSorry, I couldn't retrieve university information at the moment. Please check back later."
-    
+                    # Provide general university info if no specific type is mentioned
+                    response += "\n\n"
+                    for info_type_key, info_item in university_info_data.items():
+                        response += f"📚 **{info_item.get('title', info_type_key)}**:\n"
+                        # Display a short snippet of content
+                        content_snippet = info_item.get('content', 'No details available.')
+                        if len(content_snippet) > 150:
+                            content_snippet = content_snippet[:147] + "..."
+                        response += f"   {content_snippet}\n\n"
+                    response += "💡 You can ask for specific details like 'university leadership', 'university transportation', or 'university history'."
+            else: # If no university info data is available
+                response += "\n\nSorry, I couldn't retrieve university information at the moment. Please check back later."
             return response
+
+        else:  # default intent
+            import random
+            return random.choice(self.response_templates['default'])
 
     def _analyze_response(self, user_message: str,
                           response: str) -> Dict[str, Any]:
