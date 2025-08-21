@@ -3,7 +3,7 @@
 {% block title %}Chat - University Guidance{% endblock %}
 
 {% block extra_css %}
-<meta name="csrf-token" content="{{ csrf_token }}">
+<meta name="csrf-token" content="{{ csrf_token }}" />
 <style>
     .chat-container {
         height: 70vh;
@@ -24,29 +24,35 @@
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .user-message {
         background: linear-gradient(45deg, #007bff, #0056b3);
         color: white;
         margin-left: auto;
-        box-shadow: 0 2px 10px rgba(0,123,255,0.3);
+        box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
     }
 
     .bot-message {
         background: white;
         color: #333;
         border: 1px solid #e9ecef;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .crisis-message {
         background: linear-gradient(45deg, #dc3545, #c82333);
         color: white;
         border: 1px solid #c82333;
-        box-shadow: 0 2px 10px rgba(220,53,69,0.3);
+        box-shadow: 0 2px 10px rgba(220, 53, 69, 0.3);
     }
 
     .typing-indicator {
@@ -71,13 +77,27 @@
         animation: typing 1.4s infinite ease-in-out;
     }
 
-    .typing-dots div:nth-child(1) { left: 0; animation-delay: -0.32s; }
-    .typing-dots div:nth-child(2) { left: 12px; animation-delay: -0.16s; }
-    .typing-dots div:nth-child(3) { left: 24px; }
+    .typing-dots div:nth-child(1) {
+        left: 0;
+        animation-delay: -0.32s;
+    }
+    .typing-dots div:nth-child(2) {
+        left: 12px;
+        animation-delay: -0.16s;
+    }
+    .typing-dots div:nth-child(3) {
+        left: 24px;
+    }
 
     @keyframes typing {
-        0%, 80%, 100% { transform: scale(0); }
-        40% { transform: scale(1); }
+        0%,
+        80%,
+        100% {
+            transform: scale(0);
+        }
+        40% {
+            transform: scale(1);
+        }
     }
 
     .message-time {
@@ -87,7 +107,7 @@
     }
 
     .input-group {
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         border-radius: 25px;
         overflow: hidden;
     }
@@ -139,37 +159,36 @@
                 <div class="card-body p-0">
                     <div id="chat-messages" class="chat-container">
                         {% for message in messages %}
-                        <div class="message {% if message.message_type == 'user' %}user-message{% else %}bot-message{% endif %}">
-                            <div class="message-content">
-                                <strong>
-                                    {% if message.message_type == 'user' %}
-                                        <i class="fas fa-user"></i> You
-                                    {% else %}
-                                        <i class="fas fa-robot"></i> Support Bot
-                                    {% endif %}:
-                                </strong>
-                                <div class="mt-1">{{ message.content|linebreaks }}</div>
-                            </div>
-                            <div class="message-time">
-                                {{ message.timestamp|date:"g:i A" }}
-                            </div>
-                        </div>
-                        {% empty %}
-                        <div class="message bot-message">
-                            <div class="message-content">
-                                <strong><i class="fas fa-graduation-cap"></i> University Guide:</strong>
-                                <div class="mt-1">
-                                    မင်္ဂလာပါ! Welcome to HMAWBI Technological University guidance! I can help you with:
-                                    • Engineering program information
-                                    • Admission requirements and procedures
-                                    • Career guidance and opportunities
-                                    • Campus facilities and student life
-                                    
-                                    What would you like to know about HMAWBI?
+                            <div class="message {% if message.message_type == 'user' %}user-message{% else %}bot-message{% endif %}">
+                                <div class="message-content">
+                                    <strong>
+                                        {% if message.message_type == 'user' %}
+                                            <i class="fas fa-user"></i> You
+                                        {% else %}
+                                            <i class="fas fa-robot"></i> Support Bot
+                                        {% endif %}:
+                                    </strong>
+                                    <div class="mt-1">{{ message.content|linebreaks }}</div>
+                                </div>
+                                <div class="message-time">
+                                    {{ message.timestamp|date:"g:i A" }}
                                 </div>
                             </div>
-                            <div class="message-time">Now</div>
-                        </div>
+                        {% empty %}
+                            <div class="message bot-message">
+                                <div class="message-content">
+                                    <strong><i class="fas fa-graduation-cap"></i> University Guide:</strong>
+                                    <div class="mt-1">
+                                        မင်္ဂလာပါ! Welcome to HMAWBI Technological University guidance! I can help you with:<br>
+                                        • Engineering program information<br>
+                                        • Admission requirements and procedures<br>
+                                        • Career guidance and opportunities<br>
+                                        • Campus facilities and student life<br><br>
+                                        What would you like to know about HMAWBI?
+                                    </div>
+                                </div>
+                                <div class="message-time">Now</div>
+                            </div>
                         {% endfor %}
 
                         <div id="typing-indicator" class="typing-indicator">
@@ -343,5 +362,5 @@
 {% endblock %}
 
 {% block extra_js %}
-{# This block is now intentionally empty. All JS is in external files. #}
+<!-- Chat JavaScript will be loaded from chat.js -->
 {% endblock %}

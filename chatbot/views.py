@@ -253,7 +253,7 @@ def clear_chat(request):
             del request.session['conversation_id']
             logger.info("Cleared conversation_id from session")
 
-    return redirect('chat_view')  # Make sure this matches your URL name
+    return redirect('chat')  # Make sure this matches your URL name
 
 def get_question_categories(request):
     """Get available question categories for the chatbot"""
