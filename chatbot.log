@@ -12453,3 +12453,63 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 "GET / HTTP/1.1" 200 27798
 "GET / HTTP/1.1" 200 27798
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27798
+"GET /static/chatbot/css/style.css HTTP/1.1" 200 13731
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3957
+"GET /chat/ HTTP/1.1" 200 17163
+"GET /static/chatbot/js/chat.js HTTP/1.1" 200 16101
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\academic_handler.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\activity_handler.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 598
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 445
+"POST /process-message/ HTTP/1.1" 200 366
+"POST /process-message/ HTTP/1.1" 200 461
+"POST /process-message/ HTTP/1.1" 200 442
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 581
+"POST /process-message/ HTTP/1.1" 200 616
+"POST /process-message/ HTTP/1.1" 200 445
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 1042
+"POST /process-message/ HTTP/1.1" 200 558
+"POST /process-message/ HTTP/1.1" 200 595
+"POST /process-message/ HTTP/1.1" 200 462
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 766
+"POST /process-message/ HTTP/1.1" 200 588
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\__init__.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\__init__.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 48045
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 766
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\activity_handler.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\activity_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 51698
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 588
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 59005
+"POST /process-message/ HTTP/1.1" 200 769
+"POST /process-message/ HTTP/1.1" 200 766
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 581
+"POST /process-message/ HTTP/1.1" 200 445
+"POST /process-message/ HTTP/1.1" 200 462
+"POST /process-message/ HTTP/1.1" 200 460
