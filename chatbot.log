@@ -12808,3 +12808,5 @@ Not Found: /favicon.ico
 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 "GET /chat/ HTTP/1.1" 200 46885
 "POST /process-message/ HTTP/1.1" 200 794
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\data_manager.py changed, reloading.
+Watching for file changes with StatReloader
