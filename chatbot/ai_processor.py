@@ -94,6 +94,33 @@ class UniversityGuidanceChatbot:
         """Classify user message intent using keyword matching"""
         message_lower = message.lower()
 
+        # Contact information keywords and entities (FIXED VERSION)
+        contact_info_keywords = [
+            'contact information', 'phone', 'email', 'office', 'address', 'location',
+            'office hours', 'department', 'telephone', 'fax', 'reach out', 'get in touch',
+            'contact', 'department contacts', 'contact details'
+        ]
+
+        # Department titles and known entities for contact
+        department_entities = [
+            'department of civil engineering', 'department of architecture', 
+            'department of mechanical engineering', 'department of electrical engineering',
+            'department of computer science', 'department of it',
+            'civil department', 'architecture department', 'mechanical department', 
+            'electrical department', 'it department', 'computer science department', 'departments'
+            'admissions', 'library', 'registrar', 'student affairs', 
+            'administration', 'office', 'student services', 'academic office'
+        ]
+
+        has_contact_keywords = any(ckey in message_lower for ckey in contact_info_keywords)
+        has_department_entity = any(entity in message_lower for entity in department_entities)
+
+        if has_contact_keywords and has_department_entity:
+            return 'contact_info'
+            
+        if has_department_entity and not has_contact_keywords:
+             return 'contact_info'
+        
         # University info keywords
         university_info_keywords = [
             'rector name', 'pro-rector name', 'pro rector', 'history', 'about university',
@@ -102,28 +129,16 @@ class UniversityGuidanceChatbot:
         ]
         if any(keyword in message_lower for keyword in university_info_keywords):
             return 'university_info'
+        
+        
 
-        # Contact keywords and entities
-        contact_keywords = [
-            'contact', 'phone', 'email', 'office', 'address', 'location',
-            'office hours', 'department', 'telephone', 'fax'
+        # Campus-related queries
+        campus_keywords = [
+            'campus', 'facility', 'library', 'hostel', 'cafeteria', 'sports',
+            'gym', 'dormitory', 'campus life'
         ]
-        known_entities_for_contact = [
-            'civil department', 'admissions', 'library', 'registrar',
-            'department', 'student affairs', 'mechanical department', 
-            'IT department', 'administration', 'office', 'IT', 'computer science',
-            'electrical engineering', 'mechanical engineering', 'civil engineering',
-            'student services', 'academic office'
-        ]
-
-        has_contact_keywords = any(ckey in message_lower for ckey in contact_keywords)
-        has_known_entity = any(entity in message_lower for entity in known_entities_for_contact)
-
-        if has_contact_keywords and has_known_entity:
-            return 'contact'
-            
-        if any(entity in message_lower for entity in known_entities_for_contact) and not has_contact_keywords:
-             return 'contact'
+        if any(keyword in message_lower for keyword in campus_keywords):
+            return 'campus'
 
         # Club keywords
         club_keywords = [
@@ -135,21 +150,6 @@ class UniversityGuidanceChatbot:
         if any(keyword in message_lower for keyword in club_keywords):
             return 'clubs'
         
-        # Greeting patterns
-        greeting_patterns = [
-            r'\b(hello|hi|hey|good morning|good afternoon|good evening)\b'
-        ]
-        if any(re.search(pattern, message_lower) for pattern in greeting_patterns):
-            return 'greeting'
-
-        # Campus-related queries
-        campus_keywords = [
-            'campus', 'facility', 'library', 'hostel', 'cafeteria', 'sports',
-            'gym', 'dormitory', 'campus life'
-        ]
-        if any(keyword in message_lower for keyword in campus_keywords):
-            return 'campus'
-
         # Program keywords
         program_keywords = [
             'program', 'course', 'degree', 'study', 'major', 'curriculum',
@@ -159,7 +159,16 @@ class UniversityGuidanceChatbot:
         if any(keyword in message_lower for keyword in program_keywords):
             return 'programs'
 
+        
+        
+        # Greeting patterns
+        greeting_patterns = [
+            r'\b(hello|hi|hey|good morning|good afternoon|good evening)\b'
+        ]
+        if any(re.search(pattern, message_lower) for pattern in greeting_patterns):
+            return 'greeting'
 
+        
         # Event keywords
         event_keywords = [
             'event', 'events', 'festival', 'ceremony', 'workshop',
@@ -238,7 +247,7 @@ class UniversityGuidanceChatbot:
             context['past_events'] = self.data_manager.get_past_events(3)
         elif intent == 'news':
             context['news'] = self.data_manager.get_latest_news(5)
-        elif intent == 'contact':
+        elif intent == 'contact_info':
             context['contact'] = self.data_manager.get_contact_info()
         elif intent == 'university_info':
             context['university_info'] = self.data_manager.get_university_info()
@@ -254,7 +263,7 @@ class UniversityGuidanceChatbot:
         # Info Handler (University Information, Admission, Contact)
         elif intent == 'admission':
             return self.info_handler.handle_admission(context_data)
-        elif intent == 'contact':
+        elif intent == 'contact_info':
             return self.info_handler.handle_contact(user_message, context_data)
         elif intent == 'university_info':
             return self.info_handler.handle_university_info(user_message, context_data)
@@ -308,7 +317,8 @@ class UniversityGuidanceChatbot:
             "What clubs can I join?",
             "What are the membership requirements for clubs?",
             "What are the latest university news?",
-            "Contact information for admissions",
+            "Contact information for Department of Civil Engineering",
+            "Contact information for Department of Architecture",
             "Tell me about the university's history.",
             "How do I get to the campus?"
         ]
@@ -333,7 +343,8 @@ def test_chatbot():
         "Tell me about scholarships",
         "What are the latest news?",
         "Tell me about the university's history.",
-        "Contact information for Admissions"
+        "Contact information for Department of Civil Engineering",
+        "Contact information for Department of Architecture"
     ]
 
     for message in test_messages:

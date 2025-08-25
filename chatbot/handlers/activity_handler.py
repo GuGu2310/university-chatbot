@@ -95,61 +95,90 @@ class ActivityHandler:
 
     def handle_clubs(self, user_message: str, context_data: Dict[str, Any]) -> str:
         """Handles responses related to clubs, including specific membership requirements."""
-        response = random.choice(self.response_templates['clubs'])
         message_lower = user_message.lower()
 
         if 'clubs' in context_data and context_data['clubs']:
             clubs_data = context_data['clubs']
 
-            # Check if asking for specific club by name - improved matching
+            # FIRST: Check for GENERAL club listing queries
+            general_club_patterns = [
+                'which club do we have', 'what club do we have', 'which clubs do we have', 
+                'what clubs do we have', 'which club are there', 'what club are there',
+                'which clubs are there', 'what clubs are there', 'list of club', 
+                'list of clubs', 'all club', 'all clubs', 'available club', 
+                'available clubs', 'what clubs', 'which clubs', 'show me clubs',
+                'tell me about clubs', 'clubs available', 'club list'
+            ]
+            
+            # Check exact matches for general queries
+            is_general_query = any(pattern in message_lower for pattern in general_club_patterns)
+            
+            # Also check for general membership questions
+            asking_for_general_membership = (
+                any(phrase in message_lower for phrase in [
+                    'membership requirements', 'membership requirement', 'how to join clubs',
+                    'club membership', 'join clubs'
+                ]) and not any(club.get('name', '').lower() in message_lower for club in clubs_data)
+            )
+
+            # If it's a general query, return the list immediately
+            if is_general_query:
+                response = "🏫 **Available Clubs at HMAWBI University:**\n\n"
+                for club in clubs_data:
+                    response += f"🎯 **{club.get('name', 'Club')}**\n"
+                    response += f"   📝 Type: {club.get('club_type', 'Student Club')}\n"
+                    response += f"   👨‍🏫 Advisor: {club.get('advisor', 'TBA')}\n\n"
+                response += "💡 Ask me about a specific club for detailed information including meeting schedules and membership requirements!"
+                return response
+
+            if asking_for_general_membership:
+                response = "🏫 **Club Membership Information at HMAWBI University:**\n\n"
+                for club in clubs_data:
+                    response += f"🎯 **{club.get('name', 'Club')}** ({club.get('club_type', 'Student Club')})\n"
+                    membership_req = club.get('membership_requirements', 'Open to all students')
+                    response += f"   📋 Requirements: {membership_req}\n"
+                    if club.get('membership_fee'):
+                        response += f"   💰 Fee: {club.get('membership_fee')}\n"
+                    response += f"   📧 Contact: {club.get('contact_email', 'Contact student services')}\n\n"
+                response += "💡 Ask me about a specific club for detailed information!"
+                return response
+
+            # SECOND: Only if NOT a general query, look for specific clubs
             specific_club = None
             
-            # First, try exact name matching
-            for club in clubs_data:
-                club_name_lower = club.get('name', '').lower() # Safely get name
-                if club_name_lower and club_name_lower in message_lower:
-                    specific_club = club
-                    break
-            
-            # If no exact match, try partial matching for common club name patterns
-            if not specific_club:
-                for club in clubs_data:
-                    club_name_lower = club.get('name', '').lower() # Safely get name
-                    if not club_name_lower: continue # Skip if name is missing
-                    
-                    club_words = club_name_lower.split()
-                    
-                    # Check if any significant words from the club name are in the message
-                    # This handles cases like "guitar club" matching "Guitar Club"
-                    for word in club_words:
-                        if len(word) > 3 and word in message_lower:  # Only check meaningful words
-                            # Additional verification - check if it's really about this club
-                            if any(club_keyword in message_lower for club_keyword in ['club', 'organization', 'group', 'society']):
-                                specific_club = club
-                                break
-                    
-                    if specific_club:
-                        break
-            
-            # Additional check for membership requirements queries
+            # Check if asking for specific club membership requirements
             asking_for_membership = any(phrase in message_lower for phrase in [
                 'membership requirements', 'membership requirement', 'how to join', 
                 'join', 'membership', 'requirements', 'subscribe', 'subscription'
             ])
+            
+            # Look for specific club names - but only if it's not a general query
+            for club in clubs_data:
+                club_name_lower = club.get('name', '').lower()
+                if club_name_lower:
+                    # Check if the EXACT club name appears in the message
+                    if club_name_lower in message_lower:
+                        # Additional check to make sure it's really about this club
+                        # Avoid false positives like "which" matching "guitar"
+                        club_words = club_name_lower.split()
+                        message_words = message_lower.split()
+                        
+                        # Check if all words of the club name appear in the message
+                        if all(word in message_words for word in club_words):
+                            specific_club = club
+                            break
 
+            # Handle specific club response
             if specific_club:
-                # Provide detailed info for a specific club, including membership requirements
-                response = f"Here's information about **{specific_club.get('name', 'Club')}**:\n\n" # Safely get name
+                response = f"Here's information about **{specific_club.get('name', 'Club')}**:\n\n"
                 response += f"📝 Description: {specific_club.get('description', 'Student organization')}\n"
                 response += f"🏷️ Type: {specific_club.get('club_type', 'Student Club')}\n"
                 
-                # If specifically asking about membership, highlight that information
                 if asking_for_membership:
                     response += f"\n📋 **Membership Requirements for {specific_club.get('name', 'the Club')}:**\n"
                     membership_req = specific_club.get('membership_requirements', 'Open to all students')
                     response += f"   {membership_req}\n\n"
                     
-                    # Add additional membership details if available
                     if specific_club.get('membership_fee'):
                         response += f"💰 Membership Fee: {specific_club.get('membership_fee')}\n"
                     if specific_club.get('application_process'):
@@ -159,7 +188,6 @@ class ActivityHandler:
                     response += f"📧 Contact: {specific_club.get('contact_email', 'Contact student services')}\n"
                     response += "\n💡 Contact the club directly or student services for more information about joining!"
                 else:
-                    # Provide general club information
                     response += f"👨‍🏫 Advisor: {specific_club.get('advisor', 'TBA')}\n"
                     response += f"📅 Meeting Schedule: {specific_club.get('meeting_schedule', 'TBA')}\n"
                     response += f"📋 Membership Requirements: {specific_club.get('membership_requirements', 'Open to all students')}\n"
@@ -170,27 +198,19 @@ class ActivityHandler:
                         response += f"💰 Membership Fee: {specific_club.get('membership_fee')}\n"
                     
                     response += "\n💡 Contact the club directly or student services for more information about joining!"
-                    
-            elif asking_for_membership and not specific_club:
-                # If asking about membership but no specific club was identified
-                response = "I'd be happy to help you with club membership information! Here are our available clubs:\n\n"
-                for club in clubs_data[:8]: # List clubs with membership info
-                    response += f"• **{club.get('name', 'Club')}** ({club.get('club_type', 'Student Club')})\n"
-                    membership_req = club.get('membership_requirements', 'Open to all students')
-                    response += f"  📋 Requirements: {membership_req}\n\n"
-                response += "💡 Ask me about a specific club (e.g., 'Guitar Club membership requirements') for detailed information!"
                 
-            else:
-                # List general clubs if no specific query
-                response += "\n\n"
-                for club in clubs_data[:8]: # List first 8 clubs
-                    response += f"• {club.get('name', 'Club')} ({club.get('club_type', 'Student Club')})\n"
-                response += "\n💡 Ask me about a specific club for detailed information including meeting schedules and membership requirements!"
-                response += "\n💡 You can ask: 'What are the membership requirements for [Club Name]?' or 'How do I join [Club Name]?'"
-        else: # If no club data is available
-            response += "\n\nSorry, I couldn't retrieve club information at the moment. Please check back later."
+                return response
 
-        return response
+            # DEFAULT: If no specific club found and not a general query, show list
+            response = random.choice(self.response_templates['clubs']) + "\n\n"
+            for club in clubs_data[:8]:
+                response += f"• {club.get('name', 'Club')} ({club.get('club_type', 'Student Club')})\n"
+            response += "\n💡 Ask me about a specific club for detailed information!"
+            response += "\n💡 You can ask: 'What are the membership requirements for [Club Name]?'"
+            
+            return response
+        else:
+            return random.choice(self.response_templates['clubs']) + "\n\nSorry, I couldn't retrieve club information at the moment. Please check back later."
 
     def handle_events(self, user_message: str, context_data: Dict[str, Any]) -> str:
         """Handles responses related to events, showing upcoming and past events."""
