@@ -393,6 +393,7 @@ class DataManager:
 
         try:
             UniversityEvent = models['UniversityEvent']
+            # Fetch events that start from now onwards
             events = UniversityEvent.objects.filter(
                 start_date__gte=timezone.now(),
                 is_public=True).order_by('start_date')
@@ -418,6 +419,48 @@ class DataManager:
             return result
         except Exception as e:
             logger.error(f"Error getting all events: {e}")
+            # Return empty list on error to prevent crashing the chatbot
+            return []
+
+    # Add this method
+    def get_past_events(self, num_events: int) -> List[Dict[str, Any]]:
+        """Get the last N past events that are public"""
+        models = self._import_models()
+        if not models:
+            return []
+
+        try:
+            UniversityEvent = models['UniversityEvent']
+            # Fetch events that ended before now
+            events = UniversityEvent.objects.filter(
+                end_date__lt=timezone.now(), # Event has already ended
+                is_public=True).order_by('-end_date') # Order by end date descending (most recent first)
+            
+            # Limit the queryset to the desired number of events
+            events = events[:num_events] 
+
+            result = []
+            for event in events:
+                event_type_display = self._get_display_value(event, 'event_type')
+                result.append({
+                    'title': event.title,
+                    'description': event.description,
+                    'event_type': event_type_display,
+                    'start_date': event.start_date.strftime('%B %d, %Y at %I:%M %p'),
+                    'end_date': event.end_date.strftime('%B %d, %Y at %I:%M %p'), # Keep end date for context
+                    'location': event.location,
+                    'organizer': event.organizer if event.organizer else 'University',
+                    'registration_required': event.registration_required,
+                    'registration_deadline': (event.registration_deadline.strftime('%B %d, %Y')
+                                            if event.registration_deadline else 'N/A'),
+                    'contact_info': event.contact_info if event.contact_info else 'Contact event organizer',
+                    'max_participants': event.max_participants if event.max_participants else 'No limit'
+                })
+
+            return result
+        except Exception as e:
+            logger.error(f"Error getting past events: {e}")
+            # Return empty list on error to prevent crashing the chatbot
             return []
 
     def get_event_info(self, event_name: str) -> Dict[str, Any]:
@@ -428,9 +471,11 @@ class DataManager:
 
         try:
             UniversityEvent = models['UniversityEvent']
+            # NOTE: This method currently only finds upcoming events.
+            # If you want it to find past events too, you'd need to adjust the filter.
             event = UniversityEvent.objects.filter(
                 title__icontains=event_name,
-                start_date__gte=timezone.now(),
+                start_date__gte=timezone.now(), # Currently only looks for upcoming events
                 is_public=True).first()
 
             if event:

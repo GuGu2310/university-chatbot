@@ -6,6 +6,7 @@ Handles clubs, news, events, and scholarships
 from typing import Dict, List, Any, Optional
 import random
 import logging
+import traceback # Import traceback for more detailed error logging
 
 logger = logging.getLogger(__name__)
 
@@ -54,13 +55,15 @@ class ActivityHandler:
             # Check if asking for specific scholarship by name
             specific_scholarship = None
             for scholarship in scholarships_data:
-                if scholarship['name'].lower() in message_lower:
+                # Safely access scholarship name and ensure it's a string
+                scholarship_name = scholarship.get('name')
+                if isinstance(scholarship_name, str) and scholarship_name.lower() in message_lower:
                     specific_scholarship = scholarship
                     break
 
             if specific_scholarship:
                 # Provide detailed info for a specific scholarship
-                response = f"Here's detailed information about **{specific_scholarship['name']}**:\n\n"
+                response = f"Here's detailed information about **{specific_scholarship.get('name', 'Scholarship')}**:\n\n"
                 response += f"📝 Description: {specific_scholarship.get('description', 'Available for eligible students')}\n"
                 response += f"📋 Eligibility Criteria: {specific_scholarship.get('criteria', 'Contact financial aid office')}\n"
                 response += f"💵 Benefit: {specific_scholarship.get('benefit', 'Contact for details')} ({specific_scholarship.get('benefit_type', 'Financial assistance')})\n"
@@ -103,15 +106,17 @@ class ActivityHandler:
             
             # First, try exact name matching
             for club in clubs_data:
-                club_name_lower = club['name'].lower()
-                if club_name_lower in message_lower:
+                club_name_lower = club.get('name', '').lower() # Safely get name
+                if club_name_lower and club_name_lower in message_lower:
                     specific_club = club
                     break
             
             # If no exact match, try partial matching for common club name patterns
             if not specific_club:
                 for club in clubs_data:
-                    club_name_lower = club['name'].lower()
+                    club_name_lower = club.get('name', '').lower() # Safely get name
+                    if not club_name_lower: continue # Skip if name is missing
+                    
                     club_words = club_name_lower.split()
                     
                     # Check if any significant words from the club name are in the message
@@ -134,13 +139,13 @@ class ActivityHandler:
 
             if specific_club:
                 # Provide detailed info for a specific club, including membership requirements
-                response = f"Here's information about **{specific_club['name']}**:\n\n"
+                response = f"Here's information about **{specific_club.get('name', 'Club')}**:\n\n" # Safely get name
                 response += f"📝 Description: {specific_club.get('description', 'Student organization')}\n"
                 response += f"🏷️ Type: {specific_club.get('club_type', 'Student Club')}\n"
                 
                 # If specifically asking about membership, highlight that information
                 if asking_for_membership:
-                    response += f"\n📋 **Membership Requirements for {specific_club['name']}:**\n"
+                    response += f"\n📋 **Membership Requirements for {specific_club.get('name', 'the Club')}:**\n"
                     membership_req = specific_club.get('membership_requirements', 'Open to all students')
                     response += f"   {membership_req}\n\n"
                     
@@ -150,8 +155,8 @@ class ActivityHandler:
                     if specific_club.get('application_process'):
                         response += f"📄 Application Process: {specific_club.get('application_process')}\n"
                         
-                    response += f"📧 Contact: {specific_club.get('contact_email', 'Contact student services')}\n"
                     response += f"📅 Meeting Schedule: {specific_club.get('meeting_schedule', 'TBA')}\n"
+                    response += f"📧 Contact: {specific_club.get('contact_email', 'Contact student services')}\n"
                     response += "\n💡 Contact the club directly or student services for more information about joining!"
                 else:
                     # Provide general club information
@@ -189,71 +194,121 @@ class ActivityHandler:
 
     def handle_events(self, user_message: str, context_data: Dict[str, Any]) -> str:
         """Handles responses related to events, showing upcoming and past events."""
-        response = random.choice(self.response_templates['events'])
-        message_lower = user_message.lower()
-
-        upcoming_events = context_data.get('events', [])
-        past_events = context_data.get('past_events', [])
-
-        # Combine upcoming and past events for flexible querying
-        all_events = upcoming_events + past_events
-
-        specific_event = None
-        for event in all_events:
-            if event.get('title', '').lower() in message_lower:
-                specific_event = event
-                break
-
-        if specific_event:
-            # Provide detailed info for a specific event
-            response = f"Here's information about **{specific_event['title']}**:\n\n"
-            response += f"📝 Description: {specific_event.get('description', 'University event')}\n"
-            response += f"🏷️ Type: {specific_event.get('event_type', 'Event')}\n"
-            response += f"📅 Start Date: {specific_event.get('start_date', 'TBA')}\n"
-            response += f"📅 End Date: {specific_event.get('end_date', 'TBA')}\n"
-            response += f"📍 Location: {specific_event.get('location', 'TBA')}\n"
-            response += f"👥 Organizer: {specific_event.get('organizer', 'University')}\n"
-            response += f"📋 Registration Required: {'Yes' if specific_event.get('registration_required', False) else 'No'}\n"
-            if specific_event.get('registration_required'):
-                response += f"📅 Registration Deadline: {specific_event.get('registration_deadline', 'N/A')}\n"
-            response += f"📞 Contact: {specific_event.get('contact_info', 'Contact event organizer')}\n"
-            response += f"👥 Max Participants: {specific_event.get('max_participants', 'No limit')}\n"
-            response += "\nCheck the university website or contact the organizer for the latest updates."
+        # Start with a generic response in case of any immediate failure
+        response = random.choice(self.response_templates['events']) 
         
-        elif "past events" in message_lower or "previous events" in message_lower:
-            # Specifically handle requests for past events
-            if past_events:
-                response = "Here are some of our previous events:\n\n"
-                for i, event in enumerate(past_events[:3], 1): # Show up to 3 past events
-                    response += f"{i}. **{event.get('title', 'Event')}** ({event.get('event_type', 'Event')})\n"
-                    response += f"   📅 {event.get('start_date', 'TBA')}\n\n"
-                response += "Would you like to know about any specific past event?"
-            else:
-                response = "I don't have information on past events at the moment. Please check back later."
-        
-        else: # General event query - show both upcoming and recent past events
-            if upcoming_events or past_events:
-                response += "\n\n"
-                
-                # Show upcoming events first
-                if upcoming_events:
-                    response += "**📅 Upcoming Events:**\n"
-                    for event in upcoming_events[:3]: # List first 3 upcoming events
-                        response += f"• **{event.get('title', 'Event')}** ({event.get('event_type', 'Event')})\n"
-                        response += f"  📅 {event.get('start_date', 'TBA')} at {event.get('location', 'TBA')}\n\n"
-                
-                # Show recent past events
+        try:
+            message_lower = user_message.lower()
+
+            # --- GETTING DATA ---
+            # Use .get() with a default empty list to prevent errors if keys are missing
+            upcoming_events = context_data.get('events', [])
+            past_events = context_data.get('past_events', [])
+
+            # --- DEBUGGING OUTPUT ---
+            # Use logger.debug if your logging is configured to show debug messages.
+            # Otherwise, use print() for immediate output during testing.
+            logger.debug(f"--- Debugging Event Handling ---")
+            logger.debug(f"Query: '{user_message}'")
+            logger.debug(f"Upcoming events received ({len(upcoming_events)} items): {upcoming_events}")
+            logger.debug(f"Past events received ({len(past_events)} items): {past_events}")
+            logger.debug(f"--------------------------------")
+            # --- END DEBUGGING OUTPUT ---
+
+            # --- Data Validation: Filter for valid event dictionaries with titles ---
+            # This is crucial to prevent errors if data is malformed or missing key fields
+            upcoming_events = [e for e in upcoming_events if isinstance(e, dict) and e.get('title')]
+            past_events = [e for e in past_events if isinstance(e, dict) and e.get('title')]
+            # --- End Data Validation ---
+
+            # Combine upcoming and past events for flexible querying
+            all_events = upcoming_events + past_events
+
+            specific_event = None
+            # Only attempt to find a specific event if there are events to search through
+            if all_events:
+                for event in all_events:
+                    # Safely get event title and check if it's a string before comparing
+                    event_title = event.get('title')
+                    if isinstance(event_title, str) and event_title.lower() in message_lower:
+                        specific_event = event
+                        break
+
+            # --- EVENT RESPONSE GENERATION ---
+            if specific_event:
+                # Build response for a specific event, using .get() for safety
+                response = f"Here's information about **{specific_event.get('title', 'Event')}**:\n\n"
+                response += f"📝 Description: {specific_event.get('description', 'University event')}\n"
+                response += f"🏷️ Type: {specific_event.get('event_type', 'Event')}\n"
+                response += f"📅 Start Date: {specific_event.get('start_date', 'TBA')}\n"
+                response += f"📅 End Date: {specific_event.get('end_date', 'TBA')}\n"
+                response += f"📍 Location: {specific_event.get('location', 'TBA')}\n"
+                response += f"👥 Organizer: {specific_event.get('organizer', 'University')}\n"
+                response += f"📋 Registration Required: {'Yes' if specific_event.get('registration_required', False) else 'No'}\n"
+                if specific_event.get('registration_required'):
+                    response += f"📅 Registration Deadline: {specific_event.get('registration_deadline', 'N/A')}\n"
+                response += f"📞 Contact: {specific_event.get('contact_info', 'Contact event organizer')}\n"
+                response += f"👥 Max Participants: {specific_event.get('max_participants', 'No limit')}\n"
+                response += "\nCheck the university website or contact the organizer for the latest updates."
+            
+            elif "past events" in message_lower or "previous events" in message_lower:
+                # Handle specific requests for past events
                 if past_events:
-                    response += "**📅 Recent Past Events:**\n"
-                    for event in past_events[:3]: # Show last 3 past events
-                        response += f"• **{event.get('title', 'Event')}** ({event.get('event_type', 'Event')})\n"
-                        response += f"  📅 {event.get('start_date', 'TBA')} at {event.get('location', 'TBA')}\n\n"
-                
-                response += "💡 Ask me about a specific event for detailed information including registration details!"
-            else: # If no event data is available
-                response += "\n\nSorry, I couldn't retrieve event information at the moment. Please check back later."
+                    response = "Here are some of our previous events:\n\n"
+                    # List up to 3 past events, safely accessing their details
+                    for i, event in enumerate(past_events[:3], 1):
+                        event_title = event.get('title', 'Event')
+                        event_type = event.get('event_type', 'Event')
+                        start_date = event.get('start_date', 'TBA')
+                        response += f"{i}. **{event_title}** ({event_type})\n"
+                        response += f"   📅 {start_date}\n\n"
+                    response += "Would you like to know about any specific past event?"
+                else:
+                    response = "I don't have information on past events at the moment. Please check back later."
+            
+            else: # General event query - show a mix of upcoming and recent past events
+                if upcoming_events or past_events:
+                    response += "\n\n"
+                    
+                    # Show upcoming events first, limited to 3
+                    if upcoming_events:
+                        response += "**📅 Upcoming Events:**\n"
+                        for event in upcoming_events[:3]:
+                            event_title = event.get('title', 'Event')
+                            event_type = event.get('event_type', 'Event')
+                            start_date = event.get('start_date', 'TBA')
+                            location = event.get('location', 'TBA')
+                            response += f"• **{event_title}** ({event_type})\n"
+                            response += f"  📅 {start_date} at {location}\n\n"
+                    
+                    # Show recent past events, limited to 3
+                    if past_events:
+                        response += "**📅 Recent Past Events:**\n"
+                        for event in past_events[:3]:
+                            event_title = event.get('title', 'Event')
+                            event_type = event.get('event_type', 'Event')
+                            start_date = event.get('start_date', 'TBA')
+                            location = event.get('location', 'TBA')
+                            response += f"• **{event_title}** ({event_type})\n"
+                            response += f"  📅 {start_date} at {location}\n\n"
+                    
+                    response += "💡 Ask me about a specific event for detailed information including registration details!"
+                else: # If no event data is available at all
+                    response += "\n\nSorry, I couldn't retrieve event information at the moment. Please check back later."
 
-        return response
+            return response
+
+        except Exception as e:
+            # Catch any unforeseen exceptions during event handling
+            # Log the error with traceback for detailed debugging
+            logger.error(f"Unhandled error in handle_events for query '{user_message}': {e}")
+            logger.error(f"Traceback: {traceback.format_exc()}")
+            # Also log the data received to help identify the problematic data structure
+            logger.error(f"Data received for upcoming_events: {context_data.get('events', [])}")
+            logger.error(f"Data received for past_events: {context_data.get('past_events', [])}")
+            
+            # Return the generic error message to the user
+            return "I'm sorry, I'm having trouble processing your request right now. Please try again or contact our student services office for immediate assistance."
 
     def handle_news(self, user_message: str, context_data: Dict[str, Any]) -> str:
         """Handles responses related to university news."""
@@ -268,7 +323,9 @@ class ActivityHandler:
                 # Check if asking for specific news by title
                 specific_news = None
                 for news_item in news_items:
-                    if news_item.get('title', '').lower() in message_lower:
+                    # Safely get news title
+                    news_title = news_item.get('title')
+                    if isinstance(news_title, str) and news_title.lower() in message_lower:
                         specific_news = news_item
                         break
 
@@ -302,6 +359,7 @@ class ActivityHandler:
 
             return response
 
-        except Exception as news_error:
-            logger.error(f"Error in news handling: {news_error}")
+        except Exception as e:
+            logger.error(f"Error in news handling: {e}")
+            logger.error(f"Traceback: {traceback.format_exc()}")
             return "I'm having trouble accessing the news right now. Please try again later or contact our information desk."
