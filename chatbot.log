@@ -13093,3 +13093,236 @@ Watching for file changes with StatReloader
 "GET /admin/chatbot/universitynews/ HTTP/1.1" 200 20609
 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 "POST /process-message/ HTTP/1.1" 200 557
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\activity_handler.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\activity_handler.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 39186
+"POST /process-message/ HTTP/1.1" 200 748
+"POST /process-message/ HTTP/1.1" 200 832
+"GET /admin/chatbot/universitynews/1/change/ HTTP/1.1" 200 21564
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universitynews/1/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universitynews/ HTTP/1.1" 200 20726
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 903
+"POST /process-message/ HTTP/1.1" 200 799
+"POST /process-message/ HTTP/1.1" 200 1357
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 706
+"POST /process-message/ HTTP/1.1" 200 605
+"POST /process-message/ HTTP/1.1" 200 440
+"POST /process-message/ HTTP/1.1" 200 509
+"POST /process-message/ HTTP/1.1" 200 501
+"POST /process-message/ HTTP/1.1" 200 294
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20027
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/4/change/ HTTP/1.1" 200 19272
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/4/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20306
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/3/change/ HTTP/1.1" 200 19321
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/3/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20305
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/1/change/ HTTP/1.1" 200 19327
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/1/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20312
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 18774
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 19298
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 20895
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/add/ HTTP/1.1" 200 18774
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/add/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21514
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 512
+"POST /process-message/ HTTP/1.1" 200 361
+"POST /process-message/ HTTP/1.1" 200 602
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 645
+"POST /process-message/ HTTP/1.1" 200 700
+"POST /process-message/ HTTP/1.1" 200 294
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 531
+"GET /chat/ HTTP/1.1" 200 17854
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21249
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/10/change/ HTTP/1.1" 200 19284
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/10/change/ HTTP/1.1" 200 19284
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 361
+"POST /admin/chatbot/contactinformation/10/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21516
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 531
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 21209
+"POST /process-message/ HTTP/1.1" 200 637
+"POST /process-message/ HTTP/1.1" 200 581
+"POST /process-message/ HTTP/1.1" 200 361
+"GET /admin/chatbot/contactinformation/1/change/ HTTP/1.1" 200 19339
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/1/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21516
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 600
+"POST /process-message/ HTTP/1.1" 200 600
+"POST /process-message/ HTTP/1.1" 200 645
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 602
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 602
+"GET /admin/chatbot/contactinformation/8/change/ HTTP/1.1" 200 19238
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/contactinformation/8/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21499
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 630
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 1368
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 706
+"POST /process-message/ HTTP/1.1" 200 664
+"POST /process-message/ HTTP/1.1" 200 700
+"POST /process-message/ HTTP/1.1" 200 692
+"POST /process-message/ HTTP/1.1" 200 699
+"POST /process-message/ HTTP/1.1" 200 688
+"POST /process-message/ HTTP/1.1" 200 807
+"POST /process-message/ HTTP/1.1" 200 600
+"POST /process-message/ HTTP/1.1" 200 602
+"POST /process-message/ HTTP/1.1" 200 602
+"POST /process-message/ HTTP/1.1" 200 581
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 645
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 361
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 588
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 294
+"POST /process-message/ HTTP/1.1" 200 294
+"POST /process-message/ HTTP/1.1" 200 294
+"POST /process-message/ HTTP/1.1" 200 334
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 334
+"POST /process-message/ HTTP/1.1" 200 334
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 334
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 20796
+"POST /process-message/ HTTP/1.1" 200 294
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 22336
+"POST /process-message/ HTTP/1.1" 200 294
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 23875
+"POST /process-message/ HTTP/1.1" 200 294
+"GET /chat/ HTTP/1.1" 200 25414
+"GET /chat/ HTTP/1.1" 200 25414
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 25414
+"POST /process-message/ HTTP/1.1" 200 361
+"POST /process-message/ HTTP/1.1" 200 334
+"POST /process-message/ HTTP/1.1" 200 361
+"POST /process-message/ HTTP/1.1" 200 588
+"POST /process-message/ HTTP/1.1" 200 614
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /chat/ HTTP/1.1" 200 33846
+"POST /process-message/ HTTP/1.1" 200 588
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\handlers\info_handler.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 618
+"POST /process-message/ HTTP/1.1" 200 648
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 575
+"POST /process-message/ HTTP/1.1" 200 645
+"POST /process-message/ HTTP/1.1" 200 600
+"POST /process-message/ HTTP/1.1" 200 581
+"POST /process-message/ HTTP/1.1" 200 602
+"POST /process-message/ HTTP/1.1" 200 602
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 602
+"POST /process-message/ HTTP/1.1" 200 343
+"POST /process-message/ HTTP/1.1" 200 299
+"POST /process-message/ HTTP/1.1" 200 630
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19381
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/universityinfo/5/change/ HTTP/1.1" 200 19155
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/chatbot/universityinfo/5/change/ HTTP/1.1" 302 0
+"GET /admin/chatbot/universityinfo/ HTTP/1.1" 200 19627
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/chatbot/contactinformation/ HTTP/1.1" 200 21249
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /process-message/ HTTP/1.1" 200 616
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 645
+"POST /process-message/ HTTP/1.1" 200 602
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 614
+"GET /admin/chatbot/contactinformation/10/change/ HTTP/1.1" 200 19284
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /chat/ HTTP/1.1" 200 67808
+"GET /chat/ HTTP/1.1" 200 67808
+"GET /chat/clear/ HTTP/1.1" 302 0
+"GET /chat/ HTTP/1.1" 200 17163
+"POST /process-message/ HTTP/1.1" 200 618
+"POST /process-message/ HTTP/1.1" 200 588
+C:\Users\USER\OneDrive\university-chatbot-2\chatbot\ai_processor.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /process-message/ HTTP/1.1" 200 594
+"POST /process-message/ HTTP/1.1" 200 614
+"POST /process-message/ HTTP/1.1" 200 807
+"POST /process-message/ HTTP/1.1" 200 509
+"POST /process-message/ HTTP/1.1" 200 795
+"POST /process-message/ HTTP/1.1" 200 466
+"POST /process-message/ HTTP/1.1" 200 838
+"POST /process-message/ HTTP/1.1" 200 903
+"POST /process-message/ HTTP/1.1" 200 299
+"POST /process-message/ HTTP/1.1" 200 832
+"POST /process-message/ HTTP/1.1" 200 602

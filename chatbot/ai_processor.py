@@ -94,44 +94,47 @@ class UniversityGuidanceChatbot:
         """Classify user message intent using keyword matching"""
         message_lower = message.lower()
 
-        # Contact information keywords and entities (FIXED VERSION)
         contact_info_keywords = [
-            'contact information', 'phone', 'email', 'office', 'address', 'location',
-            'office hours', 'department', 'telephone', 'fax', 'reach out', 'get in touch',
-            'contact', 'department contacts', 'contact details'
+            'contact information', 'contact details', 'contact', 'phone', 'email', 
+            'office', 'department contacts', 'reach', 'get in touch'
         ]
-
-        # Department titles and known entities for contact
-        department_entities = [
-            'department of civil engineering', 'department of architecture', 
-            'department of mechanical engineering', 'department of electrical engineering',
-            'department of computer science', 'department of it',
-            'civil department', 'architecture department', 'mechanical department', 
-            'electrical department', 'it department', 'computer science department', 'departments'
-            'admissions', 'library', 'registrar', 'student affairs', 
-            'administration', 'office', 'student services', 'academic office'
-        ]
-
-        has_contact_keywords = any(ckey in message_lower for ckey in contact_info_keywords)
-        has_department_entity = any(entity in message_lower for entity in department_entities)
-
-        if has_contact_keywords and has_department_entity:
-            return 'contact_info'
-            
-        if has_department_entity and not has_contact_keywords:
-             return 'contact_info'
         
-        # University info keywords
+        # Check for general contact requests first
+        if any(keyword in message_lower for keyword in contact_info_keywords):
+            return 'contact_info'
+
+        # PRIORITY FIX: Check for office-related queries (even if they contain rector/pro-rector)
+        if 'office' in message_lower:
+            return 'contact_info'
+
+        # Check for specific departments (for contact)
+        department_entities = [
+            'information technology department', 'it department',
+            'electrical power department', 'electrical department', 
+            'electronic department', 'mechatronic department',
+            
+            'civil engineering department', 'civil department',
+            'mechanical engineering department', 'mechanical department',
+            'architecture department', 'rector office', 'pro rector office',
+            # Also add the "Department of X" format
+            'department of information technology', 'department of civil engineering',
+            'department of mechanical engineering', 'department of electrical power engineering',
+            'department of electronic', 'department of mechatronic', 'department of architecture'
+        ]
+        
+        if any(entity in message_lower for entity in department_entities):
+            return 'contact_info'
+
+        # University info keywords (MOVE AFTER CONTACT CHECKS)
         university_info_keywords = [
-            'rector name', 'pro-rector name', 'pro rector', 'history', 'about university',
-            'university information', 'general information', 'transportation',
-            'bus number', 'bus no', 'how to get', 'location', 'administration', 'officials', 'leadership'
+            'who is rector', 'rector name', 'who is pro-rector', 'pro-rector name', 
+            'current rector', 'current pro-rector',  # Make these more specific
+            'history', 'about university', 'university information', 'general information', 
+            'transportation', 'bus number', 'bus no', 'how to get', 'location', 
+            'administration', 'officials', 'leadership'
         ]
         if any(keyword in message_lower for keyword in university_info_keywords):
             return 'university_info'
-        
-        
-
         # Campus-related queries
         campus_keywords = [
             'campus', 'facility', 'library', 'hostel', 'cafeteria', 'sports',
@@ -199,10 +202,14 @@ class UniversityGuidanceChatbot:
         if any(keyword in message_lower for keyword in scholarship_keywords):
             return 'scholarships'
 
-        # News queries
-        if any(word in message_lower for word in ['news', 'latest', 'updates', 'announcements', 'headlines']):
+        # News queries - UPDATED
+        news_keywords = [
+            'news', 'latest', 'updates', 'announcements', 'headlines',
+            'tell me about', 'full story', 'more about', 'details about', 'story of'
+        ]
+        if any(word in message_lower for word in news_keywords):
             return 'news'
-
+        
         return 'default'
 
     def _is_disallowed_request(self, message: str) -> bool:

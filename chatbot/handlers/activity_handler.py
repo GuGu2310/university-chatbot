@@ -332,54 +332,91 @@ class ActivityHandler:
 
     def handle_news(self, user_message: str, context_data: Dict[str, Any]) -> str:
         """Handles responses related to university news."""
-        response = random.choice(self.response_templates['news']) + "\n\n"
+        message_lower = user_message.lower()
         
-        try:
-            news_items = context_data.get('news', [])
+        if 'news' in context_data and context_data['news']:
+            news_items = context_data['news']
+            
+            # Check if user is asking for a specific news article
+            specific_news = self._find_specific_news(message_lower, news_items)
+            
+            if specific_news:
+                # Return the full story for the specific news
+                return self._format_full_news_story(specific_news)
+            else:
+                # Show news list with titles (existing functionality)
+                response = random.choice(self.response_templates['news'])
+                response += "\n\n**📰 Latest University News:**\n\n"
+                
+                for i, news_item in enumerate(news_items, 1):
+                    title = news_item.get('title', f'News Item {i}')
+                    date = news_item.get('date', 'Date not specified')
+                    
+                    # Show brief summary
+                    content = news_item.get('content', 'No content available.')
+                    if len(content) > 150:
+                        content = content[:147] + "..."
+                    
+                    response += f"**{i}. {title}**\n"
+                    response += f"📅 {date}\n"
+                    response += f"📄 {content}\n\n"
+                
+                response += "💡 **Ask me about a specific news title for the full story!**\n"
+                response += "Example: 'Tell me about [news title]' or 'Full story of [news title]'"
+                
+                return response
+        else:
+            return "I couldn't retrieve the latest university news at the moment. Please check back later or visit our official website."
 
-            if news_items:
-                message_lower = user_message.lower()
+    def _find_specific_news(self, message_lower: str, news_items: list) -> dict:
+        """Find a specific news article based on user query"""
+        
+        # Keywords that indicate user wants a specific news story
+        story_keywords = ['tell me about', 'full story', 'more about', 'details about', 'story of']
+        
+        # Check if user is asking for a specific story
+        asking_for_story = any(keyword in message_lower for keyword in story_keywords)
+        
+        if not asking_for_story:
+            return None
+        
+        # Try to match news titles
+        for news_item in news_items:
+            title = news_item.get('title', '').lower()
+            
+            # Remove common words for better matching
+            title_words = title.replace('university', '').replace('hmawbi', '').strip()
+            
+            # Split title into individual words for partial matching
+            title_keywords = [word.strip() for word in title_words.split() if len(word.strip()) > 2]
+            
+            # Check if any significant words from title appear in user message
+            if title_keywords and any(keyword in message_lower for keyword in title_keywords):
+                return news_item
+            
+            # Also check for exact phrase matching
+            if title_words and title_words in message_lower:
+                return news_item
+        
+        return None
 
-                # Check if asking for specific news by title
-                specific_news = None
-                for news_item in news_items:
-                    # Safely get news title
-                    news_title = news_item.get('title')
-                    if isinstance(news_title, str) and news_title.lower() in message_lower:
-                        specific_news = news_item
-                        break
-
-                if specific_news:
-                    # Provide detailed info for specific news
-                    response = f"Here's the full story about **{specific_news.get('title', 'University News')}**:\n\n"
-                    response += f"📅 **Date:** {specific_news.get('date', 'N/A')}\n"
-                    response += f"🏷️ **Category:** {specific_news.get('category', 'General')}\n"
-                    if specific_news.get('tags'):
-                        response += f"🏷️ **Tags:** {', '.join(specific_news.get('tags', []))}\n"
-                    response += f"\n📰 **Content:**\n{specific_news.get('content', 'No content available.')}\n"
-                else:
-                    # List general news if no specific query
-                    response += "**Latest Updates:**\n"
-                    for i, news_item in enumerate(news_items[:5], 1): # List first 5 news items with summary
-                        title = news_item.get('title', 'University News')
-                        date = news_item.get('date', 'N/A')
-                        content = news_item.get('content', 'No description available.')
-
-                        # Truncate content for summary
-                        short_description = content
-                        if len(short_description) > 100:
-                            short_description = short_description[:97] + "..."
-
-                        response += f"{i}. **{title}** ({date})\n"
-                        response += f"   {short_description}\n\n"
-
-                    response += "💡 Ask me about a specific news title for the full story!"
-            else: # If no news data is available
-                response += "📰 Stay tuned for exciting university updates and announcements!\n"
-
-            return response
-
-        except Exception as e:
-            logger.error(f"Error in news handling: {e}")
-            logger.error(f"Traceback: {traceback.format_exc()}")
-            return "I'm having trouble accessing the news right now. Please try again later or contact our information desk."
+    def _format_full_news_story(self, news_item: dict) -> str:
+        """Format the full news story"""
+        title = news_item.get('title', 'University News')
+        date = news_item.get('date', 'Date not specified')
+        content = news_item.get('content', 'No content available.')
+        author = news_item.get('author', '')
+        category = news_item.get('category', '')
+        
+        response = f"📰 **{title}**\n\n"
+        response += f"📅 **Date:** {date}\n"
+        
+        if author:
+            response += f"✍️ **Author:** {author}\n"
+        if category:
+            response += f"🏷️ **Category:** {category}\n"
+        
+        response += f"\n📄 **Full Story:**\n{content}\n\n"
+        response += "📰 Want to see other news? Ask 'What are the latest news?' or 'Show me university news'"
+        
+        return response

@@ -53,13 +53,41 @@ class InfoHandler:
     def handle_contact(self, user_message: str, context_data: Dict[str, Any]) -> str:
         """Handles responses related to contact information for departments."""
         response = random.choice(self.response_templates['contact'])
+        
         if 'contact' in context_data and context_data['contact']:
             message_lower = user_message.lower()
             specific_department = None
 
-            # Check if asking for a specific department
+            # IMPROVED: Check if asking for a specific department
             for department_name, department_data in context_data['contact'].items():
-                if department_name.lower() in message_lower or department_name.lower().replace(" ", "") in message_lower.replace(" ", ""):
+                dept_lower = department_name.lower()
+                
+                # Original exact matching
+                if dept_lower in message_lower:
+                    specific_department = department_name
+                    break
+                    
+                # Handle "Department of X" vs "X department" word order
+                if dept_lower.startswith('department of'):
+                    subject = dept_lower.replace('department of', '').strip()
+                    subject_variations = [
+                        f"{subject} department",
+                        f"{subject}department", 
+                        subject
+                    ]
+                    if any(variation in message_lower for variation in subject_variations):
+                        specific_department = department_name
+                        break
+                        
+                # Handle office names
+                elif 'office' in dept_lower:
+                    office_type = dept_lower.replace('office', '').strip()
+                    if office_type in message_lower:
+                        specific_department = department_name
+                        break
+                        
+                # Handle partial matching (remove spaces and check)
+                elif dept_lower.replace(" ", "") in message_lower.replace(" ", ""):
                     specific_department = department_name
                     break
 
@@ -76,12 +104,14 @@ class InfoHandler:
                 response += f"📝 **Description:** {dept_data.get('description', 'Not specified')}\n"
                 response += "\nWould you like to know about other departments?"
             else:
-                # List general departments if no specific query
-                departments = list(context_data['contact'].keys())[:5]
+                # Show ALL departments (not just 5)
+                departments = list(context_data['contact'].keys())  # FIXED: Removed [:5]
                 response += "\n\n" + "\n".join(['• ' + dept for dept in departments])
                 response += "\n\nWould you like detailed contact information for any specific department?"
-        else: # If no contact data is available
+        else:
+            # If no contact data is available
             response = "I couldn't retrieve any department contact information at the moment. Please check back later or contact the main university line."
+        
         return response
 
     def handle_university_info(self, user_message: str, context_data: Dict[str, Any]) -> str:
