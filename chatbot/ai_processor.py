@@ -94,6 +94,25 @@ class UniversityGuidanceChatbot:
         """Classify user message intent using keyword matching"""
         message_lower = message.lower()
 
+        # Check for specific departments (for contact)
+        department_entities = [
+            'computer engineering & information technology department', 'it department',
+            'electrical power department', 'electrical department', 
+            'electronic department', 'mechatronic department',
+            
+            'civil engineering department', 'civil department',
+            'mechanical engineering department', 'mechanical department',
+            'architecture department', 'rector office', 'pro rector office',
+            # Also add the "Department of X" format
+            'department of information technology', 'department of civil engineering',
+            'department of mechanical engineering', 'department of electrical power engineering',
+            'department of electronic', 'department of mechatronic', 'department of architecture',
+            'department of Computer Engineering & Information Technology'
+        ]
+        
+        if any(entity in message_lower for entity in department_entities):
+            return 'contact_info'
+        
         contact_info_keywords = [
             'contact information', 'contact details', 'contact', 'phone', 'email', 
             'office', 'department contacts', 'reach', 'get in touch'
@@ -105,24 +124,6 @@ class UniversityGuidanceChatbot:
 
         # PRIORITY FIX: Check for office-related queries (even if they contain rector/pro-rector)
         if 'office' in message_lower:
-            return 'contact_info'
-
-        # Check for specific departments (for contact)
-        department_entities = [
-            'information technology department', 'it department',
-            'electrical power department', 'electrical department', 
-            'electronic department', 'mechatronic department',
-            
-            'civil engineering department', 'civil department',
-            'mechanical engineering department', 'mechanical department',
-            'architecture department', 'rector office', 'pro rector office',
-            # Also add the "Department of X" format
-            'department of information technology', 'department of civil engineering',
-            'department of mechanical engineering', 'department of electrical power engineering',
-            'department of electronic', 'department of mechatronic', 'department of architecture'
-        ]
-        
-        if any(entity in message_lower for entity in department_entities):
             return 'contact_info'
 
         # University info keywords (MOVE AFTER CONTACT CHECKS)
@@ -156,7 +157,7 @@ class UniversityGuidanceChatbot:
         # Program keywords
         program_keywords = [
             'program', 'course', 'degree', 'study', 'major', 'curriculum',
-            'engineering', 'it', 'computer', 'civil', 'electrical',
+            'engineering', 'it', 'CEIT', 'civil', 'electrical',
             'mechanical', 'software', 'bachelor', 'master', 'phd'
         ]
         if any(keyword in message_lower for keyword in program_keywords):

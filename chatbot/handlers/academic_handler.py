@@ -67,11 +67,11 @@ class AcademicHandler:
 
                 response += f"📋 Entry Requirements: {prog_data.get('entry_requirements', 'Contact admissions for details')}\n"
 
-                salary_range = prog_data.get('salary_range', 'Contact career services for details')
-                if salary_range and salary_range.strip().lower() != 'not specified':
-                    response += f"💰 Salary Range: {salary_range}\n"
-                else:
-                    response += f"💰 Salary Range: Contact career services for details\n"
+                # salary_range = prog_data.get('salary_range', 'Contact career services for details')
+                # if salary_range and salary_range.strip().lower() != 'not specified':
+                #     response += f"💰 Salary Range: {salary_range}\n"
+                # else:
+                #     response += f"💰 Salary Range: Contact career services for details\n"
 
                 specializations = prog_data.get('specializations', [])
                 if isinstance(specializations, list):
